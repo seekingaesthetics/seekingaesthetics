@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seeking Aesthetics — Careers</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{--dark:#442132;--mid:#7b5462;--accent:#e4cdba;--light:#9c7e85;--bg:#f9f4f2;--soft:#e8ddd6;--white:#ffffff;}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--dark);}
+nav{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:rgba(68,33,50,.97);position:sticky;top:0;z-index:100;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo img{width:38px;height:38px;object-fit:contain;}
+.nav-logo-text{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:500;color:var(--white);letter-spacing:.1em;text-transform:uppercase;}
+.nav-back{font-size:13px;color:rgba(255,255,255,.4);text-decoration:none;}
+.nav-back:hover{color:var(--white);}
+
+.hero{background:var(--dark);padding:72px 28px 80px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-150px;left:50%;transform:translateX(-50%);width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(228,205,186,.05) 0%,transparent 60%);pointer-events:none;}
+.hero-eye{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);opacity:.65;margin-bottom:14px;position:relative;z-index:1;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,60px);font-weight:400;color:var(--white);line-height:1.06;margin-bottom:18px;position:relative;z-index:1;}
+.hero h1 em{font-style:italic;color:var(--accent);}
+.hero-sub{font-size:15px;font-weight:300;color:rgba(255,255,255,.4);max-width:500px;margin:0 auto;line-height:1.9;position:relative;z-index:1;}
+
+.body{max-width:800px;margin:0 auto;padding:64px 28px 80px;}
+
+.section-eye{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--mid);margin-bottom:10px;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.5vw,40px);font-weight:400;color:var(--dark);margin-bottom:12px;line-height:1.1;}
+.section-title em{font-style:italic;}
+.section-sub{font-size:14px;color:var(--light);font-weight:300;line-height:1.85;margin-bottom:40px;}
+
+/* MISSION BOX */
+.mission{background:var(--dark);padding:40px;margin-bottom:52px;}
+.mission-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:var(--white);margin-bottom:14px;}
+.mission-title em{font-style:italic;color:var(--accent);}
+.mission-text{font-size:14px;color:rgba(255,255,255,.45);line-height:1.85;font-weight:300;}
+
+/* VALUES */
+.values{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:52px;}
+.val{padding:24px;background:var(--white);border:1px solid var(--soft);}
+.val-icon{font-size:24px;margin-bottom:10px;}
+.val-title{font-size:14px;font-weight:600;color:var(--dark);margin-bottom:6px;}
+.val-text{font-size:12px;color:var(--light);line-height:1.75;font-weight:300;}
+
+/* NO OPENINGS */
+.no-openings{background:var(--white);border:1px solid var(--soft);padding:40px;text-align:center;margin-bottom:32px;}
+.no-icon{font-size:44px;margin-bottom:16px;}
+.no-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;color:var(--dark);margin-bottom:10px;}
+.no-sub{font-size:13px;color:var(--light);line-height:1.8;max-width:420px;margin:0 auto 24px;font-weight:300;}
+
+/* INTEREST FORM */
+.interest-form{background:var(--bg);border:1px solid var(--soft);padding:32px;}
+.if-title{font-size:14px;font-weight:600;color:var(--dark);margin-bottom:6px;}
+.if-sub{font-size:12px;color:var(--light);font-weight:300;line-height:1.7;margin-bottom:20px;}
+.if-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+.if-field label{display:block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--light);margin-bottom:5px;}
+.if-field input,.if-field select,.if-field textarea{width:100%;padding:11px 13px;border:1.5px solid var(--soft);background:var(--white);font-family:'Outfit',sans-serif;font-size:13px;color:var(--dark);outline:none;transition:border-color .2s;}
+.if-field input:focus,.if-field select:focus,.if-field textarea:focus{border-color:var(--mid);}
+.if-field textarea{min-height:80px;resize:vertical;}
+.if-field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%239c7e85' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;background-color:var(--white);padding-right:28px;cursor:pointer;}
+.if-btn{padding:13px 32px;background:var(--dark);border:none;color:var(--white);font-family:'Outfit',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .2s;margin-top:4px;}
+.if-btn:hover{background:var(--mid);}
+.success-msg{display:none;text-align:center;padding:32px;color:var(--dark);}
+.success-msg.show{display:block;}
+
+footer{background:#2a1020;padding:24px 28px;text-align:center;}
+footer p{font-size:11px;color:rgba(255,255,255,.2);}
+
+@media(max-width:640px){
+  .values{grid-template-columns:1fr;}
+  .if-row{grid-template-columns:1fr;}
+  nav{padding:0 16px;}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img src="https://seekingaesthetics.github.io/seekingaesthetics/logo.png" alt="Seeking Aesthetics">
+    <span class="nav-logo-text">Seeking Aesthetics</span>
+  </a>
+  <a class="nav-back" href="index.html">← Back</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-eye">Careers</div>
+  <h1>Build something<br><em>that matters.</em></h1>
+  <p class="hero-sub">We're building Utah's first dedicated aesthetic treatment platform. If that excites you, we'd love to hear from you.</p>
+</div>
+
+<div class="body">
+
+  <div class="mission">
+    <div class="mission-title">Our <em>mission</em></div>
+    <div class="mission-text">Seeking Aesthetics exists to make the aesthetics industry more transparent, trustworthy, and accessible — for patients who deserve better guidance, and for providers who deserve better patients. We're early stage, founder-led, and growing in Utah County. Every person who joins us has a real impact on how this platform is built.</div>
+  </div>
+
+  <div class="section-eye">What we value</div>
+  <h2 class="section-title">Who we're looking<br><em>for</em></h2>
+  <div class="values">
+    <div class="val"><div class="val-icon">🎯</div><div class="val-title">Ownership mentality</div><div class="val-text">You treat every problem like it's yours to solve. You don't wait to be told what to do.</div></div>
+    <div class="val"><div class="val-icon">🤝</div><div class="val-title">Genuine care</div><div class="val-text">You actually care about patients finding the right provider and providers growing their practice.</div></div>
+    <div class="val"><div class="val-icon">⚡</div><div class="val-title">Bias toward action</div><div class="val-text">You'd rather ship something imperfect and improve it than wait for perfect conditions.</div></div>
+    <div class="val"><div class="val-icon">🔍</div><div class="val-title">Intellectual honesty</div><div class="val-text">You say what you think, even when it's uncomfortable. You change your mind when the evidence says to.</div></div>
+  </div>
+
+  <!-- NO OPENINGS + FUTURE -->
+  <div class="no-openings">
+    <div class="no-icon">🌱</div>
+    <div class="no-title">We're just getting started.</div>
+    <div class="no-sub">Seeking Aesthetics is in its founding stage. We don't have formal openings right now — but we're growing, and that changes fast. If you believe in what we're building, we'd love to hear from you now so you're top of mind when the time is right.</div>
+  </div>
+
+  <!-- FUTURE OPPORTUNITIES -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:40px;">
+    <div style="background:var(--white);border:1px solid var(--soft);padding:24px;border-top:3px solid var(--dark);">
+      <div style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--light);margin-bottom:10px;">Potential Career Roles</div>
+      <div style="font-size:14px;font-weight:600;color:var(--dark);margin-bottom:10px;">Full & Part-Time</div>
+      <div style="font-size:12px;color:var(--light);line-height:1.85;font-weight:300;">As we grow we anticipate needing people in provider relations, marketing, patient experience, technology, and operations. Submit your interest now and we'll reach out when something opens up.</div>
+      <div style="margin-top:14px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dark);opacity:.4;">Coming as we grow</div>
+    </div>
+    <div style="background:var(--white);border:1px solid var(--soft);padding:24px;border-top:3px solid var(--accent);">
+      <div style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--light);margin-bottom:10px;">Potential Internships</div>
+      <div style="font-size:14px;font-weight:600;color:var(--dark);margin-bottom:10px;">Students & Early Career</div>
+      <div style="font-size:12px;color:var(--light);line-height:1.85;font-weight:300;">We're open to exploring internship opportunities in social media, provider outreach, and platform operations. If you're a student looking for real hands-on experience in a startup — tell us about yourself.</div>
+      <div style="margin-top:14px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dark);opacity:.4;">Potential college credit</div>
+    </div>
+  </div>
+
+  <div class="interest-form" id="interest-form">
+    <div class="if-title">Stay on our radar</div>
+    <div class="if-sub">No positions are open right now — but we keep every submission and reach out personally when something relevant opens. Don't wait for a job posting.</div>
+    <div class="if-row">
+      <div class="if-field"><label>First Name *</label><input type="text" placeholder="Sarah"></div>
+      <div class="if-field"><label>Last Name *</label><input type="text" placeholder="Martinez"></div>
+    </div>
+    <div class="if-row">
+      <div class="if-field"><label>Email *</label><input type="email" placeholder="sarah@email.com"></div>
+      <div class="if-field"><label>Phone</label><input type="tel" placeholder="(801) 555-0123"></div>
+    </div>
+    <div class="if-field" style="margin-bottom:12px;">
+      <label>Area of interest *</label>
+      <select>
+        <option value="">Select</option>
+        <option>Operations & Provider Relations</option>
+        <option>Marketing & Social Media</option>
+        <option>Technology & Development</option>
+        <option>Patient Experience</option>
+        <option>Sales & Business Development</option>
+        <option>Design & Brand</option>
+        <option>Internship — any area</option>
+        <option>Other / Not sure yet</option>
+      </select>
+    </div>
+    <div class="if-field" style="margin-bottom:16px;">
+      <label>Tell us about yourself</label>
+      <textarea placeholder="What you do, what you're looking for, and why Seeking Aesthetics interests you."></textarea>
+    </div>
+    <button class="if-btn" onclick="submitInterest()">Submit My Interest →</button>
+  </div>
+
+  <div class="success-msg" id="success-msg">
+    <div style="font-size:44px;margin-bottom:16px;">✨</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:var(--dark);margin-bottom:10px;">Got it. We'll be in touch.</div>
+    <div style="font-size:13px;color:var(--light);line-height:1.8;max-width:360px;margin:0 auto;">We review every submission personally. When the right opportunity opens we'll reach out directly.</div>
+  </div>
+
+</div>
+
+<footer><p>© 2026 Seeking Aesthetics · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dbb3beb7b7b49ba8bebeb0b2b5bcbabea8afb3beafb2b8a8f5b8b4b6">[email&#160;protected]</a></p></footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function submitInterest(){
+  document.getEleme
