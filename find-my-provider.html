@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seeking Aesthetics — Find My Treatment</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --dark:#442132;--mid:#7b5462;--accent:#e4cdba;
+  --light:#9c7e85;--bg:#f9f4f2;--soft:#e8ddd6;
+  --white:#ffffff;--mauve:#442132;
+}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--dark);overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:rgba(68,33,50,.97);backdrop-filter:blur(16px);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:#fff;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;}
+.nav-logo span{color:var(--accent);}
+.nav-back{font-size:12px;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s;}
+.nav-back:hover{color:#fff;}
+
+/* LAYOUT */
+.layout{display:grid;grid-template-columns:280px 1fr;min-height:100vh;padding-top:64px;}
+
+/* SIDEBAR */
+.sidebar{background:var(--dark);padding:40px 32px;display:flex;flex-direction:column;position:sticky;top:64px;height:calc(100vh - 64px);}
+.sidebar-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;color:#fff;line-height:1.2;margin-bottom:8px;}
+.sidebar-title em{font-style:italic;color:var(--accent);}
+.sidebar-sub{font-size:12px;color:rgba(255,255,255,.35);line-height:1.75;margin-bottom:32px;font-weight:300;}
+
+.how-steps{margin-bottom:32px;}
+.how-step{display:flex;align-items:center;gap:10px;padding:10px 0;font-size:12px;color:rgba(255,255,255,.35);}
+.how-step.active{color:rgba(255,255,255,.85);}
+.how-num{width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;}
+.how-step.active .how-num{background:var(--accent);color:var(--dark);}
+
+.trust-bar{margin-top:auto;}
+.tb-item{display:flex;align-items:center;gap:8px;font-size:11px;color:rgba(255,255,255,.25);padding:6px 0;}
+.tb-icon{font-size:13px;}
+
+/* FORM AREA */
+.form-area{padding:48px 52px;background:var(--bg);}
+.steps-bar{display:flex;gap:8px;margin-bottom:40px;}
+.step-dot{flex:1;height:3px;background:var(--soft);border-radius:2px;transition:background .4s;}
+.step-dot.active{background:var(--dark);}
+.step-dot.done{background:var(--accent);}
+.step-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--light);margin-top:-28px;margin-bottom:32px;}
+
+/* FORM SECTIONS */
+.form-section{display:none;}
+.form-section.active{display:block;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3vw,40px);font-weight:300;color:var(--dark);line-height:1.1;margin-bottom:6px;}
+.section-title em{font-style:italic;}
+.section-sub{font-size:14px;color:var(--light);margin-bottom:28px;font-weight:300;line-height:1.75;}
+
+/* PILLS */
+.pill-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+.pill{padding:9px 16px;border:1.5px solid var(--soft);background:var(--white);font-size:12px;color:var(--light);cursor:pointer;transition:all .2s;user-select:none;border-radius:2px;}
+.pill:hover{border-color:var(--mid);color:var(--mid);}
+.pill.sel,.pill.selected{border-color:var(--dark);background:rgba(68,33,50,.06);color:var(--dark);font-weight:600;}
+.pill.sel::before,.pill.selected::before{content:'✓ ';font-size:10px;}
+
+/* SELECTED BAR */
+.selected-bar{display:none;flex-direction:column;gap:8px;margin-bottom:20px;padding:14px 16px;background:var(--white);border:1.5px solid rgba(68,33,50,.15);}
+.selected-bar-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--light);font-weight:600;margin-bottom:4px;}
+.selected-list{display:flex;flex-wrap:wrap;gap:6px;}
+.selected-tag{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;background:rgba(68,33,50,.06);border:1.5px solid var(--dark);font-size:12px;color:var(--dark);font-weight:500;}
+.selected-tag-x{cursor:pointer;font-size:14px;color:var(--light);line-height:1;}
+
+/* FORM FIELDS */
+.field-group{margin-bottom:20px;}
+.field-label{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--light);margin-bottom:6px;font-weight:600;}
+.field-input,.field-select{width:100%;padding:13px 16px;border:1.5px solid var(--soft);background:var(--white);font-family:'Outfit',sans-serif;font-size:14px;color:var(--dark);outline:none;transition:border-color .2s;appearance:none;}
+.field-input:focus,.field-select:focus{border-color:var(--dark);}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.field-hint{font-size:11px;color:var(--light);margin-top:5px;line-height:1.6;}
+
+/* PRIVACY NOTE */
+.privacy-note{padding:12px 16px;background:rgba(68,33,50,.04);border-left:3px solid var(--accent);margin-bottom:8px;font-size:12px;color:var(--mid);line-height:1.75;}
+.privacy-note strong{color:var(--dark);font-weight:600;}
+
+/* TRUST INLINE */
+.trust-inline{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--light);margin-bottom:20px;}
+.trust-inline span{font-size:13px;}
+
+/* CONCERN PILLS */
+.concern-pill{padding:10px 18px;border:1.5px solid var(--soft);background:var(--white);font-size:12px;color:var(--light);cursor:pointer;transition:all .2s;user-select:none;}
+.concern-pill:hover{border-color:var(--mid);color:var(--mid);}
+.concern-pill.sel,.concern-pill.selected{border-color:var(--dark);background:rgba(68,33,50,.06);color:var(--dark);font-weight:600;}
+
+/* BUDGET PILLS */
+.budget-options{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:20px;}
+.budget-opt{padding:14px;border:1.5px solid var(--soft);background:var(--white);text-align:center;cursor:pointer;transition:all .2s;}
+.budget-opt:hover{border-color:var(--mid);}
+.budget-opt.sel,.budget-opt.selected{border-color:var(--dark);background:rgba(68,33,50,.06);}
+.budget-opt-price{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--dark);display:block;}
+.budget-opt-label{font-size:10px;color:var(--light);display:block;margin-top:2px;}
+
+/* NAV BUTTONS */
+.btn-row{display:flex;gap:12px;margin-top:32px;align-items:center;}
+.btn-next{padding:14px 36px;background:var(--dark);border:none;color:#fff;font-family:'Outfit',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s;}
+.btn-next:hover{background:var(--mid);}
+.btn-back{padding:14px 24px;background:transparent;border:1.5px solid var(--soft);color:var(--light);font-family:'Outfit',sans-serif;font-size:12px;font-weight:500;cursor:pointer;transition:all .2s;}
+.btn-back:hover{border-color:var(--dark);color:var(--dark);}
+
+/* SEARCHING OVERLAY */
+.searching-overlay{position:fixed;inset:0;background:var(--dark);z-index:200;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+.searching-overlay.show{display:flex;}
+.searching-title{font-family:'Cormorant Garamond',serif;font-size:36px;color:#fff;font-weight:300;margin-bottom:10px;}
+.searching-title em{font-style:italic;color:var(--accent);}
+.searching-sub{font-size:14px;color:rgba(255,255,255,.4);max-width:380px;line-height:1.8;font-weight:300;margin-bottom:32px;}
+.searching-dots{display:flex;gap:10px;}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--accent);animation:bounce .8s ease infinite;}
+.dot:nth-child(2){animation-delay:.15s;}
+.dot:nth-child(3){animation-delay:.3s;}
+@keyframes bounce{0%,100%{transform:translateY(0);opacity:.4;}50%{transform:translateY(-10px);opacity:1;}}
+
+/* CONFIRMATION */
+.confirm-wrap{display:none;min-height:100vh;background:var(--dark);align-items:center;justify-content:center;padding:80px 40px;text-align:center;}
+.confirm-wrap.show{display:flex;flex-direction:column;}
+.confirm-icon{font-size:48px;margin-bottom:20px;}
+.confirm-title{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:300;color:#fff;line-height:1.1;margin-bottom:16px;}
+.confirm-title em{font-style:italic;color:var(--accent);}
+.confirm-sub{font-size:15px;color:rgba(255,255,255,.45);max-width:480px;line-height:1.9;margin-bottom:40px;font-weight:300;}
+.confirm-steps{max-width:520px;text-align:left;}
+.ct-item{display:flex;align-items:flex-start;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.06);}
+.ct-item:last-child{border-bottom:none;}
+.ct-icon{width:38px;height:38px;border-radius:50%;background:rgba(228,205,186,.1);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.ct-title{font-size:13px;font-weight:600;color:#fff;margin-bottom:3px;}
+.ct-desc{font-size:12px;color:rgba(255,255,255,.4);line-height:1.7;}
+
+@media(max-width:900px){
+  nav{padding:0 20px;}
+  .layout{grid-template-columns:1fr;}
+  .sidebar{display:none;}
+  .form-area{padding:32px 20px;}
+  .field-row{grid-template-columns:1fr;}
+  .budget-options{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-back" href="index.html">← Back to Seeking Aesthetics</a>
+  <a class="nav-logo" href="index.html">Seeking<span>Aesthetics</span></a>
+  <div style="width:140px;"></div>
+</nav>
+
+<!-- MAIN LAYOUT -->
+<div class="layout" id="main-layout">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-title">Find your<br><em>treatment.</em></div>
+    <div class="sidebar-sub">Tell us what you want. See verified providers with transparent pricing. You choose who calls you.</div>
+    <div class="how-steps">
+      <div class="how-step active" id="hw1"><div class="how-num">1</div>Your Treatment</div>
+      <div class="how-step" id="hw2"><div class="how-num">2</div>Location & Timing</div>
+      <div class="how-step" id="hw3"><div class="how-num">3</div>Your Goals</div>
+      <div class="how-step" id="hw4"><div class="how-num">4</div>Your Contact Info</div>
+    </div>
+    <div class="trust-bar">
+      <div class="tb-item"><span class="tb-icon">🔒</span>Your info goes only to the provider you choose</div>
+      <div class="tb-item"><span class="tb-icon">📞</span>Your chosen provider calls within 30 min (business hours)</div>
+      <div class="tb-item"><span class="tb-icon">💸</span>Completely free for patients</div>
+      <div class="tb-item"><span class="tb-icon">✓</span>Every provider is DOPL verified</div>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <div class="form-area">
+    <div class="steps-bar">
+      <div class="step-dot active" id="dot1"></div>
+      <div class="step-dot" id="dot2"></div>
+      <div class="step-dot" id="dot3"></div>
+      <div class="step-dot" id="dot4"></div>
+    </div>
+    <div class="step-label" id="step-label">Step 1 of 4 — Your Treatment</div>
+
+    <!-- STEP 1 -->
+    <div class="form-section active" id="s1">
+      <h2 class="section-title">What are you<br><em>looking for today?</em></h2>
+      <p class="section-sub">Select the treatment or treatments you're interested in. You can choose more than one.</p>
+      <div class="pill-grid" id="treatment-pills">
+        <div class="pill" onclick="togglePill(this,'treatments')">💉 Botox / Dysport</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">💉 Xeomin / Daxxify</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">💋 Lip Filler</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">✨ Dermal Fillers</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">🌟 Facial Balancing</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">💎 Sculptra</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">🌿 Radiesse</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">🩸 PRP / PRF</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">💉 Kybella</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">✂️ PDO Thread Lift</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">🌸 Lip Flip</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">👁️ Under Eye Filler</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">🦋 Jawline Contouring</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">✨ Chin Augmentation</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">🌟 Cheek Augmentation</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">💉 Nose Filler (Non-Surgical)</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">🤲 Hand Rejuvenation</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">🔬 Microneedling</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">⚡ Morpheus8 RF</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">💫 Sylfirm X</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">✦ HydraFacial</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">🌿 Chemical Peel</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">🧴 Dermaplaning</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">🔆 Laser Resurfacing</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">💫 IPL Photo Facial</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">🌱 Microdermabrasion</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">🧖 Oxygen Facial</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">✨ VI Peel</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">🌿 ZO Peel</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">💎 DiamondGlow</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">🔬 Collagen Induction Therapy</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">🌊 Aquagold Facial</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">❄️ CoolSculpting</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">💪 Body Contouring</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">🧊 Cryolipolysis</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">⚡ Emsculpt / EmSella</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">🔥 Laser Lipo</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">💫 Ultrasound Body Contouring</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">🌊 Lymphatic Massage</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">🔆 Cellulite Treatment</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">✨ Stretch Mark Treatment</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">🔥 Laser Hair Removal</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">💆 Hair Restoration</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">🩸 PRP Hair Treatment</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">🔬 Scalp Micropigmentation</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">🌱 IV Therapy</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">💊 Weight Loss (GLP-1)</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">🩺 Hormone Therapy</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">🌸 Intimate Wellness</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">🧖 Skin Tightening</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">🦷 Cosmetic Dentistry</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">💫 Tattoo Removal</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">🌿 Vein Treatment</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">⚡ Radiofrequency Skin Tightening</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">🌟 Acne Treatment</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">🔆 Rosacea Treatment</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">🌊 Scar Revision</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">✨ Hyperpigmentation Treatment</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">💎 Anti-Aging Facial</div>
+          <div class="pill" onclick="togglePill(this,'treatments')">🧴 Medical-Grade Skincare Consult</div>
+      </div>
+
+      <div id="selected-treatments-bar" style="display:none;flex-direction:column;gap:8px;margin-bottom:20px;padding:14px 16px;background:var(--white);border:1.5px solid rgba(68,33,50,.15);">
+        <div style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--light);font-weight:600;margin-bottom:4px;">Selected treatments</div>
+        <div id="selected-treatments-list" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-next" onclick="goTo(2)">Next — Location &amp; Timing →</button>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="form-section" id="s2">
+      <h2 class="section-title">Where are<br><em>you located?</em></h2>
+      <p class="section-sub">We'll show you verified providers near you.</p>
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label">Your City *</label>
+          <input class="field-input" type="text" placeholder="Provo, Orem, SLC..." id="f-city">
+        </div>
+        <div class="field-group">
+          <label class="field-label">How far will you travel?</label>
+          <select class="field-select" id="f-distance">
+            <option>Within 5 miles</option>
+            <option selected>Within 10 miles</option>
+            <option>Within 20 miles</option>
+            <option>Anywhere in Utah Valley</option>
+            <option>Anywhere in Utah</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-group">
+        <label class="field-label">When are you looking to book?</label>
+        <select class="field-select" id="f-timeline">
+          <option>This week</option>
+          <option>Within 2 weeks</option>
+          <option selected>This month</option>
+          <option>Next month</option>
+          <option>Just researching for now</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label class="field-label">What is your budget?</label>
+        <div class="budget-options">
+          <div class="budget-opt" onclick="selectBudget(this,'Under $200')"><span class="budget-opt-price">$200</span><span class="budget-opt-label">Under</span></div>
+          <div class="budget-opt" onclick="selectBudget(this,'$200 – $400')"><span class="budget-opt-price">$200–400</span><span class="budget-opt-label">Mid range</span></div>
+          <div class="budget-opt" onclick="selectBudget(this,'$400 – $700')"><span class="budget-opt-price">$400–700</span><span class="budget-opt-label">Higher end</span></div>
+          <div class="budget-opt" onclick="selectBudget(this,'$700 – $1,200')"><span class="budget-opt-price">$700–1,200</span><span class="budget-opt-label">Premium</span></div>
+          <div class="budget-opt" onclick="selectBudget(this,'$1,200+')"><span class="budget-opt-price">$1,200+</span><span class="budget-opt-label">No limit</span></div>
+          <div class="budget-opt" onclick="selectBudget(this,'Not sure yet')"><span class="budget-opt-price" style="font-size:15px;">Not sure</span><span class="budget-opt-label">Still exploring</span></div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn-back" onclick="goTo(1)">← Back</button>
+        <button class="btn-next" onclick="goTo(3)">Next — Your Goals →</button>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="form-section" id="s3">
+      <h2 class="section-title">Tell us a little<br><em>about your goals.</em></h2>
+      <p class="section-sub">The more context you give, the better your provider options will be.</p>
+      <div class="field-group">
+        <label class="field-label">What matters most to you?</label>
+        <div class="pill-grid">
+          <div class="concern-pill" onclick="togglePill(this,'values')">Experience over price</div>
+          <div class="concern-pill" onclick="togglePill(this,'values')">Best price in my area</div>
+          <div class="concern-pill" onclick="togglePill(this,'values')">Natural-looking results</div>
+          <div class="concern-pill" onclick="togglePill(this,'values')">Specific product brands</div>
+          <div class="concern-pill" onclick="togglePill(this,'values')">Quick availability</div>
+          <div class="concern-pill" onclick="togglePill(this,'values')">Female provider</div>
+          <div class="concern-pill" onclick="togglePill(this,'values')">MD or NP only</div>
+          <div class="concern-pill" onclick="togglePill(this,'values')">First time — need guidance</div>
+        </div>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Anything else we should know? (optional)</label>
+        <textarea class="field-input" rows="3" placeholder="Previous treatments, skin sensitivities, specific concerns..." id="f-notes" style="resize:vertical;"></textarea>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Have you had this treatment before?</label>
+        <select class="field-select" id="f-experience">
+          <option>First time — completely new to this</option>
+          <option>I've had it once or twice</option>
+          <option>I get this regularly</option>
+          <option>I'm switching providers</option>
+        </select>
+      </div>
+      <div class="btn-row">
+        <button class="btn-back" onclick="goTo(2)">← Back</button>
+        <button class="btn-next" onclick="goTo(4)">Next — Contact Info →</button>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="form-section" id="s4">
+      <h2 class="section-title">Almost done —<br><em>who should they call?</em></h2>
+      <p class="section-sub">The provider you chose will call you within 30 minutes during business hours (Mon–Sat, 8am–7pm). Submitted outside those hours? You'll hear from them first thing in the morning.on–Sat, 8am–8pm). Submit anytime — after-hours requests are first in line the next morning. Your info goes only to the provider you choose.</p>
+
+      <!-- TRUST STATEMENT — directly above phone field -->
+      <div class="privacy-note">
+        <strong>🔒 Your number goes only to the provider you choose.</strong> Never shared. Never sold. Never used for marketing. One provider. One call.
+      </div>
+
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label">First Name *</label>
+          <input class="field-input" type="text" placeholder="Sarah" id="f-first">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Last Name</label>
+          <input class="field-input" type="text" placeholder="Martinez" id="f-last">
+        </div>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Phone Number *</label>
+        <input class="field-input" type="tel" placeholder="(801) 555-0123" id="f-phone">
+        <div class="field-hint">This is how your provider will reach you. Make sure it's a number you answer.</div>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Email Address *</label>
+        <input class="field-input" type="email" placeholder="sarah@email.com" id="f-email">
+        <div class="field-hint">You'll receive a confirmation with the name and phone number of the provider you chose.</div>
+      </div>
+
+      <!-- PATIENT PROTECTION STATEMENT -->
+      <div style="padding:14px 18px;background:var(--white);border:1px solid var(--soft);margin-bottom:24px;">
+        <div style="font-size:11px;font-weight:700;color:var(--dark);margin-bottom:6px;">What happens if something goes wrong?</div>
+        <div style="font-size:12px;color:var(--light);line-height:1.75;">If your provider doesn't call within 30 minutes — reply to your confirmation email and Melissa will follow up personally. Every provider on this platform is DOPL verified and carries liability coverage. You are protected.</div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-back" onclick="goTo(3)">← Back</button>
+        <button class="btn-next" onclick="submitForm()" style="background:var(--dark);padding:16px 44px;">Find My Provider →</button>
+      </div>
+    </div>
+
+  </div><!-- /form-area -->
+</div><!-- /layout -->
+
+<!-- SEARCHING OVERLAY -->
+<div class="searching-overlay" id="searching-overlay">
+  <div style="font-size:40px;margin-bottom:20px;">✨</div>
+  <div class="searching-title">Finding your<br><em>top providers.</em></div>
+  <div class="searching-sub">We're pulling up verified providers in your area — you'll review their pricing, credentials, and specialties and choose who's right for you.</div>
+  <div class="searching-dots">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+</div>
+
+<!-- CONFIRMATION -->
+<div class="confirm-wrap" id="confirm">
+  <div class="confirm-icon">✨</div>
+  <h2 class="confirm-title">Request<br><em>received.</em></h2>
+  <p class="confirm-sub">Your request has been received. The provider you choose from your results will call you within 30 minutes during business hours (Mon–Sat, 8am–7pm). Submitted late? You'll hear from them first thing in the morning. Here's what happens next:</p>
+  <div class="confirm-steps">
+    <div class="ct-item">
+      <div class="ct-icon">📋</div>
+      <div><div class="ct-title">Right now — your provider options are loading</div><div class="ct-desc">You'll see verified providers who specialize in your treatment with transparent pricing and credentials. You compare. You choose who calls you.</div></div>
+    </div>
+    <div class="ct-item">
+      <div class="ct-icon">🎯</div>
+      <div><div class="ct-title">You choose — they call</div><div class="ct-desc">You'll reach out to confirm once the provider you selected has been notified. They'll call you within 30 minutes during business hours. After-hours submissions are first in line the next morning.</div></div>
+    </div>
+    <div class="ct-item">
+      <div class="ct-icon">🔒</div>
+      <div><div class="ct-title">Your information is protected</div><div class="ct-desc">Your details go only to the provider you choose. If anything feels off — reply to your confirmation email and Melissa will follow up personally.</div></div>
+    </div>
+    <div style="margin-top:20px;padding:16px 20px;background:rgba(228,205,186,.08);border-left:3px solid var(--accent);max-width:520px;text-align:left;">
+      <div style="font-size:12px;font-weight:700;color:var(--accent);margin-bottom:4px;">🕐 Submitted after hours?</div>
+      <div style="font-size:12px;color:rgba(255,255,255,.45);line-height:1.75;">Business hours are Monday–Saturday, 8am–8pm. If you submitted outside those hours, your provider has been notified and you are <strong style="color:rgba(255,255,255,.75);">first in line</strong> for a call the next business morning.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+var cur = 1;
+var selectedBudget = '';
+var selected = { treatments: [], values: [] };
+
+var stepLabels = ['','Step 1 of 4 — Your Treatment','Step 2 of 4 — Location & Timing','Step 3 of 4 — Your Goals','Step 4 of 4 — Your Contact Info'];
+
+function goTo(n) {
+  document.getElementById('s' + cur).classList.remove('active');
+  document.getElementById('hw' + cur).classList.remove('active');
+  document.getElementById('dot' + cur).classList.remove('active');
+  document.getElementById('dot' + cur).classList.add('done');
+  cur = n;
+  document.getElementById('s' + n).classList.add('active');
+  document.getElementById('hw' + n).classList.add('active');
+  document.getElementById('dot' + n).classList.add('active');
+  document.getElementById('dot' + n).classList.remove('done');
+  document.getElementById('step-label').textContent = stepLabels[n];
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function togglePill(el, group) {
+  el.classList.toggle('sel');
+  el.classList.toggle('selected');
+  var val = el.textContent.replace(/^✓\s*/, '').trim();
+  if (!selected[group]) selected[group] = [];
+  if (el.classList.contains('sel')) {
+    if (!selected[group].includes(val)) selected[group].push(val);
+  } else {
+    selected[group] = selected[group].filter(function(v){ return v !== val; });
+  }
+  if (group === 'treatments') updateSelectedBar();
+}
+
+function updateSelectedBar() {
+  var bar = document.getElementById('selected-treatments-bar');
+  var list = document.getElementById('selected-treatments-list');
+  if (!bar || !list) return;
+  var treatments = selected['treatments'] || [];
+  if (treatments.length === 0) { bar.style.display = 'none'; return; }
+  bar.style.display = 'flex';
+  list.innerHTML = treatments.map(function(t){
+    return '<span style="display:inline-flex;align-items:center;gap:6px;padding:5px 12px;background:rgba(68,33,50,.06);border:1.5px solid var(--dark);font-size:12px;color:var(--dark);font-weight:500;">'
+      + t + '<span onclick="removeTreatment(\''+t.replace(/'/g,"\\'")+'\')" style="cursor:pointer;font-size:14px;color:var(--light);line-height:1;">×</span></span>';
+  }).join('');
+}
+
+function removeTreatment(val) {
+  document.querySelectorAll('#treatment-pills .pill').forEach(function(p){
+    if (p.textContent.replace(/^✓\s*/,'').trim() === val) {
+      p.classList.remove('sel','selected');
+    }
+  });
+  selected['treatments'] = (selected['treatments']||[]).filter(function(v){ return v !== val; });
+  updateSelectedBar();
+}
+
+function selectBudget(el, val) {
+  document.querySelectorAll('.budget-opt').forEach(function(b){ b.classList.remove('sel','selected'); });
+  el.classList.add('sel','selected');
+  selectedBudget = val;
+}
+
+function submitForm() {
+  var firstName = document.getElementById('f-first').value.trim();
+  var phone = document.getElementById('f-phone').value.trim();
+  var email = document.getElementById('f-email').value.trim();
+  if (!firstName || !phone || !email) {
+    alert('Please fill in your name, phone number, and email to continue.');
+    return;
+  }
+  // Save to sessionStorage for results page
+  var filters = {
+    treatments: selected['treatments'],
+    values: selected['values'],
+    city: document.getElementById('f-city').value,
+    distance: document.getElementById('f-distance').value,
+    timeline: document.getElementById('f-timeline').value,
+    budget: selectedBudget,
+    experience: document.getElementById('f-experience').value,
+    notes: document.getElementById('f-notes').value,
+    firstName: firstName,
+    phone: phone,
+    email: email,
+  };
+  sessionStorage.setItem('sa_filters', JSON.stringify(filters));
+
+  // Show searching overlay
+  document.getElementById('main-layout').style.display = 'none';
+  document.getElementById('searching-overlay').classList.add('show');
+
+  // Submit to Formspree
+  var formData = new FormData();
+  formData.append('_subject', 'New Patient Treatment Request — Seeking Aesthetics');
+  formData.append('name', firstName + ' ' + document.getElementById('f-last').value);
+  formData.append('phone', phone);
+  formData.append('email', email);
+  formData.append('treatments', (selected['treatments']||[]).join(', '));
+  formData.append('city', filters.city);
+  formData.append('budget', filters.budget);
+  formData.append('timeline', filters.timeline);
+  formData.append('experience', filters.experience);
+  formData.append('what_matters', (selected['values']||[]).join(', '));
+  formData.append('notes', filters.notes);
+
+  fetch('https://formspree.io/f/xlgoggve', {
+    method: 'POST', body: formData, headers: {'Accept':'application/json'}
+  }).catch(function(){});
+
+  // Redirect to results after 2.5s
+  setTimeout(function(){
+    window.location.href = 'results.html';
+  }, 2500);
+}
+</script>
+</body>
+</html>
