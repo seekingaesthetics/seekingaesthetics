@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seeking Aesthetics — Utah's Aesthetic Treatment Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --mauve:#442132;--ebony:#7b5462;
+  --champagne:#e4cdba;--seashell:#f9f4f2;
+  --white:#f9f4f2;--mid:#9c7e85;--light:#e8ddd6;--text:#442132;
+}
+body{font-family:'Outfit',sans-serif;background:#f9f4f2;color:var(--text);overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 52px;background:rgba(68,33,50,.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(228,205,186,.08);}
+.nav-logo{display:flex;align-items:center;gap:16px;text-decoration:none;}
+.nav-logo-text{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:#ffffff;letter-spacing:.1em;text-transform:uppercase;}
+.nav-links{display:flex;align-items:center;gap:30px;}
+.nav-links a{font-size:13px;color:rgba(255,249,228,.4);text-decoration:none;transition:color .2s;font-weight:300;}
+.nav-links a:hover{color:#ffffff;}
+.nav-cta{padding:9px 22px;background:var(--champagne)!important;color:var(--mauve)!important;font-size:11px!important;font-weight:700!important;letter-spacing:.1em;text-transform:uppercase;transition:background .2s!important;opacity:1!important;}
+.nav-cta:hover{background:#f9f4f2!important;}
+
+/* HERO — upgraded */
+.hero{min-height:100vh;background:var(--mauve);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:calc(68px + 72px) 24px 80px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-160px;left:50%;transform:translateX(-50%);width:1000px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(228,205,186,.07) 0%,transparent 55%);pointer-events:none;}
+.hero::after{content:'';position:absolute;bottom:-200px;right:-100px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(100,40,60,.6) 0%,transparent 60%);pointer-events:none;}
+/* Subtle texture overlay */
+.hero-texture{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 80px,rgba(228,205,186,.012) 80px,rgba(228,205,186,.012) 81px),repeating-linear-gradient(90deg,transparent,transparent 80px,rgba(228,205,186,.012) 80px,rgba(228,205,186,.012) 81px);pointer-events:none;}
+.hero-eye{font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--champagne);opacity:.5;margin-bottom:24px;position:relative;z-index:1;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(56px,7.5vw,100px);font-weight:400;line-height:1.02;color:#ffffff;max-width:820px;margin-bottom:22px;position:relative;z-index:1;}
+.hero h1 em{font-style:italic;color:var(--champagne);}
+.hero-sub{font-size:16px;font-weight:300;color:rgba(255,249,228,.45);max-width:440px;line-height:1.95;margin-bottom:44px;position:relative;z-index:1;}
+
+/* SEARCH CARD */
+.search-wrap{width:100%;max-width:700px;background:var(--white);box-shadow:0 28px 80px rgba(68,33,50,.45);position:relative;z-index:1;}
+.search-tabs{display:flex;border-bottom:1px solid var(--light);}
+.stab{flex:1;padding:15px 16px;font-size:12px;font-weight:500;color:var(--mid);cursor:pointer;border:none;background:transparent;font-family:'Outfit',sans-serif;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .2s;}
+.stab.active{color:var(--mauve);border-bottom-color:var(--ebony);font-weight:600;}
+.search-body{padding:22px;}
+.s-row{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:10px;}
+.s-field label{display:block;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);margin-bottom:6px;}
+.s-input,.s-sel{width:100%;padding:12px 14px;border:1.5px solid var(--light);background:#f9f4f2;font-family:'Outfit',sans-serif;font-size:13px;color:var(--text);outline:none;transition:border-color .2s;}
+.s-input:focus,.s-sel:focus{border-color:var(--ebony);}
+.s-sel{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='6'%3E%3Cpath d='M1 1l4.5 4 4.5-4' stroke='%239c7e85' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;cursor:pointer;}
+.s-btn{padding:12px 26px;background:var(--mauve);border:none;color:#ffffff;font-family:'Outfit',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s;align-self:flex-end;white-space:nowrap;}
+.s-btn:hover{background:var(--ebony);}
+
+/* TREATMENT TAGS — upgraded */
+.treatment-tags-wrap{
+  width:100%;max-width:860px;position:relative;z-index:1;
+  margin-top:36px;
+}
+.treatment-tags-label{
+  font-size:9px;letter-spacing:.26em;text-transform:uppercase;
+  color:rgba(228,205,186,.35);margin-bottom:14px;text-align:center;
+}
+.treatment-tags{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;}
+.ttag{
+  padding:9px 18px;
+  border:1px solid rgba(228,205,186,.18);
+  color:rgba(255,249,228,.55);
+  font-size:12px;font-weight:400;
+  cursor:pointer;transition:all .22s;
+  background:rgba(228,205,186,.05);
+  border-radius:2px;
+  display:flex;align-items:center;gap:6px;
+  white-space:nowrap;
+}
+.ttag:hover{
+  border-color:var(--champagne);
+  color:#fff;
+  background:rgba(228,205,186,.12);
+  transform:translateY(-1px);
+  box-shadow:0 4px 16px rgba(0,0,0,.2);
+}
+.ttag .ttag-emoji{font-size:13px;line-height:1;}
+
+/* TRUST */
+.trust{background:var(--champagne);padding:22px 52px;display:flex;justify-content:center;gap:60px;flex-wrap:wrap;}
+.trust-n{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:400;color:var(--mauve);}
+.trust-l{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--ebony);margin-top:4px;opacity:.7;}
+
+/* HOW IT WORKS — upgraded */
+.how{padding:96px 52px;background:#f9f4f2;}
+.section-eye{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--ebony);opacity:.7;margin-bottom:12px;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,4vw,52px);font-weight:400;color:var(--mauve);line-height:1.1;margin-bottom:10px;}
+.section-title em{font-style:italic;}
+.section-sub{font-size:15px;color:var(--mid);font-weight:300;line-height:1.85;max-width:420px;margin-bottom:52px;}
+
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;}
+.step{
+  padding:44px 32px 40px;background:var(--white);
+  border:1px solid var(--light);
+  border-right:none;
+  position:relative;transition:all .25s;
+  overflow:hidden;
+}
+.step:last-child{border-right:1px solid var(--light);}
+.step::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--light);transition:background .25s;
+}
+.step:hover::before{background:var(--mauve);}
+.step:hover{background:#fdf8f5;box-shadow:0 8px 32px rgba(68,33,50,.08);}
+.step-num{
+  font-family:'Cormorant Garamond',serif;font-size:72px;font-weight:300;
+  color:rgba(68,33,50,.05);line-height:1;margin-bottom:14px;
+}
+.step-icon{font-size:28px;margin-bottom:14px;display:block;}
+.step-title{font-size:15px;font-weight:600;color:var(--mauve);margin-bottom:10px;}
+.step-desc{font-size:13px;color:var(--mid);line-height:1.85;font-weight:300;}
+.step-connector{
+  position:absolute;top:50%;right:-13px;
+  width:26px;height:26px;border-radius:50%;
+  background:var(--champagne);border:2px solid #f9f4f2;
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;color:var(--mauve);font-weight:700;
+  z-index:2;transform:translateY(-50%);
+}
+.step:last-child .step-connector{display:none;}
+
+/* PROVIDERS */
+.providers{padding:96px 52px;background:var(--mauve);}
+.providers .section-title{color:#ffffff;}
+.providers .section-sub{color:rgba(255,249,228,.35);}
+.provider-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.pcard{background:rgba(255,249,228,.04);border:1px solid rgba(228,205,186,.1);overflow:hidden;cursor:pointer;transition:all .25s;}
+.pcard:hover{border-color:rgba(228,205,186,.3);transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.3);}
+.pcard-img{height:150px;background:linear-gradient(135deg,#3a1828,#5a3e3e);display:flex;align-items:center;justify-content:center;font-size:48px;position:relative;}
+.pcard-badge{position:absolute;top:12px;right:12px;padding:4px 11px;background:var(--champagne);color:var(--mauve);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;}
+.pcard-body{padding:20px 22px;}
+.pcard-name{font-size:16px;font-weight:600;color:#ffffff;margin-bottom:3px;}
+.pcard-loc{font-size:11px;color:rgba(255,249,228,.3);margin-bottom:12px;}
+.pcard-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
+.ptag{padding:3px 10px;border:1px solid rgba(228,205,186,.12);color:rgba(255,249,228,.4);font-size:11px;}
+.pcard-foot{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid rgba(255,249,228,.07);}
+.stars{color:var(--champagne);font-size:12px;}
+.rating{font-size:13px;font-weight:600;color:#ffffff;margin-left:5px;}
+.rct{font-size:11px;color:rgba(255,249,228,.25);margin-left:3px;}
+.pcard-btn{padding:7px 16px;background:transparent;border:1px solid rgba(228,205,186,.2);color:rgba(255,249,228,.6);font-family:'Outfit',sans-serif;font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s;}
+.pcard-btn:hover{background:var(--champagne);border-color:var(--champagne);color:var(--mauve);}
+
+/* DEALS */
+.deals{padding:96px 52px;background:var(--champagne);}
+.deals .section-eye{color:var(--ebony);}
+.deals .section-title{color:var(--mauve);}
+.deals-carousel-wrap{position:relative;margin-top:48px;}
+.deals-arrow{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:42px;height:42px;border-radius:50%;
+  background:var(--mauve);border:none;color:var(--champagne);
+  font-size:16px;cursor:pointer;z-index:10;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;box-shadow:0 4px 16px rgba(68,33,50,.25);
+}
+.deals-arrow:hover{background:var(--ebony);transform:translateY(-50%) scale(1.06);}
+.deals-arrow.prev{left:-21px;}
+.deals-arrow.next{right:-21px;}
+.deals-arrow:disabled{opacity:.25;cursor:not-allowed;pointer-events:none;}
+.deal-grid{
+  display:flex;gap:12px;overflow-x:auto;scroll-behavior:smooth;
+  scrollbar-width:none;-ms-overflow-style:none;padding-bottom:4px;
+}
+.deal-grid::-webkit-scrollbar{display:none;}
+.deal-card{
+  background:var(--white);padding:22px;border:1px solid var(--light);
+  cursor:pointer;transition:all .25s;
+  flex:0 0 calc(25% - 9px);min-width:220px;
+}
+.deal-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(68,33,50,.12);}
+.dc-spa{font-size:13px;font-weight:600;color:var(--mauve);margin-bottom:3px;}
+.dc-treat{font-size:11px;color:var(--mid);margin-bottom:12px;}
+.dc-price{display:flex;align-items:baseline;gap:8px;margin-bottom:10px;}
+.dc-new{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:var(--mauve);}
+.dc-old{font-size:13px;color:var(--mid);text-decoration:line-through;}
+.dc-pct{font-size:10px;font-weight:700;color:#ffffff;background:var(--mauve);padding:2px 7px;margin-left:2px;}
+.dc-exp{font-size:11px;color:var(--mid);}
+.dc-btn{width:100%;padding:10px;background:var(--mauve);color:#ffffff;border:none;font-family:'Outfit',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;margin-top:12px;transition:background .2s;}
+.dc-btn:hover{background:var(--ebony);}
+
+/* TIERS */
+.tiers{padding:96px 52px;background:#f9f4f2;}
+.tier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:52px;}
+.tier{padding:44px 34px;background:var(--white);border:1px solid var(--light);position:relative;transition:all .25s;}
+.tier.featured{background:var(--mauve);border-color:var(--mauve);}
+.tier-badge{position:absolute;top:-1px;left:50%;transform:translateX(-50%);padding:4px 16px;background:var(--champagne);color:var(--mauve);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;}
+.tier-name{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);margin-bottom:14px;}
+.tier.featured .tier-name{color:rgba(255,249,228,.4);}
+.tier-price{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:var(--mauve);line-height:1;margin-bottom:4px;}
+.tier.featured .tier-price{color:var(--champagne);}
+.tier-per{font-size:12px;color:var(--mid);margin-bottom:28px;}
+.tier.featured .tier-per{color:rgba(255,249,228,.3);}
+.tier-features{list-style:none;margin-bottom:36px;}
+.tier-features li{font-size:13px;color:var(--mid);padding:8px 0;border-bottom:1px solid var(--light);display:flex;align-items:center;gap:10px;font-weight:300;}
+.tier.featured .tier-features li{color:rgba(255,249,228,.5);border-color:rgba(228,205,186,.1);}
+.tier-features li::before{content:'✓';color:var(--ebony);font-weight:700;font-size:12px;flex-shrink:0;}
+.tier.featured .tier-features li::before{color:var(--champagne);}
+.tier-btn{width:100%;padding:13px;border:1.5px solid var(--mauve);background:transparent;color:var(--mauve);font-family:'Outfit',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s;}
+.tier-btn:hover{background:var(--mauve);color:#ffffff;}
+.tier.featured .tier-btn{background:var(--champagne);border-color:var(--champagne);color:var(--mauve);}
+.tier.featured .tier-btn:hover{background:#f9f4f2;}
+
+/* CTA */
+.cta{padding:96px 52px;background:var(--ebony);text-align:center;position:relative;overflow:hidden;}
+.cta::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(228,205,186,.05) 0%,transparent 60%);pointer-events:none;}
+.cta h2{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,5vw,64px);font-weight:400;color:#ffffff;line-height:1.08;margin-bottom:20px;position:relative;z-index:1;}
+.cta h2 em{font-style:italic;color:var(--champagne);}
+.cta p{font-size:16px;color:rgba(255,249,228,.35);max-width:440px;margin:0 auto 44px;line-height:1.9;font-weight:300;position:relative;z-index:1;}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;}
+.btn-p{padding:15px 40px;background:var(--champagne);border:none;color:var(--mauve);font-family:'Outfit',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .2s;}
+.btn-p:hover{background:#f9f4f2;}
+.btn-s{padding:15px 40px;background:transparent;color:rgba(255,249,228,.5);border:1px solid rgba(228,205,186,.2);font-family:'Outfit',sans-serif;font-size:12px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s;}
+.btn-s:hover{border-color:rgba(228,205,186,.5);color:#ffffff;}
+
+/* FOOTER */
+footer{background:#2a1020;padding:56px 52px 28px;display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:44px;}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:18px;color:#ffffff;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;}
+.footer-logo em{font-style:italic;color:var(--champagne);}
+footer p{font-size:13px;color:rgba(255,249,228,.2);line-height:1.85;font-weight:300;max-width:240px;}
+.footer-col h4{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,249,228,.2);margin-bottom:18px;}
+.footer-col a{display:block;font-size:12px;color:rgba(255,249,228,.3);text-decoration:none;margin-bottom:9px;transition:color .2s;}
+.footer-col a:hover{color:var(--champagne);}
+.footer-bottom{background:#2a1020;padding:18px 52px 24px;border-top:1px solid rgba(228,205,186,.06);display:flex;justify-content:space-between;}
+.footer-bottom p{font-size:11px;color:rgba(255,249,228,.18);}
+
+@media(max-width:900px){
+  nav{padding:0 16px;height:60px;}
+  .nav-links{display:none;}
+  .nav-logo img{width:40px!important;height:40px!important;}
+  .nav-logo-text{font-size:16px!important;}
+  .hero{padding:calc(60px + 36px) 20px 52px;}
+  .s-row{grid-template-columns:1fr;}.s-btn{width:100%;}
+  .trust{padding:20px;gap:20px;}
+  .how,.providers,.deals,.tiers,.cta{padding:52px 20px;}
+  .steps,.provider-grid,.deal-grid,.tier-grid{grid-template-columns:1fr;}
+  footer{grid-template-columns:1fr 1fr;padding:44px 20px 20px;}
+  .footer-bottom{padding:16px 20px;flex-direction:column;gap:4px;}
+  .hero-cta-wrap{flex-direction:column;align-items:center;}
+  .urgency-bar{flex-direction:column;text-align:center;gap:8px;padding:14px 20px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;"><img src="https://seekingaesthetics.github.io/seekingaesthetics/logo.png" alt="Seeking Aesthetics" style="width:36px;height:36px;object-fit:contain;display:block;"><span style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:#ffffff;letter-spacing:.12em;text-transform:uppercase;line-height:1;">Seeking Aesthetics</span></a>
+  <div class="nav-links">
+    <a href="#providers">Browse Providers</a>
+    <a href="find-my-provider.html">Find My Treatment</a>
+    <a href="patient-portal.html#passport">Skin Passport</a>
+    <a href="patient-portal.html">My Account</a>
+    <a href="provider-interest.html" class="nav-cta">For Providers</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-texture"></div>
+  <p class="hero-eye">Utah Valley & Salt Lake Valley · Aesthetic Treatment Platform</p>
+  <h1>What are you<br>looking for <em>today?</em></h1>
+  <p class="hero-sub">Tell us your treatment and goals. See verified providers near you, compare pricing and credentials, and choose who calls you.</p>
+
+  <!-- URGENCY BAR -->
+  <div class="urgency-bar" style="display:flex;align-items:center;justify-content:center;gap:20px;background:rgba(228,205,186,.08);border:1px solid rgba(228,205,186,.15);padding:14px 28px;margin-bottom:36px;position:relative;z-index:1;flex-wrap:wrap;max-width:700px;">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span style="width:7px;height:7px;border-radius:50%;background:#4ade80;display:inline-block;animation:pulse 2s ease infinite;flex-shrink:0;"></span>
+      <span style="font-size:12px;color:rgba(255,255,255,.6);font-weight:300;">Accepting requests · Utah Valley & Salt Lake Valley · Other areas coming soon</span>
+    </div>
+    <div style="width:1px;height:14px;background:rgba(228,205,186,.2);"></div>
+    <span style="font-size:12px;color:var(--champagne);font-weight:500;letter-spacing:.04em;">Free · 2 min · No login</span>
+  </div>
+
+  <!-- CTA -->
+  <div class="hero-cta-wrap" style="display:flex;gap:16px;align-items:center;position:relative;z-index:1;flex-wrap:wrap;justify-content:center;margin-bottom:48px;">
+    <a href="find-my-provider.html" style="padding:18px 52px;background:var(--champagne);border:none;color:var(--mauve);font-family:'Outfit',sans-serif;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .25s;text-decoration:none;display:inline-block;box-shadow:0 8px 32px rgba(0,0,0,.25);" onmouseover="this.style.background='#fff';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--champagne)';this.style.transform='translateY(0)'">
+      Find My Treatment →
+    </a>
+    <span style="font-size:13px;color:rgba(255,255,255,.22);font-weight:300;">or browse treatments below</span>
+  </div>
+
+  <style>
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(1.2);}}
+  </style>
+
+  <!-- TREATMENT TAGS -->
+  <div class="treatment-tags-wrap">
+    <div class="treatment-tags-label">Browse by treatment — click any to get started</div>
+    <div class="treatment-tags">
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">💉</span>Botox / Dysport</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">💉</span>Xeomin / Daxxify</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">💋</span>Lip Filler</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">✨</span>Dermal Fillers</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🌟</span>Facial Balancing</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">💎</span>Sculptra</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🌿</span>Radiesse</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🩸</span>PRP / PRF</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">💉</span>Kybella</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">✂️</span>PDO Thread Lift</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🌸</span>Lip Flip</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">👁️</span>Under Eye Filler</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🦋</span>Jawline Contouring</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">✨</span>Chin Augmentation</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🌟</span>Cheek Augmentation</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">💉</span>Nose Filler (Non-Surgical)</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🤲</span>Hand Rejuvenation</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🔬</span>Microneedling</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">⚡</span>Morpheus8 RF</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">💫</span>Sylfirm X</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">✦</span>HydraFacial</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🌿</span>Chemical Peel</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🧴</span>Dermaplaning</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🔆</span>Laser Resurfacing</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">💫</span>IPL Photo Facial</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🌱</span>Microdermabrasion</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🧖</span>Oxygen Facial</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">✨</span>VI Peel</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🌿</span>ZO Peel</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">💎</span>DiamondGlow</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🔬</span>Collagen Induction Therapy</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🌊</span>Aquagold Facial</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">❄️</span>CoolSculpting</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">💪</span>Body Contouring</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🧊</span>Cryolipolysis</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">⚡</span>Emsculpt / EmSella</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🔥</span>Laser Lipo</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">💫</span>Ultrasound Body Contouring</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🌊</span>Lymphatic Massage</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🔆</span>Cellulite Treatment</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">✨</span>Stretch Mark Treatment</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🔥</span>Laser Hair Removal</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">💆</span>Hair Restoration</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🩸</span>PRP Hair Treatment</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🔬</span>Scalp Micropigmentation</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🌱</span>IV Therapy</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">💊</span>Weight Loss (GLP-1)</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🩺</span>Hormone Therapy</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🌸</span>Intimate Wellness</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🧖</span>Skin Tightening</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🦷</span>Cosmetic Dentistry</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">💫</span>Tattoo Removal</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🌿</span>Vein Treatment</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">⚡</span>Radiofrequency Skin Tightening</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🌟</span>Acne Treatment</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🔆</span>Rosacea Treatment</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🌊</span>Scar Revision</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">✨</span>Hyperpigmentation Treatment</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">💎</span>Anti-Aging Facial</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🧴</span>Medical-Grade Skincare Consult</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🧬</span>Exosome Therapy</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🐟</span>Polynucleotides (PDRN)</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🧵</span>PDO Afterglow</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">💉</span>PRF Gel / EZ Gel</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">💨</span>Carboxytherapy</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">✂️</span>Aveli Cellulite Treatment</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🔊</span>Sofwave Lifting</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">⚙️</span>Ellacor Micro-Coring</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">💡</span>K-Laser / LLLT</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🧫</span>NAD+ IV Therapy</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🫧</span>Hyperbaric Oxygen (HBOT)</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">💦</span>Hyperhidrosis Treatment</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🌀</span>Vibration Therapy</span>
+      <span class="ttag" onclick="window.location.href='find-my-provider.html'"><span class="ttag-emoji">🩺</span>Hand Sclerotherapy</span>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<div class="trust">
+  <div class="trust-item"><div class="trust-n">74+</div><div class="trust-l">Treatments Listed</div></div>
+  <div class="trust-item"><div class="trust-n">2</div><div class="trust-l">Utah Valleys Covered</div></div>
+  <div class="trust-item"><div class="trust-n">&lt;30m</div><div class="trust-l">Provider Call Commitment</div></div>
+  <div class="trust-item"><div class="trust-n">$0</div><div class="trust-l">Cost to Patients</div></div>
+  <div class="trust-item"><div class="trust-n">100%</div><div class="trust-l">Transparent Pricing Required</div></div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="section-eye">Simple Process</div>
+  <h2 class="section-title">How <em>seeking</em> works</h2>
+  <p class="section-sub">Built around how patients actually think — not how outdated directories are organized.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <span class="step-icon">📋</span>
+      <div class="step-title">Tell us what you want</div>
+      <div class="step-desc">Treatment, goals, location, and budget. Under 2 minutes. No account needed.</div>
+      <div class="step-connector">→</div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <span class="step-icon">🎯</span>
+      <div class="step-title">You see your options — you choose</div>
+      <div class="step-desc">Verified providers with transparent pricing, credentials, and reviews. You compare and pick who's right for you.</div>
+      <div class="step-connector">→</div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <span class="step-icon">📞</span>
+      <div class="step-title">Your chosen provider calls you</div>
+      <div class="step-desc">The provider you chose calls within 30 minutes during business hours (Mon–Sat, 8am–7pm). Requests outside business hours are answered first thing the next morning.Sat, 8am–8pm). After-hours submissions are first in line the next morning.</div>
+      <div class="step-connector">→</div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <span class="step-icon">⭐</span>
+      <div class="step-title">Come back for more</div>
+      <div class="step-desc">Get notified when your providers run deals on the treatments you love. Return any time you need something new.</div>
+    </div>
+  </div>
+  <!-- SKIN PASSPORT CALLOUT -->
+  <div style="margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:2px;">
+    <div style="padding:28px 32px;background:var(--mauve);display:flex;flex-direction:column;justify-content:space-between;">
+      <div>
+        <div style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(228,205,186,.5);margin-bottom:10px;">New · For Patients</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;color:#fff;line-height:1.15;margin-bottom:10px;">Your <em style="font-style:italic;color:var(--champagne);">Skin Passport</em> travels with you.</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.45);line-height:1.75;margin-bottom:18px;font-weight:300;">Track every treatment, every product, every outcome across every provider you see. Not locked to any spa. Switch providers — your history follows. Get alerts when it's time to refresh. See what combinations actually work for your skin.</div>
+      </div>
+      <a href="patient-portal.html" style="display:inline-block;padding:12px 24px;background:var(--champagne);color:var(--mauve);font-family:'Outfit',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;align-self:flex-start;">Open My Skin Passport →</a>
+    </div>
+    <div style="padding:28px 32px;background:rgba(68,33,50,.06);border:1px solid var(--light);display:flex;flex-direction:column;justify-content:space-between;">
+      <div>
+        <div style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);margin-bottom:10px;">Ready to start?</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;color:var(--mauve);line-height:1.15;margin-bottom:10px;">Find the right provider for your treatment.</div>
+        <div style="font-size:13px;color:var(--mid);line-height:1.75;margin-bottom:18px;font-weight:300;">Your info goes only to the provider you choose. Transparent pricing shown upfront. Free. No spam. No commitment.</div>
+      </div>
+      <a href="find-my-provider.html" style="display:inline-block;padding:12px 24px;background:var(--mauve);color:#fff;font-family:'Outfit',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;align-self:flex-start;">Find My Treatment →</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROVIDERS -->
+<section class="providers" id="providers">
+  <div class="section-eye" style="color:var(--champagne);opacity:.65;">Featured Providers</div>
+  <h2 class="section-title">Top providers for<br><em>your treatment</em></h2>
+  <p class="section-sub">Every provider is verified — credentials confirmed, pricing shown upfront. You see everything before you choose anyone.</p>
+  <div class="provider-grid">
+    <div class="pcard"><div class="pcard-img">💎<div class="pcard-badge">Preferred</div></div><div class="pcard-body"><div class="pcard-name">Glow MedSpa</div><div class="pcard-loc">📍 Provo, UT · 2.1 mi</div><div class="pcard-tags"><span class="ptag">Botox</span><span class="ptag">Fillers</span><span class="ptag">HydraFacial</span></div><div class="pcard-foot"><div><span class="stars">★★★★★</span><span class="rating">4.9</span><span class="rct">(128)</span></div><button class="pcard-btn" onclick="window.location.href='find-my-provider.html'">View & Choose →</button></div></div></div>
+    <div class="pcard"><div class="pcard-img">✨</div><div class="pcard-body"><div class="pcard-name">Allure Aesthetics</div><div class="pcard-loc">📍 Orem, UT · 3.8 mi</div><div class="pcard-tags"><span class="ptag">Botox</span><span class="ptag">Lip Filler</span><span class="ptag">Microneedling</span></div><div class="pcard-foot"><div><span class="stars">★★★★★</span><span class="rating">4.8</span><span class="rct">(94)</span></div><button class="pcard-btn" onclick="window.location.href='find-my-provider.html'">View & Choose →</button></div></div></div>
+    <div class="pcard"><div class="pcard-img">🌸</div><div class="pcard-body"><div class="pcard-name">Studio 22 Aesthetics</div><div class="pcard-loc">📍 Lehi, UT · 5.4 mi</div><div class="pcard-tags"><span class="ptag">Laser</span><span class="ptag">Peels</span><span class="ptag">CoolSculpting</span></div><div class="pcard-foot"><div><span class="stars">★★★★½</span><span class="rating">4.7</span><span class="rct">(61)</span></div><button class="pcard-btn" onclick="window.location.href='find-my-provider.html'">View & Choose →</button></div></div></div>
+  </div>
+</section>
+
+<!-- DEALS -->
+<section class="deals" id="deals">
+  <div class="section-eye">This Week's Deals</div>
+  <h2 class="section-title">Exclusive offers from<br><em>your favorite spas</em></h2>
+  <div class="deals-carousel-wrap">
+    <button class="deals-arrow prev" id="deals-prev" onclick="scrollDeals(-1)" aria-label="Previous deals">‹</button>
+    <div class="deal-grid" id="deal-grid">
+      <div class="deal-card"><div class="dc-spa">Glow MedSpa</div><div class="dc-treat">Botox — Forehead + Glabella</div><div class="dc-price"><span class="dc-new">$199</span><span class="dc-old">$280</span><span class="dc-pct">-29%</span></div><div class="dc-exp">Expires Sun, Mar 16</div><button class="dc-btn">Claim Deal →</button></div>
+      <div class="deal-card"><div class="dc-spa">Allure Aesthetics</div><div class="dc-treat">HydraFacial Deluxe</div><div class="dc-price"><span class="dc-new">$149</span><span class="dc-old">$220</span><span class="dc-pct">-32%</span></div><div class="dc-exp">Expires Fri, Mar 14</div><button class="dc-btn">Claim Deal →</button></div>
+      <div class="deal-card"><div class="dc-spa">Studio 22 Aesthetics</div><div class="dc-treat">Lip Filler — 1ml Juvederm</div><div class="dc-price"><span class="dc-new">$499</span><span class="dc-old">$650</span><span class="dc-pct">-23%</span></div><div class="dc-exp">Expires Mon, Mar 17</div><button class="dc-btn">Claim Deal →</button></div>
+      <div class="deal-card"><div class="dc-spa">Radiance Med Studio</div><div class="dc-treat">Microneedling + PRP</div><div class="dc-price"><span class="dc-new">$299</span><span class="dc-old">$450</span><span class="dc-pct">-33%</span></div><div class="dc-exp">Expires Sat, Mar 15</div><button class="dc-btn">Claim Deal →</button></div>
+    </div>
+    <button class="deals-arrow next" id="deals-next" onclick="scrollDeals(1)" aria-label="Next deals">›</button>
+  </div>
+
+  <!-- SPONSORED AD PLACEHOLDER -->
+  <div style="margin-top:28px;padding:28px 32px;border:1.5px dashed var(--ebony);display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;background:rgba(123,84,98,.04);">
+    <div style="display:flex;align-items:center;gap:20px;">
+      <div style="width:56px;height:56px;background:var(--champagne);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">📣</div>
+      <div>
+        <div style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ebony);opacity:.7;margin-bottom:5px;">Sponsored Placement</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--mauve);margin-bottom:4px;">Your brand. Our audience.</div>
+        <div style="font-size:13px;color:var(--mid);font-weight:300;line-height:1.7;max-width:460px;">Reach thousands of Utah patients actively seeking aesthetic treatments. Featured deal slots, sponsored content, and brand placements available for skincare, supplements, and aesthetic device brands.</div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-end;flex-shrink:0;">
+      <div style="font-size:11px;color:var(--mid);text-align:right;margin-bottom:4px;">Connect with us to learn more</div>
+      <div style="display:flex;gap:10px;">
+        <a href="https://instagram.com/seekingaesthetics" target="_blank" style="padding:10px 18px;background:var(--mauve);color:#ffffff;text-decoration:none;font-family:'Outfit',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:background .2s;">Instagram</a>
+        <a href="https://facebook.com/seekingaesthetics" target="_blank" style="padding:10px 18px;background:transparent;border:1.5px solid var(--mauve);color:var(--mauve);text-decoration:none;font-family:'Outfit',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;transition:all .2s;">Facebook</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- ARTICLES CAROUSEL -->
+<section style="padding:96px 0;background:var(--white);overflow:hidden;">
+  <div style="padding:0 52px;margin-bottom:48px;">
+    <div class="section-eye">Know Before You Book</div>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+      <div>
+        <h2 class="section-title">Educational guides &amp;<br><em>treatment insights.</em></h2>
+        <p style="font-size:14px;color:var(--mid);font-weight:300;line-height:1.8;max-width:420px;margin-top:8px;">Real information about aesthetic treatments — written for patients who want to walk in informed, not overwhelmed.</p>
+      </div>
+      <a href="articles.html" style="text-decoration:none;padding-bottom:4px;">
+        <div style="font-size:12px;color:var(--mauve);font-weight:600;letter-spacing:.06em;white-space:nowrap;">View all articles →</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- CAROUSEL TRACK -->
+  <div style="position:relative;overflow:hidden;" id="article-carousel">
+    <div id="carousel-track" style="display:flex;gap:20px;padding:0 52px 8px;will-change:transform;transition:none;">
+
+      <div class="art-card" style="min-width:340px;height:440px;flex-shrink:0;position:relative;overflow:hidden;cursor:pointer;" onclick="window.location.href='articles.html'">
+        <div style="position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80');background-size:cover;background-position:center;"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,#2a1020,#5a2d45);opacity:.75;"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(20,5,15,.98) 0%,rgba(20,5,15,.5) 50%,transparent 100%);"></div>
+        <div style="position:absolute;top:20px;left:20px;padding:4px 12px;background:var(--champagne);color:var(--mauve);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;">Trending</div>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:28px 24px;">
+          <div style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(228,205,186,.55);margin-bottom:10px;">Seeking Aesthetics · Weight Loss & Skin</div>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:#ffffff;line-height:1.25;margin-bottom:12px;">GLP-1 & Your Skin: What Ozempic Patients Need to Know</h3>
+          <p style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;font-weight:300;margin-bottom:18px;">Millions finishing weight-loss medication are now facing skin laxity and volume loss. Here's what treatments actually work — and what to ask your provider.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-size:11px;color:rgba(255,255,255,.3);">5 min read</span>
+            <span style="font-size:12px;color:var(--champagne);font-weight:500;letter-spacing:.06em;">Read Article →</span>
+          </div>
+        </div>
+      </div>
+      <div class="art-card" style="min-width:340px;height:440px;flex-shrink:0;position:relative;overflow:hidden;cursor:pointer;" onclick="window.location.href='articles.html'">
+        <div style="position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80');background-size:cover;background-position:center;"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,#1a2a1a,#3a5a3a);opacity:.75;"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(20,5,15,.98) 0%,rgba(20,5,15,.5) 50%,transparent 100%);"></div>
+        <div style="position:absolute;top:20px;left:20px;padding:4px 12px;background:var(--champagne);color:var(--mauve);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;">Educational</div>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:28px 24px;">
+          <div style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(228,205,186,.55);margin-bottom:10px;">Seeking Aesthetics · Injectables</div>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:#ffffff;line-height:1.25;margin-bottom:12px;">Filler vs. Botox: Which One Is Actually Right for You?</h3>
+          <p style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;font-weight:300;margin-bottom:18px;">They're often confused — but they do completely different things. Here's the honest breakdown so you walk into your consultation already knowing the answer.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-size:11px;color:rgba(255,255,255,.3);">4 min read</span>
+            <span style="font-size:12px;color:var(--champagne);font-weight:500;letter-spacing:.06em;">Read Article →</span>
+          </div>
+        </div>
+      </div>
+      <div class="art-card" style="min-width:340px;height:440px;flex-shrink:0;position:relative;overflow:hidden;cursor:pointer;" onclick="window.location.href='articles.html#article-1'">
+        <div style="position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80');background-size:cover;background-position:center;"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,#1a1a3a,#2a2a6a);opacity:.75;"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(20,5,15,.98) 0%,rgba(20,5,15,.5) 50%,transparent 100%);"></div>
+        <div style="position:absolute;top:20px;left:20px;padding:4px 12px;background:var(--champagne);color:var(--mauve);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;">Most Asked</div>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:28px 24px;">
+          <div style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(228,205,186,.55);margin-bottom:10px;">Seeking Aesthetics · Injectables · Pricing</div>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:#ffffff;line-height:1.25;margin-bottom:12px;">How Many Units of Botox Do You Actually Need?</h3>
+          <p style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;font-weight:300;margin-bottom:18px;">The question every first-timer asks — and most providers won't answer until you're in the chair. Here's the real range by treatment area, plus what to watch out for.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-size:11px;color:rgba(255,255,255,.3);">5 min read</span>
+            <span style="font-size:12px;color:var(--champagne);font-weight:500;letter-spacing:.06em;">Read Article →</span>
+          </div>
+        </div>
+      </div>
+      <div class="art-card" style="min-width:340px;height:440px;flex-shrink:0;position:relative;overflow:hidden;cursor:pointer;" onclick="window.location.href='articles.html#article-4'">
+        <div style="position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=800&q=80');background-size:cover;background-position:center;"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,#3a2010,#6a4020);opacity:.75;"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(20,5,15,.98) 0%,rgba(20,5,15,.5) 50%,transparent 100%);"></div>
+        <div style="position:absolute;top:20px;left:20px;padding:4px 12px;background:var(--champagne);color:var(--mauve);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;">Planning Guide</div>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:28px 24px;">
+          <div style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(228,205,186,.55);margin-bottom:10px;">Seeking Aesthetics · Recovery & Timing</div>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:#ffffff;line-height:1.25;margin-bottom:12px;">The 14-Day Rule: When to Get Botox Before Your Event</h3>
+          <p style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;font-weight:300;margin-bottom:18px;">Wedding, reunion, photos — timing your Botox wrong is one of the most common mistakes. Here's the exact timeline and why it matters.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-size:11px;color:rgba(255,255,255,.3);">4 min read</span>
+            <span style="font-size:12px;color:var(--champagne);font-weight:500;letter-spacing:.06em;">Read Article →</span>
+          </div>
+        </div>
+      </div>
+      <div class="art-card" style="min-width:340px;height:440px;flex-shrink:0;position:relative;overflow:hidden;cursor:pointer;" onclick="window.location.href='articles.html'">
+        <div style="position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1559599101-f09722fb4948?w=800&q=80');background-size:cover;background-position:center;"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,#2a102a,#5a205a);opacity:.75;"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(20,5,15,.98) 0%,rgba(20,5,15,.5) 50%,transparent 100%);"></div>
+        <div style="position:absolute;top:20px;left:20px;padding:4px 12px;background:var(--champagne);color:var(--mauve);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;">Trust & Safety</div>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:28px 24px;">
+          <div style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(228,205,186,.55);margin-bottom:10px;">Seeking Aesthetics · Choosing a Provider</div>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:#ffffff;line-height:1.25;margin-bottom:12px;">Why Injector Experience Matters More Than Price</h3>
+          <p style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;font-weight:300;margin-bottom:18px;">A $9/unit deal from someone with six months of experience is not the same as $14/unit from a seasoned injector. Here's what credentials actually mean — and what to ask.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-size:11px;color:rgba(255,255,255,.3);">5 min read</span>
+            <span style="font-size:12px;color:var(--champagne);font-weight:500;letter-spacing:.06em;">Read Article →</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /track -->
+
+    <!-- FADE EDGES -->
+    <div style="position:absolute;top:0;bottom:8px;left:0;width:60px;background:linear-gradient(to right,var(--white),transparent);pointer-events:none;z-index:2;"></div>
+    <div style="position:absolute;top:0;bottom:8px;right:0;width:60px;background:linear-gradient(to left,var(--white),transparent);pointer-events:none;z-index:2;"></div>
+  </div>
+
+  <!-- DOTS -->
+  <div style="display:flex;justify-content:center;gap:8px;margin-top:28px;" id="carousel-dots">
+    <div style="width:24px;height:3px;background:var(--mauve);border-radius:2px;transition:all .3s;"></div>
+    <div style="width:8px;height:3px;background:var(--light);border-radius:2px;transition:all .3s;"></div>
+    <div style="width:8px;height:3px;background:var(--light);border-radius:2px;transition:all .3s;"></div>
+    <div style="width:8px;height:3px;background:var(--light);border-radius:2px;transition:all .3s;"></div>
+    <div style="width:8px;height:3px;background:var(--light);border-radius:2px;transition:all .3s;"></div>
+  </div>
+
+  <div style="text-align:center;margin-top:24px;">
+    <a href="articles.html" style="font-size:12px;color:var(--mid);font-weight:400;text-decoration:none;letter-spacing:.04em;">View all guides and articles →</a>
+  </div>
+</section>
+
+<script>
+(function(){
+  var track = document.getElementById('carousel-track');
+  var dots = document.getElementById('carousel-dots') ? document.getElementById('carousel-dots').children : [];
+  if(!track) return;
+
+  var cards = track.children;
+  var cardW = 340 + 20; // card width + gap
+  var total = cards.length;
+  var current = 0;
+  var paused = false;
+  var pixelPos = 0;
+  var speed = 0.5; // pixels per frame — slow drift
+
+  function updateDots(idx){
+    for(var i=0;i<dots.length;i++){
+      dots[i].style.width = i===idx ? '24px' : '8px';
+      dots[i].style.background = i===idx ? 'var(--mauve)' : 'var(--light)';
+    }
+  }
+
+  // Clone cards for seamless loop
+  var clones = [];
+  for(var i=0;i<total;i++){
+    var clone = cards[i].cloneNode(true);
+    track.appendChild(clone);
+    clones.push(clone);
+  }
+
+  var totalWidth = cardW * total;
+
+  function animate(){
+    if(!paused){
+      pixelPos += speed;
+      if(pixelPos >= totalWidth) pixelPos -= totalWidth;
+      track.style.transform = 'translateX(-' + pixelPos + 'px)';
+      current = Math.round(pixelPos / cardW) % total;
+      updateDots(current % total);
+    }
+    requestAnimationFrame(animate);
+  }
+
+  track.addEventListener('mouseenter', function(){ paused = true; });
+  track.addEventListener('mouseleave', function(){ paused = false; });
+
+  // Card hover lift
+  document.querySelectorAll('.art-card').forEach(function(card){
+    card.addEventListener('mouseenter', function(){
+      this.style.transform = 'translateY(-6px)';
+      this.style.transition = 'transform .3s ease';
+      this.style.boxShadow = '0 20px 50px rgba(68,33,50,.3)';
+    });
+    card.addEventListener('mouseleave', function(){
+      this.style.transform = 'translateY(0)';
+      this.style.boxShadow = 'none';
+    });
+  });
+
+  animate();
+})();
+</script>
+
+<script>
+// Deals carousel scroll
+function scrollDeals(dir) {
+  var grid = document.getElementById('deal-grid');
+  if (!grid) return;
+  var cardW = grid.querySelector('.deal-card');
+  var scrollAmount = cardW ? (cardW.offsetWidth + 12) * 2 : 480;
+  grid.scrollBy({ left: dir * scrollAmount, behavior: 'smooth' });
+  // Update arrow states after scroll
+  setTimeout(updateDealArrows, 350);
+}
+
+function updateDealArrows() {
+  var grid = document.getElementById('deal-grid');
+  var prev = document.getElementById('deals-prev');
+  var next = document.getElementById('deals-next');
+  if (!grid || !prev || !next) return;
+  prev.disabled = grid.scrollLeft <= 0;
+  next.disabled = grid.scrollLeft >= grid.scrollWidth - grid.clientWidth - 2;
+}
+
+// Init arrow states on load
+window.addEventListener('load', function(){
+  updateDealArrows();
+  var grid = document.getElementById('deal-grid');
+  if (grid) grid.addEventListener('scroll', updateDealArrows);
+});
+</script>
+
+<!-- CTA -->
+<section class="cta">
+  <h2>Ready to find your<br><em>provider?</em></h2>
+  <p>Tell us your treatment and goals. See verified providers near you, compare, and choose who calls you — in under 2 minutes.</p>
+  <div class="cta-btns">
+    <button class="btn-p" onclick="window.location.href='find-my-provider.html'">Find My Treatment →</button>
+    <a href="provider-interest.html" style="text-decoration:none;"><button class="btn-s">Become a Preferred Provider</button></a>
+  </div>
+</section>
+
+<!-- PROVIDER CTA BAR -->
+<div style="background:var(--ebony);padding:40px 52px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;">
+  <div>
+    <div style="font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--champagne);opacity:.7;margin-bottom:6px;">For MedSpa Owners</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:#ffffff;line-height:1.1;">Become a <em style="font-style:italic;color:var(--champagne);">Preferred Provider</em></div>
+    <div style="font-size:13px;color:rgba(255,255,255,.35);margin-top:6px;font-weight:300;">Pre-qualified treatment requests who selected you specifically. Apply to join our provider network.</div>
+  </div>
+  <a href="provider-interest.html" style="text-decoration:none;">
+    <button style="padding:14px 32px;background:var(--champagne);border:none;color:var(--mauve);font-family:'Outfit',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;white-space:nowrap;">Apply Now →</button>
+  </a>
+</div>
+
+
+<!-- FOOTER -->
+<footer>
+  <div><div class="footer-logo">Seeking<em>Aesthetics</em></div><p>Utah Valley & Salt Lake Valley's first dedicated platform for non-surgical MedSpa treatments. Other areas coming soon.</p></div>
+  <div class="footer-col"><h4>Patients</h4>
+    <a href="patient-portal.html">My Account</a>
+    <a href="find-my-provider.html">Find a Treatment</a>
+    <a href="find-my-provider.html">Browse by Treatment</a>
+    <a href="#deals">View Deals</a>
+    <a href="#how">How It Works</a>
+  </div>
+  <div class="footer-col"><h4>Providers</h4>
+    <a href="provider-interest.html">Join Beta — Free</a>
+    <a href="provider-portal.html">Provider Login</a>
+    <a href="#" style="color:rgba(228,205,186,.2);cursor:default;">Seeking Cosmetic Surgery <span style="font-size:9px;padding:2px 6px;border:1px solid rgba(228,205,186,.15);margin-left:4px;">Coming Soon</span></a>
+  </div>
+  <div class="footer-col"><h4>Company</h4>
+    <a href="contact.html">Contact Us</a>
+    <a href="careers.html">Careers</a>
+    <a href="about.html">About</a>
+    <a href="#">Privacy Policy</a>
+  </div>
+</footer>
+<div class="footer-bottom"><p>© 2026 SeekingAesthetics. All rights reserved.</p><p>Built for Utah's beauty community.</p></div>
+
+<script>
+document.querySelectorAll('.stab').forEach(t=>{
+  t.addEventListener('click',()=>{document.querySelectorAll('.stab').forEach(x=>x.classList.remove('active'));t.classList.add('active');});
+});
+</script>
+</body>
+</html>
