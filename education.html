@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advance Your Education — Seeking Aesthetics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --mauve:#442132;
+  --ebony:#7b5462;
+  --champagne:#e4cdba;
+  --ivory:#FAF7F4;
+  --warm-white:#F5F0EB;
+  --card:#FFFFFF;
+  --mid:#9c7e85;
+  --border:#EDE5DC;
+  --text:#2d1a23;
+  --green:#2d7a4f;
+  --green-light:#e8f5ee;
+}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Outfit',sans-serif;
+  background:var(--ivory);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 24px;
+  background:rgba(250,247,244,.96);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo img{width:32px;height:32px;object-fit:contain;}
+.nav-logo-text{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-weight:600;
+  color:var(--mauve);letter-spacing:.1em;text-transform:uppercase;
+}
+.nav-links{display:flex;align-items:center;gap:24px;}
+.nav-links a{
+  font-size:12px;color:var(--ebony);
+  text-decoration:none;font-weight:400;
+  letter-spacing:.02em;transition:color .2s;
+}
+.nav-links a:hover{color:var(--mauve);}
+.nav-links a.active{color:var(--mauve);font-weight:600;}
+.nav-cta{
+  padding:9px 20px;
+  background:var(--mauve)!important;
+  color:#fff!important;
+  font-size:11px!important;font-weight:700!important;
+  letter-spacing:.1em;text-transform:uppercase;
+  border-radius:2px;
+}
+.nav-mobile-menu{display:none;background:none;border:none;cursor:pointer;padding:4px;}
+.nav-mobile-menu span{display:block;width:22px;height:2px;background:var(--mauve);margin:4px 0;}
+
+/* ── PAGE HEADER ── */
+.page-header{
+  padding:calc(64px + 48px) 24px 40px;
+  background:var(--mauve);
+  text-align:center;
+}
+.page-header-eye{
+  font-size:10px;letter-spacing:.28em;text-transform:uppercase;
+  color:rgba(228,205,186,.45);margin-bottom:14px;
+}
+.page-header h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(36px,8vw,60px);
+  font-weight:400;color:#fff;line-height:1.06;
+  margin-bottom:14px;
+}
+.page-header h1 em{font-style:italic;color:var(--champagne);}
+.page-header-sub{
+  font-size:14px;font-weight:300;
+  color:rgba(228,205,186,.5);
+  max-width:440px;margin:0 auto 32px;
+  line-height:1.8;
+}
+
+/* HEADER STATS */
+.header-stats{
+  display:flex;justify-content:center;gap:32px;
+  flex-wrap:wrap;
+  padding-top:24px;
+  border-top:1px solid rgba(228,205,186,.12);
+}
+.hstat{text-align:center;}
+.hstat-n{
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px;font-weight:400;color:var(--champagne);
+}
+.hstat-l{
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(228,205,186,.35);margin-top:2px;
+}
+
+/* ── FILTERS ── */
+.filters-bar{
+  background:var(--card);
+  border-bottom:1px solid var(--border);
+  padding:16px 24px;
+  position:sticky;top:64px;z-index:50;
+}
+.filters-inner{
+  max-width:1100px;margin:0 auto;
+  display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+}
+.filter-label{
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--mid);font-weight:700;margin-right:4px;
+  white-space:nowrap;
+}
+.fpill{
+  padding:7px 14px;
+  border:1px solid var(--border);
+  border-radius:100px;
+  font-size:12px;color:var(--ebony);
+  background:var(--ivory);
+  cursor:pointer;transition:all .18s;
+  font-weight:400;white-space:nowrap;
+}
+.fpill:hover,.fpill.active{
+  background:var(--mauve);
+  border-color:var(--mauve);
+  color:#fff;
+}
+.filter-select{
+  padding:7px 28px 7px 12px;
+  border:1px solid var(--border);
+  border-radius:100px;
+  font-family:'Outfit',sans-serif;
+  font-size:12px;color:var(--ebony);
+  background:var(--ivory);
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%239c7e85' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 10px center;
+  cursor:pointer;outline:none;
+  transition:all .18s;
+}
+.filter-select:hover{border-color:var(--mauve);}
+.results-count{
+  margin-left:auto;
+  font-size:12px;color:var(--mid);
+  white-space:nowrap;
+}
+
+/* ── MAIN LAYOUT ── */
+.main{
+  max-width:1100px;
+  margin:0 auto;
+  padding:32px 24px 64px;
+}
+
+/* ── LISTING ROW ── */
+.listing{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  margin-bottom:14px;
+  overflow:hidden;
+  transition:box-shadow .22s ease,transform .22s ease;
+}
+.listing:hover{
+  box-shadow:0 8px 32px rgba(68,33,50,.08);
+  transform:translateY(-1px);
+}
+.listing-inner{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:0;
+}
+.listing-body{padding:22px 24px;}
+.listing-top{
+  display:flex;align-items:flex-start;gap:12px;
+  margin-bottom:12px;
+  flex-wrap:wrap;
+}
+.listing-academy{
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;font-weight:500;
+  color:var(--mauve);line-height:1.2;
+}
+.listing-name{
+  font-size:13px;font-weight:600;
+  color:var(--text);
+  margin-bottom:2px;
+}
+.listing-badges{
+  display:flex;gap:6px;flex-wrap:wrap;
+  margin-bottom:12px;
+}
+.badge{
+  padding:4px 10px;
+  border-radius:100px;
+  font-size:10px;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;
+}
+.badge-type{background:rgba(68,33,50,.07);color:var(--mauve);}
+.badge-online{background:#e8f0fe;color:#1a56c4;}
+.badge-inperson{background:#e8f5ee;color:#1a6e3c;}
+.badge-both{background:#fff3e0;color:#b45309;}
+.badge-financing{background:rgba(228,205,186,.3);color:var(--ebony);}
+.badge-license{background:rgba(68,33,50,.05);color:var(--ebony);border:1px solid var(--border);}
+
+.listing-meta{
+  display:flex;gap:20px;flex-wrap:wrap;
+  margin-bottom:14px;
+}
+.lmeta{
+  display:flex;align-items:center;gap:5px;
+  font-size:12px;color:var(--mid);
+}
+.lmeta-icon{font-size:14px;}
+.lmeta strong{color:var(--text);font-weight:600;}
+
+/* START DATES */
+.dates-label{
+  font-size:9px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--mid);font-weight:700;margin-bottom:8px;
+}
+.dates-row{display:flex;gap:6px;flex-wrap:wrap;}
+.date-chip{
+  padding:5px 12px;
+  border:1px solid var(--border);
+  border-radius:6px;
+  font-size:11px;color:var(--ebony);
+  background:var(--ivory);
+  white-space:nowrap;
+  transition:all .18s;
+  cursor:default;
+}
+.date-chip.next{
+  background:var(--mauve);
+  border-color:var(--mauve);
+  color:#fff;
+  font-weight:600;
+}
+.date-chip.soon{
+  border-color:var(--champagne);
+  color:var(--mauve);
+}
+
+/* LISTING CTA */
+.listing-cta{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  justify-content:space-between;
+  padding:22px 22px 22px 0;
+  min-width:160px;
+  border-left:1px solid var(--border);
+  background:var(--ivory);
+}
+.listing-price{
+  text-align:right;
+}
+.price-from{
+  font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--mid);margin-bottom:2px;
+}
+.price-amount{
+  font-family:'Cormorant Garamond',serif;
+  font-size:30px;font-weight:400;
+  color:var(--mauve);line-height:1;
+}
+.price-note{
+  font-size:11px;color:var(--mid);margin-top:2px;
+}
+.financing-note{
+  font-size:10px;color:var(--green);
+  font-weight:600;margin-top:4px;
+  display:flex;align-items:center;gap:4px;
+}
+.financing-note::before{content:'✓';}
+.enroll-btn{
+  padding:11px 20px;
+  background:var(--mauve);
+  border:none;border-radius:6px;
+  color:#fff;
+  font-family:'Outfit',sans-serif;
+  font-size:11px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;
+  cursor:pointer;transition:background .2s;
+  white-space:nowrap;
+  width:100%;
+}
+.enroll-btn:hover{background:#5c2c40;}
+
+/* MOBILE LISTING */
+@media(max-width:680px){
+  .listing-inner{grid-template-columns:1fr;}
+  .listing-cta{
+    flex-direction:row;align-items:center;
+    padding:14px 20px;
+    border-left:none;
+    border-top:1px solid var(--border);
+    min-width:unset;
+  }
+  .listing-price{text-align:left;}
+  .enroll-btn{width:auto;}
+}
+
+/* ── SECTION DIVIDERS ── */
+.category-divider{
+  display:flex;align-items:center;gap:14px;
+  margin:32px 0 16px;
+}
+.category-divider-line{flex:1;height:1px;background:var(--border);}
+.category-divider-label{
+  font-size:10px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--mid);font-weight:700;white-space:nowrap;
+}
+
+/* ── EMPTY STATE ── */
+.empty-state{
+  text-align:center;padding:64px 24px;
+  display:none;
+}
+.empty-state h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px;color:var(--mauve);margin-bottom:8px;
+}
+.empty-state p{font-size:14px;color:var(--mid);}
+
+/* ── EDUCATION REELS ── */
+.reels-intro{
+  margin-bottom:20px;
+}
+.reels-intro p{
+  font-size:13px;color:var(--mid);
+  line-height:1.8;font-weight:300;
+  max-width:600px;
+}
+.reels-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+  margin-bottom:8px;
+}
+.reel-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:transform .2s ease,box-shadow .2s ease;
+}
+.reel-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 28px rgba(68,33,50,.08);
+}
+.reel-thumb{
+  height:120px;
+  background:linear-gradient(135deg,#442132,#7b4055);
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+}
+.reel-play{
+  width:44px;height:44px;
+  background:rgba(255,255,255,.15);
+  backdrop-filter:blur(4px);
+  border:1.5px solid rgba(255,255,255,.3);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;color:#fff;
+  padding-left:3px;
+  transition:background .2s;
+}
+.reel-card:hover .reel-play{background:rgba(255,255,255,.25);}
+.reel-duration{
+  position:absolute;bottom:8px;right:10px;
+  font-size:11px;font-weight:600;color:rgba(255,255,255,.7);
+  background:rgba(0,0,0,.3);
+  padding:2px 7px;border-radius:4px;
+}
+.reel-body{padding:14px;}
+.reel-academy{
+  font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--mid);margin-bottom:5px;font-weight:600;
+}
+.reel-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px;font-weight:500;
+  color:var(--mauve);line-height:1.3;
+  margin-bottom:10px;
+}
+.reel-meta{display:flex;gap:5px;flex-wrap:wrap;}
+.reel-tag{
+  padding:3px 9px;
+  border:1px solid var(--border);
+  border-radius:100px;
+  font-size:10px;color:var(--ebony);
+  background:var(--ivory);
+}
+@media(min-width:768px){
+  .reels-grid{grid-template-columns:repeat(3,1fr);}
+  .reel-thumb{height:140px;}
+}
+@media(max-width:480px){
+  .reels-grid{grid-template-columns:1fr;}
+}
+
+/* ── POST YOUR TRAINING CTA ── */
+.post-cta{
+  background:var(--mauve);
+  border-radius:14px;
+  padding:36px 28px;
+  margin-top:40px;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  align-items:flex-start;
+}
+.post-cta-eye{
+  font-size:10px;letter-spacing:.24em;text-transform:uppercase;
+  color:rgba(228,205,186,.4);
+}
+.post-cta h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px;font-weight:400;color:#fff;line-height:1.15;
+}
+.post-cta h3 em{font-style:italic;color:var(--champagne);}
+.post-cta p{font-size:13px;color:rgba(228,205,186,.45);line-height:1.8;font-weight:300;}
+.post-cta-btn{
+  padding:13px 28px;
+  background:var(--champagne);
+  border:none;border-radius:2px;
+  color:var(--mauve);
+  font-family:'Outfit',sans-serif;
+  font-size:11px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  cursor:pointer;transition:background .2s;
+  text-decoration:none;display:inline-block;
+}
+.post-cta-btn:hover{background:#fff;}
+
+/* DESKTOP */
+@media(min-width:768px){
+  nav{padding:0 52px;}
+  .page-header{padding:calc(68px + 56px) 52px 48px;}
+  .filters-bar{padding:16px 52px;}
+  .main{padding:40px 52px 80px;}
+  .post-cta{
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-between;
+    padding:40px 44px;
+  }
+  .post-cta > div{max-width:480px;}
+}
+@media(max-width:767px){
+  .nav-links{display:none;}
+  .nav-mobile-menu{display:block;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img src="https://seekingaesthetics.github.io/seekingaesthetics/logo.png" alt="Seeking Aesthetics" onerror="this.style.display='none'">
+    <span class="nav-logo-text">Seeking Aesthetics</span>
+  </a>
+  <button class="nav-mobile-menu" onclick="toggleNav(this)" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="nav-links">
+    <a href="index.html#providers">Browse Providers</a>
+    <a href="find-my-provider.html">Find My Treatment</a>
+    <a href="patient-portal.html#passport">Skin Passport</a>
+    <a href="education.html" class="active">Advanced Education</a>
+    <a href="patient-portal.html">My Account</a>
+    <a href="provider-interest.html" class="nav-cta">For Providers</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <p class="page-header-eye">For Aesthetic Professionals</p>
+  <h1>Advance your <em>education.</em></h1>
+  <p class="page-header-sub">Certifications, hands-on trainings, and licensing courses from verified Utah providers and aesthetic schools.</p>
+  <div class="header-stats">
+    <div class="hstat"><div class="hstat-n">24</div><div class="hstat-l">Courses Listed</div></div>
+    <div class="hstat"><div class="hstat-n">8</div><div class="hstat-l">Training Academies</div></div>
+    <div class="hstat"><div class="hstat-n">12</div><div class="hstat-l">Upcoming Start Dates</div></div>
+    <div class="hstat"><div class="hstat-n">100%</div><div class="hstat-l">Utah Verified</div></div>
+  </div>
+</div>
+
+<!-- FILTERS -->
+<div class="filters-bar">
+  <div class="filters-inner">
+    <span class="filter-label">Filter</span>
+    <div class="fpill active" onclick="filterListings('all', this)">All</div>
+    <div class="fpill" onclick="filterListings('injectables', this)">Injectables</div>
+    <div class="fpill" onclick="filterListings('laser', this)">Laser & Energy</div>
+    <div class="fpill" onclick="filterListings('skin', this)">Skin & Facial</div>
+    <div class="fpill" onclick="filterListings('business', this)">Business</div>
+    <div class="fpill" onclick="filterListings('license', this)">Licensing</div>
+    <select class="filter-select" onchange="filterFormat(this.value)">
+      <option value="all">All Formats</option>
+      <option value="inperson">In-Person</option>
+      <option value="online">Online</option>
+      <option value="mentorship">1:1 Mentorship / Preceptorship</option>
+    </select>
+    <div class="results-count" id="results-count">Showing 6 courses</div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- LICENSING -->
+  <div class="category-divider">
+    <div class="category-divider-line"></div>
+    <div class="category-divider-label">Licensing</div>
+    <div class="category-divider-line"></div>
+  </div>
+
+  <!-- LISTING 1 -->
+  <div class="listing" data-category="license" data-format="both">
+    <div class="listing-inner">
+      <div class="listing-body">
+        <div class="listing-top">
+          <div>
+            <div class="listing-academy">Utah Aesthetic Academy</div>
+            <div class="listing-name">Basic Aesthetics License — Full Program</div>
+          </div>
+        </div>
+        <div class="listing-badges">
+          <span class="badge badge-license">Licensing Program</span>
+          <span class="badge badge-both">In-Person & Online</span>
+          <span class="badge badge-financing">Financing Available</span>
+        </div>
+        <div class="listing-meta">
+          <div class="lmeta"><span class="lmeta-icon">📍</span><span>Provo, UT <strong>(In-Person)</strong></span></div>
+          <div class="lmeta"><span class="lmeta-icon">⏱</span><span><strong>600 hours</strong> · State Required</span></div>
+          <div class="lmeta"><span class="lmeta-icon">🎓</span><span>Utah DOPL Approved</span></div>
+        </div>
+        <div class="dates-label">Upcoming Start Dates</div>
+        <div class="dates-row">
+          <div class="date-chip next">May 12, 2026</div>
+          <div class="date-chip soon">Jul 7, 2026</div>
+          <div class="date-chip">Sep 8, 2026</div>
+          <div class="date-chip">Nov 3, 2026</div>
+          <div class="date-chip">Jan 12, 2027</div>
+        </div>
+      </div>
+      <div class="listing-cta">
+        <div class="listing-price">
+          <div class="price-from">Starting from</div>
+          <div class="price-amount">$4,200</div>
+          <div class="price-note">Full program</div>
+          <div class="financing-note">Financing available</div>
+        </div>
+        <button class="enroll-btn">Enroll Now →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LISTING 2 -->
+  <div class="listing" data-category="license" data-format="both">
+    <div class="listing-inner">
+      <div class="listing-body">
+        <div class="listing-top">
+          <div>
+            <div class="listing-academy">Elevated Skin Institute</div>
+            <div class="listing-name">Advanced Aesthetics License — Accelerated Track</div>
+          </div>
+        </div>
+        <div class="listing-badges">
+          <span class="badge badge-license">Advanced Licensing</span>
+          <span class="badge badge-inperson">In-Person</span>
+          <span class="badge badge-financing">Financing Available</span>
+        </div>
+        <div class="listing-meta">
+          <div class="lmeta"><span class="lmeta-icon">📍</span><span>Salt Lake City, UT</span></div>
+          <div class="lmeta"><span class="lmeta-icon">⏱</span><span><strong>1,200 hours</strong> · Advanced Program</span></div>
+          <div class="lmeta"><span class="lmeta-icon">🎓</span><span>Utah DOPL Approved</span></div>
+        </div>
+        <div class="dates-label">Upcoming Start Dates</div>
+        <div class="dates-row">
+          <div class="date-chip next">Jun 2, 2026</div>
+          <div class="date-chip soon">Aug 17, 2026</div>
+          <div class="date-chip">Oct 5, 2026</div>
+          <div class="date-chip">Dec 1, 2026</div>
+          <div class="date-chip">Feb 2, 2027</div>
+        </div>
+      </div>
+      <div class="listing-cta">
+        <div class="listing-price">
+          <div class="price-from">Starting from</div>
+          <div class="price-amount">$7,800</div>
+          <div class="price-note">Full program</div>
+          <div class="financing-note">Financing available</div>
+        </div>
+        <button class="enroll-btn">Enroll Now →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- INJECTABLES -->
+  <div class="category-divider">
+    <div class="category-divider-line"></div>
+    <div class="category-divider-label">Injectables</div>
+    <div class="category-divider-line"></div>
+  </div>
+
+  <!-- LISTING 3 -->
+  <div class="listing" data-category="injectables" data-format="both">
+    <div class="listing-inner">
+      <div class="listing-body">
+        <div class="listing-top">
+          <div>
+            <div class="listing-academy">Glow MedSpa Training</div>
+            <div class="listing-name">Botox & Neurotoxin Certification — Hands-On</div>
+          </div>
+        </div>
+        <div class="listing-badges">
+          <span class="badge badge-type">Injectables</span>
+          <span class="badge badge-both">In-Person & Online</span>
+        </div>
+        <div class="listing-meta">
+          <div class="lmeta"><span class="lmeta-icon">📍</span><span>Provo, UT <strong>(Hands-On)</strong></span></div>
+          <div class="lmeta"><span class="lmeta-icon">⏱</span><span><strong>2 days</strong> · Live Models</span></div>
+          <div class="lmeta"><span class="lmeta-icon">👥</span><span>Max <strong>6 students</strong></span></div>
+        </div>
+        <div class="dates-label">Upcoming Start Dates</div>
+        <div class="dates-row">
+          <div class="date-chip next">May 3, 2026</div>
+          <div class="date-chip soon">May 31, 2026</div>
+          <div class="date-chip">Jun 28, 2026</div>
+          <div class="date-chip">Jul 26, 2026</div>
+          <div class="date-chip">Aug 23, 2026</div>
+          <div class="date-chip">Sep 20, 2026</div>
+        </div>
+      </div>
+      <div class="listing-cta">
+        <div class="listing-price">
+          <div class="price-from">Starting from</div>
+          <div class="price-amount">$1,200</div>
+          <div class="price-note">Per person</div>
+        </div>
+        <button class="enroll-btn">Enroll Now →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LISTING 4 -->
+  <div class="listing" data-category="injectables" data-format="both">
+    <div class="listing-inner">
+      <div class="listing-body">
+        <div class="listing-top">
+          <div>
+            <div class="listing-academy">Allure Aesthetics Academy</div>
+            <div class="listing-name">Advanced Filler Techniques — Facial Anatomy Focus</div>
+          </div>
+        </div>
+        <div class="listing-badges">
+          <span class="badge badge-type">Injectables</span>
+          <span class="badge badge-inperson">In-Person</span>
+          <span class="badge badge-financing">Financing Available</span>
+        </div>
+        <div class="listing-meta">
+          <div class="lmeta"><span class="lmeta-icon">📍</span><span>Orem, UT</span></div>
+          <div class="lmeta"><span class="lmeta-icon">⏱</span><span><strong>3 days</strong> · Cadaver Lab Day 2</span></div>
+          <div class="lmeta"><span class="lmeta-icon">👥</span><span>Max <strong>4 students</strong></span></div>
+        </div>
+        <div class="dates-label">Upcoming Start Dates</div>
+        <div class="dates-row">
+          <div class="date-chip next">May 18, 2026</div>
+          <div class="date-chip soon">Jul 13, 2026</div>
+          <div class="date-chip">Sep 14, 2026</div>
+          <div class="date-chip">Nov 9, 2026</div>
+          <div class="date-chip">Jan 19, 2027</div>
+        </div>
+      </div>
+      <div class="listing-cta">
+        <div class="listing-price">
+          <div class="price-from">Starting from</div>
+          <div class="price-amount">$2,400</div>
+          <div class="price-note">Per person</div>
+          <div class="financing-note">Financing available</div>
+        </div>
+        <button class="enroll-btn">Enroll Now →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LASER & ENERGY -->
+  <div class="category-divider">
+    <div class="category-divider-line"></div>
+    <div class="category-divider-label">Laser & Energy Devices</div>
+    <div class="category-divider-line"></div>
+  </div>
+
+  <!-- LISTING 5 -->
+  <div class="listing" data-category="laser" data-format="both">
+    <div class="listing-inner">
+      <div class="listing-body">
+        <div class="listing-top">
+          <div>
+            <div class="listing-academy">Studio 22 Laser Training</div>
+            <div class="listing-name">Laser & Energy Device Certification — Full Spectrum</div>
+          </div>
+        </div>
+        <div class="listing-badges">
+          <span class="badge badge-type">Laser & Energy</span>
+          <span class="badge badge-both">In-Person & Online</span>
+        </div>
+        <div class="listing-meta">
+          <div class="lmeta"><span class="lmeta-icon">📍</span><span>Lehi, UT</span></div>
+          <div class="lmeta"><span class="lmeta-icon">⏱</span><span><strong>5 days</strong> · IPL, RF, CO2, Nd:YAG</span></div>
+          <div class="lmeta"><span class="lmeta-icon">🎓</span><span>CE Credits Included</span></div>
+        </div>
+        <div class="dates-label">Upcoming Start Dates</div>
+        <div class="dates-row">
+          <div class="date-chip next">Jun 9, 2026</div>
+          <div class="date-chip soon">Aug 4, 2026</div>
+          <div class="date-chip">Oct 6, 2026</div>
+          <div class="date-chip">Dec 8, 2026</div>
+          <div class="date-chip">Feb 9, 2027</div>
+        </div>
+      </div>
+      <div class="listing-cta">
+        <div class="listing-price">
+          <div class="price-from">Starting from</div>
+          <div class="price-amount">$3,500</div>
+          <div class="price-note">Per person</div>
+        </div>
+        <button class="enroll-btn">Enroll Now →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUSINESS -->
+  <div class="category-divider">
+    <div class="category-divider-line"></div>
+    <div class="category-divider-label">Business of Aesthetics</div>
+    <div class="category-divider-line"></div>
+  </div>
+
+  <!-- LISTING 6 -->
+  <div class="listing" data-category="business" data-format="online">
+    <div class="listing-inner">
+      <div class="listing-body">
+        <div class="listing-top">
+          <div>
+            <div class="listing-academy">Seeking Aesthetics</div>
+            <div class="listing-name">Build Your MedSpa Practice — Business & Marketing Foundations</div>
+          </div>
+        </div>
+        <div class="listing-badges">
+          <span class="badge badge-type">Business</span>
+          <span class="badge badge-online">Online</span>
+        </div>
+        <div class="listing-meta">
+          <div class="lmeta"><span class="lmeta-icon">💻</span><span>Fully <strong>Online</strong> · Self-Paced</span></div>
+          <div class="lmeta"><span class="lmeta-icon">⏱</span><span><strong>8 hours</strong> · Lifetime Access</span></div>
+          <div class="lmeta"><span class="lmeta-icon">📋</span><span>Pricing, contracts, client acquisition</span></div>
+        </div>
+        <div class="dates-label">Upcoming Cohort Start Dates</div>
+        <div class="dates-row">
+          <div class="date-chip next">May 5, 2026</div>
+          <div class="date-chip">Jun 2, 2026</div>
+          <div class="date-chip">Jul 7, 2026</div>
+          <div class="date-chip">Aug 4, 2026</div>
+          <div class="date-chip">Sep 1, 2026</div>
+          <div class="date-chip">Oct 6, 2026</div>
+          <div class="date-chip">Nov 3, 2026</div>
+          <div class="date-chip">Dec 1, 2026</div>
+        </div>
+      </div>
+      <div class="listing-cta">
+        <div class="listing-price">
+          <div class="price-from">Starting from</div>
+          <div class="price-amount">$299</div>
+          <div class="price-note">Per person</div>
+        </div>
+        <button class="enroll-btn">Enroll Now →</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- EDUCATION REELS -->
+  <div class="category-divider">
+    <div class="category-divider-line"></div>
+    <div class="category-divider-label">Education Reels</div>
+    <div class="category-divider-line"></div>
+  </div>
+
+  <div class="reels-intro">
+    <p>Short-form education from verified Utah aesthetic providers. Technique breakdowns, before & afters, product education, and clinical tips.</p>
+  </div>
+
+  <div class="reels-grid">
+
+    <div class="reel-card">
+      <div class="reel-thumb">
+        <div class="reel-play">▶</div>
+        <div class="reel-duration">2:14</div>
+      </div>
+      <div class="reel-body">
+        <div class="reel-academy">Glow MedSpa Training</div>
+        <div class="reel-title">Botox Placement — Forehead Mapping Technique</div>
+        <div class="reel-meta">
+          <span class="reel-tag">Injectables</span>
+          <span class="reel-tag">Technique</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="reel-card">
+      <div class="reel-thumb">
+        <div class="reel-play">▶</div>
+        <div class="reel-duration">3:42</div>
+      </div>
+      <div class="reel-body">
+        <div class="reel-academy">Allure Aesthetics Academy</div>
+        <div class="reel-title">Lip Filler — Russian Technique vs Classic</div>
+        <div class="reel-meta">
+          <span class="reel-tag">Injectables</span>
+          <span class="reel-tag">Filler</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="reel-card">
+      <div class="reel-thumb">
+        <div class="reel-play">▶</div>
+        <div class="reel-duration">1:58</div>
+      </div>
+      <div class="reel-body">
+        <div class="reel-academy">Studio 22 Laser Training</div>
+        <div class="reel-title">IPL Settings for Fitzpatrick Skin Types III–IV</div>
+        <div class="reel-meta">
+          <span class="reel-tag">Laser</span>
+          <span class="reel-tag">Clinical</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="reel-card">
+      <div class="reel-thumb">
+        <div class="reel-play">▶</div>
+        <div class="reel-duration">4:11</div>
+      </div>
+      <div class="reel-body">
+        <div class="reel-academy">Utah Aesthetic Academy</div>
+        <div class="reel-title">Facial Anatomy — Danger Zones Every Injector Must Know</div>
+        <div class="reel-meta">
+          <span class="reel-tag">Anatomy</span>
+          <span class="reel-tag">Safety</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="reel-card">
+      <div class="reel-thumb">
+        <div class="reel-play">▶</div>
+        <div class="reel-duration">2:33</div>
+      </div>
+      <div class="reel-body">
+        <div class="reel-academy">Elevated Skin Institute</div>
+        <div class="reel-title">Morpheus8 — Protocol Setup for Body Contouring</div>
+        <div class="reel-meta">
+          <span class="reel-tag">Laser & Energy</span>
+          <span class="reel-tag">Body</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="reel-card">
+      <div class="reel-thumb">
+        <div class="reel-play">▶</div>
+        <div class="reel-duration">3:05</div>
+      </div>
+      <div class="reel-body">
+        <div class="reel-academy">Seeking Aesthetics</div>
+        <div class="reel-title">Building Your MedSpa Client Base — What Actually Works</div>
+        <div class="reel-meta">
+          <span class="reel-tag">Business</span>
+          <span class="reel-tag">Marketing</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- POST YOUR TRAINING CTA -->
+  <div class="post-cta">
+    <div>
+      <div class="post-cta-eye">Are You a Provider or Academy?</div>
+      <h3>Post your <em>training.</em></h3>
+      <p>Premier members can list unlimited training courses and certifications. Reach aesthetic professionals actively looking to advance their skills across Utah.</p>
+    </div>
+    <a href="provider-interest.html" class="post-cta-btn">List Your Training →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleNav(btn){
+  const links = document.getElementById('nav-links');
+  links.classList.toggle('open');
+  const spans = btn.querySelectorAll('span');
+  if(links.classList.contains('open')){
+    spans[0].style.transform='rotate(45deg) translate(4px,4px)';
+    spans[1].style.opacity='0';
+    spans[2].style.transform='rotate(-45deg) translate(4px,-4px)';
+  } else {
+    spans[0].style.transform='';spans[1].style.opacity='1';spans[2].style.transform='';
+  }
+}
+
+function filterListings(category, el){
+  document.querySelectorAll('.fpill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  const listings = document.querySelectorAll('.listing');
+  let count = 0;
+  listings.forEach(l => {
+    const show = category === 'all' || l.dataset.category === category;
+    l.style.display = show ? '' : 'none';
+    if(show) count++;
+  });
+  document.getElementById('results-count').textContent = 'Showing ' + count + ' course' + (count !== 1 ? 's' : '');
+  // Hide empty category dividers
+  document.querySelectorAll('.category-divider').forEach(div => {
+    let next = div.nextElementSibling;
+    let hasVisible = false;
+    while(next && !next.classList.contains('category-divider') && !next.classList.contains('post-cta')){
+      if(next.classList.contains('listing') && next.style.display !== 'none') hasVisible = true;
+      next = next.nextElementSibling;
+    }
+    div.style.display = hasVisible ? '' : 'none';
+  });
+}
+
+function filterFormat(format){
+  const listings = document.querySelectorAll('.listing');
+  listings.forEach(l => {
+    if(format === 'all' || l.dataset.format === format) l.style.display = '';
+    else l.style.display = 'none';
+  });
+}
+</script>
+
+<style>
+.nav-links.open{
+  display:flex;flex-direction:column;
+  position:fixed;top:64px;left:0;right:0;
+  background:var(--ivory);
+  border-bottom:1px solid var(--border);
+  padding:20px 24px;gap:16px;z-index:99;
+}
+</style>
+</body>
+</html>
