@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Articles &amp; Guides &mdash; Seeking Aesthetics</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{--dark:#442132;--mid:#7b5462;--accent:#e4cdba;--light:#9c7e85;--bg:#f9f4f2;--soft:#e8ddd6;--white:#ffffff;--ink:#2a1020;}
+html{scroll-behavior:smooth;}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--dark);overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 52px;background:rgba(68,33,50,.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(228,205,186,.08);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:#fff;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;}
+.nav-logo span{color:var(--accent);}
+.nav-links{display:flex;align-items:center;gap:28px;}
+.nav-links a{font-size:12px;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s;font-weight:300;}
+.nav-links a:hover{color:#fff;}
+.nav-cta{padding:8px 20px;background:var(--accent)!important;color:var(--dark)!important;font-size:11px!important;font-weight:700!important;letter-spacing:.1em;text-transform:uppercase;}
+/* INDEX */
+.index-page{padding-top:68px;}
+.index-hero{background:var(--dark);padding:72px 52px 64px;position:relative;overflow:hidden;}
+.index-hero::before{content:'';position:absolute;width:600px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(228,205,186,.06) 0%,transparent 65%);top:-100px;right:-100px;pointer-events:none;}
+.index-hero-bg{position:absolute;inset:0;background-image:url('img-spa-interior.jpg');background-size:cover;background-position:center;opacity:.12;}
+.index-hero-eye{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:rgba(228,205,186,.4);margin-bottom:16px;position:relative;z-index:1;}
+.index-hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,5vw,68px);font-weight:300;color:#fff;line-height:1.04;margin-bottom:14px;position:relative;z-index:1;}
+.index-hero-title em{font-style:italic;color:var(--accent);}
+.index-hero-sub{font-size:15px;color:rgba(255,255,255,.4);font-weight:300;line-height:1.85;max-width:480px;margin-bottom:20px;position:relative;z-index:1;}
+.index-disclaimer{display:inline-block;padding:10px 16px;background:rgba(228,205,186,.07);border:1px solid rgba(228,205,186,.12);font-size:11px;color:rgba(255,255,255,.35);line-height:1.7;max-width:600px;position:relative;z-index:1;}
+.index-disclaimer strong{color:rgba(228,205,186,.6);font-weight:500;}
+/* GRID */
+.blog-grid-wrap{max-width:1100px;margin:0 auto;padding:64px 52px;}
+.blog-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+.blog-card-new{background:var(--white);border:1px solid var(--soft);cursor:pointer;transition:all .25s;overflow:hidden;}
+.blog-card-new:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(68,33,50,.12);border-color:rgba(68,33,50,.2);}
+.bcn-img{height:220px;background-size:cover;background-position:center;}
+.bcn-body{padding:24px 26px;}
+.bcn-cat{font-size:11px;letter-spacing:.1em;color:var(--light);margin-bottom:10px;font-weight:500;}
+.bcn-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:var(--dark);line-height:1.15;margin-bottom:10px;}
+.bcn-intro{font-size:13px;color:var(--light);line-height:1.75;font-weight:300;margin-bottom:16px;}
+.bcn-foot{display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1px solid var(--soft);}
+.bcn-read{font-size:11px;color:var(--light);}
+.bcn-cta{font-size:12px;font-weight:600;color:var(--dark);}
+/* ARTICLE */
+.article-full{padding-top:68px;}
+.article-hero{height:440px;background-size:cover;background-position:center;position:relative;display:flex;align-items:flex-end;}
+.article-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(68,33,50,.25) 0%,rgba(68,33,50,.93) 100%);}
+.article-hero-content{position:relative;z-index:1;padding:44px 52px;width:100%;max-width:800px;}
+.article-cat{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(228,205,186,.65);margin-bottom:12px;font-weight:500;}
+.article-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,50px);font-weight:400;color:#fff;line-height:1.08;margin-bottom:12px;}
+.article-meta{font-size:12px;color:rgba(255,255,255,.35);}
+.article-body-wrap{background:var(--white);}
+.article-body{max-width:720px;margin:0 auto;padding:56px 32px;}
+.article-disclaimer{padding:14px 18px;background:rgba(228,205,186,.15);border-left:3px solid var(--accent);font-size:12px;color:var(--mid);line-height:1.75;margin-bottom:32px;}
+.article-disclaimer strong{color:var(--dark);font-weight:600;}
+.article-intro{font-size:16px;color:var(--dark);line-height:1.9;margin-bottom:32px;font-weight:300;}
+.article-h2{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;color:var(--dark);margin:32px 0 12px;line-height:1.2;}
+.article-p{font-size:15px;color:var(--mid);line-height:1.9;margin-bottom:20px;font-weight:300;}
+.article-p strong{font-weight:600;color:var(--dark);}
+.article-cta-inline{margin:40px 0;padding:28px 32px;background:var(--dark);}
+.article-cta-title{font-family:'Cormorant Garamond',serif;font-size:22px;color:#fff;margin-bottom:8px;}
+.article-cta-sub{font-size:13px;color:rgba(255,255,255,.45);line-height:1.75;margin-bottom:18px;font-weight:300;}
+.article-cta-btn{display:inline-block;padding:12px 28px;background:var(--accent);color:var(--dark);font-family:'Outfit',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:background .2s;}
+.article-cta-btn:hover{background:#fff;}
+.article-back{margin-top:32px;padding-top:24px;border-top:1px solid var(--soft);font-size:13px;color:var(--mid);cursor:pointer;font-weight:500;}
+.article-back:hover{color:var(--dark);}
+/* SITE CTA */
+.site-cta{background:var(--accent);padding:52px;text-align:center;}
+.site-cta-title{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:400;color:var(--dark);margin-bottom:10px;}
+.site-cta-title em{font-style:italic;}
+.site-cta-sub{font-size:14px;color:var(--mid);margin-bottom:24px;font-weight:300;}
+.site-cta-btn{display:inline-block;padding:14px 40px;background:var(--dark);color:#fff;font-family:'Outfit',sans-serif;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:all .25s;}
+.site-cta-btn:hover{background:var(--mid);}
+/* FOOTER */
+footer{background:var(--ink);padding:48px 52px 24px;display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:44px;}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:18px;color:#fff;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;}
+.footer-logo em{font-style:italic;color:var(--accent);}
+footer p{font-size:13px;color:rgba(255,255,255,.2);line-height:1.85;font-weight:300;max-width:240px;}
+.footer-col h4{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:18px;}
+.footer-col a{display:block;font-size:12px;color:rgba(255,255,255,.3);text-decoration:none;margin-bottom:9px;transition:color .2s;}
+.footer-col a:hover{color:var(--accent);}
+.footer-bottom{background:var(--ink);padding:16px 52px 22px;border-top:1px solid rgba(228,205,186,.06);display:flex;justify-content:space-between;}
+.footer-bottom p{font-size:11px;color:rgba(255,255,255,.18);}
+@media(max-width:900px){
+  nav{padding:0 20px;}.nav-links{display:none;}
+  .index-hero{padding:52px 24px 44px;}
+  .blog-grid-wrap{padding:40px 20px;}
+  .blog-grid{grid-template-columns:1fr;}
+  .article-hero{height:320px;}.article-hero-content{padding:28px 24px;}
+  .article-body{padding:36px 20px;}
+  .site-cta{padding:40px 24px;}
+  footer{grid-template-columns:1fr 1fr;padding:40px 24px 20px;}
+  .footer-bottom{padding:14px 24px;flex-direction:column;gap:4px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;"><img src="https://seekingaesthetics.github.io/seekingaesthetics/logo.png" alt="Seeking Aesthetics" style="width:36px;height:36px;object-fit:contain;display:block;"><span style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:#ffffff;letter-spacing:.12em;text-transform:uppercase;line-height:1;">Seeking Aesthetics</span></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="find-my-provider.html">Find My Treatment</a>
+    <a href="education.html">Advanced Education</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="provider-interest.html" class="nav-cta">For Providers</a>
+  </div>
+</nav>
+
+<div class="index-page" id="index-page">
+  <div class="index-hero">
+    <div class="index-hero-bg"></div>
+    <div class="index-hero-eye">Educational Articles &amp; Guides</div>
+    <h1 class="index-hero-title">Know before<br>you <em>book.</em></h1>
+    <p class="index-hero-sub">Real information about aesthetic treatments &mdash; pricing, procedures, timing, and what to ask your provider. Written for patients in Utah.</p>
+    <div class="index-disclaimer"><strong>All articles are for informational purposes only</strong> and do not constitute medical advice. Always consult a licensed medical professional before pursuing any aesthetic treatment.</div>
+  </div>
+  <div class="blog-grid-wrap">
+    <div class="blog-grid">
+        <div class="blog-card-new" onclick="showArticle('article-1')">
+          <div class="bcn-img" style="background-image:url('img-injection.jpg');"></div>
+          <div class="bcn-body">
+            <div class="bcn-cat">💉 Injectables</div>
+            <h3 class="bcn-title">How Many Units of Botox Do You Actually Need?</h3>
+            <p class="bcn-intro">It's the question every first-timer asks — and most providers won't answer until you're already in the chair. Here's the honest breakdown of Botox uni...</p>
+            <div class="bcn-foot">
+              <span class="bcn-read">5 min read</span>
+              <span class="bcn-cta">Read article &rarr;</span>
+            </div>
+          </div>
+        </div>
+        <div class="blog-card-new" onclick="showArticle('article-2')">
+          <div class="bcn-img" style="background-image:url('img-skincare.jpg');"></div>
+          <div class="bcn-body">
+            <div class="bcn-cat">✨ Skin Quality</div>
+            <h3 class="bcn-title">Morpheus8 vs. Sylfirm X for Acne Scars: Which Is Right for You?</h3>
+            <p class="bcn-intro">RF microneedling is the fastest-growing treatment category in Utah Valley right now. Both Morpheus8 and Sylfirm X use radiofrequency energy — but they...</p>
+            <div class="bcn-foot">
+              <span class="bcn-read">6 min read</span>
+              <span class="bcn-cta">Read article &rarr;</span>
+            </div>
+          </div>
+        </div>
+        <div class="blog-card-new" onclick="showArticle('article-3')">
+          <div class="bcn-img" style="background-image:url('img-facial.jpg');"></div>
+          <div class="bcn-body">
+            <div class="bcn-cat">💰 Pricing</div>
+            <h3 class="bcn-title">What Does Botox Actually Cost in Utah Valley in 2026?</h3>
+            <p class="bcn-intro">Utah Valley has one of the highest concentrations of MedSpas in the country — which is great for competition and terrible for pricing transparency. Mo...</p>
+            <div class="bcn-foot">
+              <span class="bcn-read">4 min read</span>
+              <span class="bcn-cta">Read article &rarr;</span>
+            </div>
+          </div>
+        </div>
+        <div class="blog-card-new" onclick="showArticle('article-4')">
+          <div class="bcn-img" style="background-image:url('img-spa-interior.jpg');"></div>
+          <div class="bcn-body">
+            <div class="bcn-cat">📅 Recovery & Timing</div>
+            <h3 class="bcn-title">When to Get Botox Before a Wedding or Event: The 14-Day Rule</h3>
+            <p class="bcn-intro">Timing your Botox around an important event is one of the most common questions Utah Valley patients ask — and get wrong. Book too late and you're sho...</p>
+            <div class="bcn-foot">
+              <span class="bcn-read">4 min read</span>
+              <span class="bcn-cta">Read article &rarr;</span>
+            </div>
+          </div>
+        </div>
+        <div class="blog-card-new" onclick="showArticle('article-5')">
+          <div class="bcn-img" style="background-image:url('img-skincare.jpg');"></div>
+          <div class="bcn-body">
+            <div class="bcn-cat">💊 Weight Loss & Skin</div>
+            <h3 class="bcn-title">GLP-1 & Your Skin: What Ozempic Patients Need to Know</h3>
+            <p class="bcn-intro">GLP-1 medications like Ozempic and Wegovy have changed the weight loss landscape — but they've also created a new wave of patients dealing with someth...</p>
+            <div class="bcn-foot">
+              <span class="bcn-read">5 min read</span>
+              <span class="bcn-cta">Read article &rarr;</span>
+            </div>
+          </div>
+        </div>
+        <div class="blog-card-new" onclick="showArticle('article-6')">
+          <div class="bcn-img" style="background-image:url('img-injection.jpg');"></div>
+          <div class="bcn-body">
+            <div class="bcn-cat">💉 Injectables</div>
+            <h3 class="bcn-title">Filler vs. Botox: Which One Is Actually Right for You?</h3>
+            <p class="bcn-intro">Botox and filler are the two most common aesthetic treatments in Utah Valley — and the two most commonly confused. Patients often come in asking for o...</p>
+            <div class="bcn-foot">
+              <span class="bcn-read">4 min read</span>
+              <span class="bcn-cta">Read article &rarr;</span>
+            </div>
+          </div>
+        </div>
+        <div class="blog-card-new" onclick="showArticle('article-7')">
+          <div class="bcn-img" style="background-image:url('img-laser.jpg');"></div>
+          <div class="bcn-body">
+            <div class="bcn-cat">🏅 Choosing a Provider</div>
+            <h3 class="bcn-title">Why Injector Experience Matters More Than Price</h3>
+            <p class="bcn-intro">Utah Valley has one of the highest MedSpa densities in the country — which means pricing competition is fierce. $9/unit Botox deals are real. But the ...</p>
+            <div class="bcn-foot">
+              <span class="bcn-read">5 min read</span>
+              <span class="bcn-cta">Read article &rarr;</span>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+
+        <!-- CARD 8 -->
+        <div class="bcn-item" onclick="showArticle(8)">
+          <div class="bcn-img" style="background-image:url('img-spa-interior.jpg');"></div>
+          <div class="bcn-body">
+            <div class="bcn-cat">🏥 Education</div>
+            <h3 class="bcn-title">What Is a MedSpa — and How Is It Different From a Day Spa?</h3>
+            <p class="bcn-intro">The difference isn't about ambiance. It's about who's holding the needle — and whether they're licensed to do it. Here's what you need to know before booking.</p>
+            <div class="bcn-foot">
+              <span class="bcn-read">4 min read</span>
+              <span class="bcn-cta">Read article &rarr;</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 9 -->
+        <div class="bcn-item" onclick="showArticle(9)">
+          <div class="bcn-img" style="background-image:url('img-skincare.jpg');"></div>
+          <div class="bcn-body">
+            <div class="bcn-cat">🔍 Safety</div>
+            <h3 class="bcn-title">How to Verify Your Injector's License in Utah</h3>
+            <p class="bcn-intro">Anyone can claim to be a certified injector. In Utah, you can verify a provider's license in under 60 seconds — for free. Here's exactly how.</p>
+            <div class="bcn-foot">
+              <span class="bcn-read">3 min read</span>
+              <span class="bcn-cta">Read article &rarr;</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 10 -->
+        <div class="bcn-item" onclick="showArticle(10)">
+          <div class="bcn-img" style="background-image:url('img-injection.jpg');"></div>
+          <div class="bcn-body">
+            <div class="bcn-cat">💋 Injectables</div>
+            <h3 class="bcn-title">Lip Filler: What to Expect Before, During, and After</h3>
+            <p class="bcn-intro">Swelling, bruising, the duck-lip fear — lip filler is one of the most requested and most misunderstood treatments. Here's the honest day-by-day breakdown.</p>
+            <div class="bcn-foot">
+              <span class="bcn-read">5 min read</span>
+              <span class="bcn-cta">Read article &rarr;</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 11 -->
+        <div class="bcn-item" onclick="showArticle(11)">
+          <div class="bcn-img" style="background-image:url('img-injection.jpg');"></div>
+          <div class="bcn-body">
+            <div class="bcn-cat">💉 Injectables</div>
+            <h3 class="bcn-title">Botox vs. Dysport: What's Actually Different?</h3>
+            <p class="bcn-intro">Both are botulinum toxin. Both relax muscles. So why do providers often recommend one over the other? Here's the clinical difference — and when it matters.</p>
+            <div class="bcn-foot">
+              <span class="bcn-read">4 min read</span>
+              <span class="bcn-cta">Read article &rarr;</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 12 -->
+        <div class="bcn-item" onclick="showArticle(12)">
+          <div class="bcn-img" style="background-image:url('img-laser.jpg');"></div>
+          <div class="bcn-body">
+            <div class="bcn-cat">⚡ Devices</div>
+            <h3 class="bcn-title">Is Morpheus8 Worth It? An Honest Look at the Most Talked-About Device</h3>
+            <p class="bcn-intro">Morpheus8 costs $600–$4,000 per session and the before-and-afters are everywhere. Here's what the clinical evidence actually says — and who it's right for.</p>
+            <div class="bcn-foot">
+              <span class="bcn-read">5 min read</span>
+              <span class="bcn-cta">Read article &rarr;</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 13 -->
+        <div class="bcn-item" onclick="showArticle(13)">
+          <div class="bcn-img" style="background-image:url('img-facial.jpg');"></div>
+          <div class="bcn-body">
+            <div class="bcn-cat">🌿 Skin</div>
+            <h3 class="bcn-title">Chemical Peel Guide: Which Type Is Right for Your Skin?</h3>
+            <p class="bcn-intro">Not all chemical peels are created equal. A light peel is a lunch break. A deep peel is weeks of recovery. Here's how to know which depth you actually need.</p>
+            <div class="bcn-foot">
+              <span class="bcn-read">4 min read</span>
+              <span class="bcn-cta">Read article &rarr;</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 14 -->
+        <div class="bcn-item" onclick="showArticle(14)">
+          <div class="bcn-img" style="background-image:url('img-spa-interior.jpg');"></div>
+          <div class="bcn-body">
+            <div class="bcn-cat">💰 Pricing</div>
+            <h3 class="bcn-title">How to Compare MedSpa Pricing Without Getting Confused</h3>
+            <p class="bcn-intro">Per unit vs. per area. Package pricing. Membership deals. MedSpa pricing is intentionally confusing. Here's how to compare apples to apples — and spot the red flags.</p>
+            <div class="bcn-foot">
+              <span class="bcn-read">4 min read</span>
+              <span class="bcn-cta">Read article &rarr;</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 15 -->
+        <div class="bcn-item" onclick="showArticle(15)">
+          <div class="bcn-img" style="background-image:url('img-skincare.jpg');"></div>
+          <div class="bcn-body">
+            <div class="bcn-cat">💊 Wellness</div>
+            <h3 class="bcn-title">GLP-1 & Skin Laxity: What to Do After Weight Loss</h3>
+            <p class="bcn-intro">Ozempic, Wegovy, and Mounjaro are changing bodies across Utah. But rapid weight loss comes with a skin cost. Here's what aesthetic treatments actually help — and when to time them.</p>
+            <div class="bcn-foot">
+              <span class="bcn-read">5 min read</span>
+              <span class="bcn-cta">Read article &rarr;</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 16 -->
+        <div class="bcn-item" onclick="showArticle(16)">
+          <div class="bcn-img" style="background-image:url('img-facial.jpg');"></div>
+          <div class="bcn-body">
+            <div class="bcn-cat">☀️ Timing</div>
+            <h3 class="bcn-title">Treatments to Get Before Vacation — and How Far in Advance</h3>
+            <p class="bcn-intro">Sun, saltwater, and heat are the enemies of fresh aesthetic treatments. Here's your complete pre-vacation treatment timeline — what to get, and exactly when to book it.</p>
+            <div class="bcn-foot">
+              <span class="bcn-read">4 min read</span>
+              <span class="bcn-cta">Read article &rarr;</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 17 -->
+        <div class="bcn-item" onclick="showArticle(17)">
+          <div class="bcn-img" style="background-image:url('img-spa-interior.jpg');"></div>
+          <div class="bcn-body">
+            <div class="bcn-cat">💍 Timing</div>
+            <h3 class="bcn-title">Wedding Prep: The Complete Aesthetic Treatment Timeline</h3>
+            <p class="bcn-intro">Botox too close to the date. Filler that hasn't settled. A peel that left you peeling on your wedding day. Here's the treatment-by-treatment timeline every bride needs.</p>
+            <div class="bcn-foot">
+              <span class="bcn-read">5 min read</span>
+              <span class="bcn-cta">Read article &rarr;</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 18 -->
+        <div class="bcn-item" onclick="showArticle(18)">
+          <div class="bcn-img" style="background-image:url('img-skincare.jpg');"></div>
+          <div class="bcn-body">
+            <div class="bcn-cat">🔍 Safety</div>
+            <h3 class="bcn-title">What DOPL Verification Means — and Why It Protects You</h3>
+            <p class="bcn-intro">In Utah, aesthetic providers must be licensed through DOPL. But most patients have never heard of it. Here's what it is, what it proves, and how to check it in 60 seconds.</p>
+            <div class="bcn-foot">
+              <span class="bcn-read">3 min read</span>
+              <span class="bcn-cta">Read article &rarr;</span>
+            </div>
+          </div>
+        </div>
+  <div class="site-cta">
+    <div class="site-cta-title">Ready to find your <em>provider?</em></div>
+    <div class="site-cta-sub">See verified providers in Utah with transparent pricing. You choose who calls you.</div>
+    <a href="find-my-provider.html" class="site-cta-btn">Find My Treatment &rarr;</a>
+  </div>
+</div>
+
+
+  <article class="article-full" id="article-1" style="display:none;">
+    <div class="article-hero" style="background-image:url('img-injection.jpg');">
+      <div class="article-hero-overlay"></div>
+      <div class="article-hero-content">
+        <div class="article-cat">💉 Injectables</div>
+        <h1 class="article-title">How Many Units of Botox Do You Actually Need?</h1>
+        <div class="article-meta">Seeking Aesthetics &middot; Utah &middot; 2026 &middot; 5 min read</div>
+      </div>
+    </div>
+    <div class="article-body-wrap">
+      <div class="article-body">
+        <div class="article-disclaimer"><strong>For informational purposes only.</strong> This article does not constitute medical advice. Always consult a licensed medical professional before pursuing any aesthetic treatment.</div>
+        <p class="article-intro">It's the question every first-timer asks — and most providers won't answer until you're already in the chair. Here's the honest breakdown of Botox units by treatment area, what baby Botox actually means, and why the number matters more than the price per unit.</p>
+        
+        <h2 class="article-h2">Why Units Matter More Than Price Per Unit</h2>
+        <p class="article-p">In Utah Valley, Botox runs $10–$15 per unit in 2026. That range sounds manageable — until a provider uses 40 units when 20 would have done the job. The price per unit is only half the equation. <strong>The number of units your injector uses is where the real cost lives.</strong></p>
+        <h2 class="article-h2">Units By Treatment Area</h2>
+        <p class="article-p"><strong>Forehead lines:</strong> 10–30 units. The wide range reflects muscle strength — men typically need more, and first-timers often start conservative. <strong>Glabella (the 11s):</strong> 15–25 units — one of the most common first treatments. <strong>Crow's feet:</strong> 6–15 units per side. <strong>Baby Botox (preventative):</strong> 20–40 units total, placed lightly across multiple areas.</p>
+        <h2 class="article-h2">What Baby Botox Actually Means</h2>
+        <p class="article-p">Preventative Botox — sometimes called baby Botox — uses fewer units placed more lightly to soften expression lines before they become permanent. It's increasingly popular in Utah Valley among patients in their mid-to-late 20s. <strong>The goal isn't frozen. It's preserved.</strong></p>
+        <h2 class="article-h2">The Red Flag to Watch For</h2>
+        <p class="article-p">A good injector tells you exactly how many units they're placing before they start — and explains why. <strong>If your provider won't give you a unit count upfront, that's a red flag.</strong> On Seeking Aesthetics, every provider lists transparent starting prices so you can compare before you ever pick up the phone.</p>
+        <div class="article-cta-inline">
+          <div class="article-cta-title">Ready to find a provider for this treatment?</div>
+          <div class="article-cta-sub">See verified providers in Utah with transparent pricing &mdash; you choose who calls you.</div>
+          <a href="find-my-provider.html" class="article-cta-btn">Find My Treatment &rarr;</a>
+        </div>
+        <div class="article-back" onclick="showIndex()">&larr; Back to all articles</div>
+      </div>
+    </div>
+  </article>
+
+  <article class="article-full" id="article-2" style="display:none;">
+    <div class="article-hero" style="background-image:url('img-skincare.jpg');">
+      <div class="article-hero-overlay"></div>
+      <div class="article-hero-content">
+        <div class="article-cat">✨ Skin Quality</div>
+        <h1 class="article-title">Morpheus8 vs. Sylfirm X for Acne Scars: Which Is Right for You?</h1>
+        <div class="article-meta">Seeking Aesthetics &middot; Utah &middot; 2026 &middot; 6 min read</div>
+      </div>
+    </div>
+    <div class="article-body-wrap">
+      <div class="article-body">
+        <div class="article-disclaimer"><strong>For informational purposes only.</strong> This article does not constitute medical advice. Always consult a licensed medical professional before pursuing any aesthetic treatment.</div>
+        <p class="article-intro">RF microneedling is the fastest-growing treatment category in Utah Valley right now. Both Morpheus8 and Sylfirm X use radiofrequency energy — but they work differently and are right for different skin concerns.</p>
+        
+        <h2 class="article-h2">What They Have in Common</h2>
+        <p class="article-p">Both treatments use microneedles to deliver radiofrequency energy into the deeper layers of skin, stimulating collagen production. Both treat acne scars, skin texture, and fine lines. Both require a series of treatments for best results — typically 3 sessions spaced 4–6 weeks apart.</p>
+        <h2 class="article-h2">Where They Differ</h2>
+        <p class="article-p"><strong>Morpheus8</strong> uses bipolar RF delivered at a deeper depth — up to 4mm — making it particularly effective for skin laxity and fat remodeling. It's the go-to for patients dealing with skin looseness after weight loss or GLP-1 medication. <strong>Sylfirm X</strong> uses pulsed wave RF technology specifically designed to target the basement membrane of the skin — the layer responsible for redness, rosacea, and vascular irregularities. It's newer, has less downtime, and is the stronger choice specifically for acne scarring and redness.</p>
+        <h2 class="article-h2">The Verdict for Acne Scars</h2>
+        <p class="article-p">If acne scarring is your primary concern — especially with underlying redness or discoloration — <strong>Sylfirm X has the edge.</strong> If your scars are deeper and textural with skin laxity, Morpheus8 may be the stronger choice. Many Utah Valley providers now offer both — ask specifically which one they recommend for your skin type and why.</p>
+        <div class="article-cta-inline">
+          <div class="article-cta-title">Ready to find a provider for this treatment?</div>
+          <div class="article-cta-sub">See verified providers in Utah with transparent pricing &mdash; you choose who calls you.</div>
+          <a href="find-my-provider.html" class="article-cta-btn">Find My Treatment &rarr;</a>
+        </div>
+        <div class="article-back" onclick="showIndex()">&larr; Back to all articles</div>
+      </div>
+    </div>
+  </article>
+
+  <article class="article-full" id="article-3" style="display:none;">
+    <div class="article-hero" style="background-image:url('img-facial.jpg');">
+      <div class="article-hero-overlay"></div>
+      <div class="article-hero-content">
+        <div class="article-cat">💰 Pricing</div>
+        <h1 class="article-title">What Does Botox Actually Cost in Utah Valley in 2026?</h1>
+        <div class="article-meta">Seeking Aesthetics &middot; Utah &middot; 2026 &middot; 4 min read</div>
+      </div>
+    </div>
+    <div class="article-body-wrap">
+      <div class="article-body">
+        <div class="article-disclaimer"><strong>For informational purposes only.</strong> This article does not constitute medical advice. Always consult a licensed medical professional before pursuing any aesthetic treatment.</div>
+        <p class="article-intro">Utah Valley has one of the highest concentrations of MedSpas in the country — which is great for competition and terrible for pricing transparency. Most sites won't post their prices. Here's what you'll actually pay in Provo, Orem, and American Fork right now.</p>
+        
+        <h2 class="article-h2">2026 Botox Pricing in Utah Valley</h2>
+        <p class="article-p">The current range in Provo, Orem, and American Fork sits at <strong>$10–$15 per unit</strong> for Botox and Dysport. The wide range reflects provider experience, brand used, and location. Solo injectors and suite-based practices often price on the lower end. Larger, well-branded MedSpas tend toward $13–$15.</p>
+        <h2 class="article-h2">What a Full Treatment Actually Costs</h2>
+        <p class="article-p">Per-unit pricing doesn't tell the whole story. At $12/unit, a forehead treatment using 20 units costs $240. The same area treated more thoroughly at 28 units is $336. Total treatment costs in Utah Valley: <strong>Forehead $200–$350. Glabella (11s) $180–$300. Crow's feet $75–$200. Full upper face $450–$700.</strong></p>
+        <h2 class="article-h2">Watch Out for Membership Traps</h2>
+        <p class="article-p"><strong>Watch out for medspa memberships that advertise low per-unit prices — $9/unit — but require a $150–$300/month membership to access that rate.</strong> Run the math before you commit. On Seeking Aesthetics, every provider lists their real starting prices upfront — no membership required to see them.</p>
+        <div class="article-cta-inline">
+          <div class="article-cta-title">Ready to find a provider for this treatment?</div>
+          <div class="article-cta-sub">See verified providers in Utah with transparent pricing &mdash; you choose who calls you.</div>
+          <a href="find-my-provider.html" class="article-cta-btn">Find My Treatment &rarr;</a>
+        </div>
+        <div class="article-back" onclick="showIndex()">&larr; Back to all articles</div>
+      </div>
+    </div>
+  </article>
+
+  <article class="article-full" id="article-4" style="display:none;">
+    <div class="article-hero" style="background-image:url('img-spa-interior.jpg');">
+      <div class="article-hero-overlay"></div>
+      <div class="article-hero-content">
+        <div class="article-cat">📅 Recovery & Timing</div>
+        <h1 class="article-title">When to Get Botox Before a Wedding or Event: The 14-Day Rule</h1>
+        <div class="article-meta">Seeking Aesthetics &middot; Utah &middot; 2026 &middot; 4 min read</div>
+      </div>
+    </div>
+    <div class="article-body-wrap">
+      <div class="article-body">
+        <div class="article-disclaimer"><strong>For informational purposes only.</strong> This article does not constitute medical advice. Always consult a licensed medical professional before pursuing any aesthetic treatment.</div>
+        <p class="article-intro">Timing your Botox around an important event is one of the most common questions Utah Valley patients ask — and get wrong. Book too late and you're showing up to your wedding with a forehead that hasn't quite settled.</p>
+        
+        <h2 class="article-h2">How Long Does Botox Take to Work?</h2>
+        <p class="article-p">Botox doesn't work instantly. Most patients see early softening at 3–5 days. Clear visible results at 7–10 days. <strong>Full effect — peak smoothness and lift — at 14 days.</strong> This is why the aesthetics industry has settled on the 14-day rule for event planning.</p>
+        <h2 class="article-h2">The Timeline You Should Follow</h2>
+        <p class="article-p"><strong>21+ days out:</strong> Ideal if it's your first time. Leaves room for a touch-up if the result isn't quite right. <strong>14 days out:</strong> The minimum for experienced Botox patients who know how their body responds. <strong>7 days out:</strong> Risky — you may see early results, but full effect isn't guaranteed. <strong>Less than 7 days:</strong> Don't do it.</p>
+        <h2 class="article-h2">Finding a Provider With Availability</h2>
+        <p class="article-p">Utah Valley has a high rate of weddings, family reunions, and events — making this one of the most searched timing questions in the area. On Seeking Aesthetics, every provider shows their current availability. <strong>You can filter by timeline so you only see providers who can fit you in before your event.</strong></p>
+        <div class="article-cta-inline">
+          <div class="article-cta-title">Ready to find a provider for this treatment?</div>
+          <div class="article-cta-sub">See verified providers in Utah with transparent pricing &mdash; you choose who calls you.</div>
+          <a href="find-my-provider.html" class="article-cta-btn">Find My Treatment &rarr;</a>
+        </div>
+        <div class="article-back" onclick="showIndex()">&larr; Back to all articles</div>
+      </div>
+    </div>
+  </article>
+
+  <article class="article-full" id="article-5" style="display:none;">
+    <div class="article-hero" style="background-image:url('img-skincare.jpg');">
+      <div class="article-hero-overlay"></div>
+      <div class="article-hero-content">
+        <div class="article-cat">💊 Weight Loss & Skin</div>
+        <h1 class="article-title">GLP-1 & Your Skin: What Ozempic Patients Need to Know</h1>
+        <div class="article-meta">Seeking Aesthetics &middot; Utah &middot; 2026 &middot; 5 min read</div>
+      </div>
+    </div>
+    <div class="article-body-wrap">
+      <div class="article-body">
+        <div class="article-disclaimer"><strong>For informational purposes only.</strong> This article does not constitute medical advice. Always consult a licensed medical professional before pursuing any aesthetic treatment.</div>
+        <p class="article-intro">GLP-1 medications like Ozempic and Wegovy have changed the weight loss landscape — but they've also created a new wave of patients dealing with something nobody warned them about. Rapid weight loss, especially in the face, can cause significant volume loss and skin laxity that diet and exercise alone can't address.</p>
+        
+        <h2 class="article-h2">What GLP-1 Does to Your Face</h2>
+        <p class="article-p">The term "Ozempic face" has become common — and it's real. As the body loses weight rapidly, facial fat pads deflate. Cheeks hollow. The under-eye area deepens. Skin that was stretched around volume now lacks support. <strong>The skin itself didn't age — it lost the structure underneath it.</strong></p>
+        <h2 class="article-h2">What Actually Helps</h2>
+        <p class="article-p"><strong>Dermal fillers</strong> — particularly Sculptra and Radiesse — can restore volume lost during rapid weight loss. Sculptra works by stimulating your own collagen over several months, making it especially well-suited for GLP-1 patients who want gradual, natural-looking results. For skin laxity, <strong>Morpheus8 or other RF microneedling treatments</strong> can tighten the skin itself rather than just filling beneath it.</p>
+        <h2 class="article-h2">What to Ask Your Provider</h2>
+        <p class="article-p">Before your appointment ask: Do you have experience treating GLP-1 patients specifically? What combination approach do you recommend for my level of volume loss? Are you using Sculptra, Radiesse, or hyaluronic acid fillers — and why? <strong>A good provider will not just sell you the filler — they'll explain why one product makes more sense than another for your specific situation.</strong></p>
+        <div class="article-cta-inline">
+          <div class="article-cta-title">Ready to find a provider for this treatment?</div>
+          <div class="article-cta-sub">See verified providers in Utah with transparent pricing &mdash; you choose who calls you.</div>
+          <a href="find-my-provider.html" class="article-cta-btn">Find My Treatment &rarr;</a>
+        </div>
+        <div class="article-back" onclick="showIndex()">&larr; Back to all articles</div>
+      </div>
+    </div>
+  </article>
+
+  <article class="article-full" id="article-6" style="display:none;">
+    <div class="article-hero" style="background-image:url('img-injection.jpg');">
+      <div class="article-hero-overlay"></div>
+      <div class="article-hero-content">
+        <div class="article-cat">💉 Injectables</div>
+        <h1 class="article-title">Filler vs. Botox: Which One Is Actually Right for You?</h1>
+        <div class="article-meta">Seeking Aesthetics &middot; Utah &middot; 2026 &middot; 4 min read</div>
+      </div>
+    </div>
+    <div class="article-body-wrap">
+      <div class="article-body">
+        <div class="article-disclaimer"><strong>For informational purposes only.</strong> This article does not constitute medical advice. Always consult a licensed medical professional before pursuing any aesthetic treatment.</div>
+        <p class="article-intro">Botox and filler are the two most common aesthetic treatments in Utah Valley — and the two most commonly confused. Patients often come in asking for one when they actually need the other. Here's the honest breakdown.</p>
+        
+        <h2 class="article-h2">What Botox Does</h2>
+        <p class="article-p">Botox (and Dysport, Xeomin, Daxxify) are <strong>neuromodulators</strong>. They temporarily relax specific muscles to reduce the appearance of lines caused by movement — forehead lines, the 11s, crow's feet. Botox does not add volume. It simply prevents the muscle from contracting as forcefully. Results typically last 3–4 months.</p>
+        <h2 class="article-h2">What Filler Does</h2>
+        <p class="article-p">Dermal fillers <strong>add volume</strong>. Most fillers in Utah Valley are hyaluronic acid-based (Juvederm, Restylane, RHA Collection). Filler is used to restore volume lost with age, enhance features like lips and cheeks, and soften deep folds that Botox can't address. Results typically last 9–18 months depending on the product and area.</p>
+        <h2 class="article-h2">How to Know Which One You Need</h2>
+        <p class="article-p"><strong>Simple rule: if the line or concern is present even when your face is completely relaxed, Botox alone won't fix it.</strong> Static lines — the ones you see at rest — typically need filler or a combination approach. Dynamic lines — the ones that appear when you smile or raise your brows — respond well to Botox. A qualified injector will assess your face at rest and in motion before recommending anything.</p>
+        <div class="article-cta-inline">
+          <div class="article-cta-title">Ready to find a provider for this treatment?</div>
+          <div class="article-cta-sub">See verified providers in Utah with transparent pricing &mdash; you choose who calls you.</div>
+          <a href="find-my-provider.html" class="article-cta-btn">Find My Treatment &rarr;</a>
+        </div>
+        <div class="article-back" onclick="showIndex()">&larr; Back to all articles</div>
+      </div>
+    </div>
+  </article>
+
+  <article class="article-full" id="article-7" style="display:none;">
+    <div class="article-hero" style="background-image:url('img-laser.jpg');">
+      <div class="article-hero-overlay"></div>
+      <div class="article-hero-content">
+        <div class="article-cat">🏅 Choosing a Provider</div>
+        <h1 class="article-title">Why Injector Experience Matters More Than Price</h1>
+        <div class="article-meta">Seeking Aesthetics &middot; Utah &middot; 2026 &middot; 5 min read</div>
+      </div>
+    </div>
+    <div class="article-body-wrap">
+      <div class="article-body">
+        <div class="article-disclaimer"><strong>For informational purposes only.</strong> This article does not constitute medical advice. Always consult a licensed medical professional before pursuing any aesthetic treatment.</div>
+        <p class="article-intro">Utah Valley has one of the highest MedSpa densities in the country — which means pricing competition is fierce. $9/unit Botox deals are real. But the question isn't whether the price is low. The question is what you're actually getting for it.</p>
+        
+        <h2 class="article-h2">What Credentials Actually Mean</h2>
+        <p class="article-p">In Utah, injectable treatments can legally be performed by a range of licensed professionals. The license type is just the starting point. <strong>What matters is how many injections that person has performed, in what settings, on what types of patients, and under what level of supervision.</strong> A newly licensed RN with six months of experience is technically qualified — but they are not the same as a nurse practitioner with 2,000 Botox treatments over six years.</p>
+        <h2 class="article-h2">The Questions to Ask Before You Book</h2>
+        <p class="article-p">How many years have you been injecting specifically? How many treatments do you perform per week? What is your approach when a patient is unhappy with results? Do you have before and after photos of patients with a similar concern — with treatment details attached? <strong>A confident, experienced injector will answer these without hesitation.</strong></p>
+        <h2 class="article-h2">Why Transparent Pricing Tells You Something</h2>
+        <p class="article-p">A provider who lists their prices openly — per unit, per syringe, with bundle offers explained — is a provider who respects their patients enough to have that conversation upfront. <strong>Providers who hide their pricing behind 'call for a consultation' are often hiding something else too.</strong> Price transparency is a proxy for practice integrity.</p>
+        <div class="article-cta-inline">
+          <div class="article-cta-title">Ready to find a provider for this treatment?</div>
+          <div class="article-cta-sub">See verified providers in Utah with transparent pricing &mdash; you choose who calls you.</div>
+          <a href="find-my-provider.html" class="article-cta-btn">Find My Treatment &rarr;</a>
+        </div>
+        <div class="article-back" onclick="showIndex()">&larr; Back to all articles</div>
+      </div>
+    </div>
+  </article>
+
+
+<!-- ARTICLE 8: MEDSPA VS DAY SPA -->
+<article class="article-full" id="article-8" style="display:none;">
+  <div class="article-hero" style="background-image:url('img-spa-interior.jpg');">
+    <div class="article-hero-overlay"></div>
+    <div class="article-hero-content">
+      <div class="article-cat">🏥 Education</div>
+      <h1 class="article-title">What Is a MedSpa — and How Is It Different From a Day Spa?</h1>
+      <div class="article-meta">Seeking Aesthetics &middot; Utah &middot; 2026 &middot; 4 min read</div>
+    </div>
+  </div>
+  <div class="article-body-wrap">
+    <div class="article-body">
+      <div class="article-disclaimer"><strong>For informational purposes only.</strong> This article does not constitute medical advice. Always consult a licensed medical professional before pursuing any aesthetic treatment. Seeking Aesthetics is not a healthcare provider.</div>
+      <p class="article-intro">The difference between a MedSpa and a day spa isn't about how nice the lobby looks. It's about who's legally allowed to perform your treatment — and whether the person holding the needle is licensed to do it.</p>
+
+      <h2 class="article-h2">The Core Difference: Medical Oversight</h2>
+      <p class="article-p">A day spa is staffed by licensed estheticians and massage therapists. They can perform facials, massages, and basic skincare treatments. What they cannot do: administer injectables, perform laser treatments, or use devices that penetrate below the skin's surface. Those require a licensed medical professional.<sup>1</sup></p>
+      <p class="article-p">A MedSpa — medical spa — operates under the supervision of a licensed physician, nurse practitioner, or physician assistant. According to the American Med Spa Association, a MedSpa must include a licensed healthcare professional overseeing all clinical treatments.<sup>2</sup> This oversight is what makes Botox, fillers, laser resurfacing, and other treatments legally possible.</p>
+
+      <h2 class="article-h2">What Each Can and Cannot Offer</h2>
+      <table class="article-table">
+        <thead><tr><th>Treatment</th><th>Day Spa</th><th>MedSpa</th></tr></thead>
+        <tbody>
+          <tr><td>Basic facial</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Massage</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Waxing</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Botox / Dysport</td><td>✗</td><td>✓</td></tr>
+          <tr><td>Dermal fillers</td><td>✗</td><td>✓</td></tr>
+          <tr><td>Laser resurfacing</td><td>✗</td><td>✓</td></tr>
+          <tr><td>Morpheus8 RF</td><td>✗</td><td>✓</td></tr>
+          <tr><td>Chemical peel (medical-grade)</td><td>✗</td><td>✓</td></tr>
+          <tr><td>IV therapy</td><td>✗</td><td>✓</td></tr>
+        </tbody>
+      </table>
+
+      <h2 class="article-h2">Why This Matters for Your Safety</h2>
+      <p class="article-p">Botox is a prescription medication. Fillers are injected into living tissue. Lasers operate as FDA Class II or III medical devices. None of these can legally be performed outside a medically supervised setting.<sup>3</sup> When you're at a day spa and someone offers you an injectable, that's a red flag — not a deal.</p>
+
+      <h2 class="article-h2">What to Ask Before You Book</h2>
+      <p class="article-p">Before booking at any MedSpa: <strong>Who is the medical director?</strong> What is their license type (MD, NP, PA)? Is the person performing your treatment licensed — and with what license? In Utah, you can verify any provider's license in 60 seconds at dopl.utah.gov. On Seeking Aesthetics, every provider is DOPL-verified before their profile goes live.</p>
+
+      <div class="article-sources">
+        <div class="article-sources-title">Sources</div>
+        <p>1. Elite Medical Spa, "The Difference Between a Spa and a Medical Spa," May 2025. elitemedicalspa.com</p>
+        <p>2. American Med Spa Association, Patient Guide. americanmedspa.org</p>
+        <p>3. Windermere Medical, "What Is a MedSpa?" April 2026. windermeremedical.com</p>
+      </div>
+      <div class="article-cta-inline">
+        <div class="article-cta-title">Looking for a verified MedSpa provider in Utah?</div>
+        <div class="article-cta-sub">Every provider on Seeking Aesthetics is DOPL-verified before going live. You choose who connects with you.</div>
+        <a href="find-my-provider.html" class="article-cta-btn">Find My Treatment &rarr;</a>
+      </div>
+      <div class="article-back" onclick="showIndex()">&larr; Back to all articles</div>
+    </div>
+  </div>
+</article>
+
+<!-- ARTICLE 9: DOPL VERIFICATION -->
+<article class="article-full" id="article-9" style="display:none;">
+  <div class="article-hero" style="background-image:url('img-skincare.jpg');">
+    <div class="article-hero-overlay"></div>
+    <div class="article-hero-content">
+      <div class="article-cat">🔍 Safety</div>
+      <h1 class="article-title">How to Verify Your Injector's License in Utah</h1>
+      <div class="article-meta">Seeking Aesthetics &middot; Utah &middot; 2026 &middot; 3 min read</div>
+    </div>
+  </div>
+  <div class="article-body-wrap">
+    <div class="article-body">
+      <div class="article-disclaimer"><strong>For informational purposes only.</strong> This article does not constitute medical advice. Always consult a licensed medical professional before pursuing any aesthetic treatment. Seeking Aesthetics is not a healthcare provider.</div>
+      <p class="article-intro">Anyone can call themselves an aesthetic injector. A certificate from a weekend course doesn't mean they're licensed to inject in Utah. Here's how to verify in under 60 seconds — before your appointment.</p>
+
+      <h2 class="article-h2">What Is DOPL?</h2>
+      <p class="article-p">DOPL stands for the Utah Division of Professional Licensing — a division of the Utah Department of Commerce that issues and regulates professional licenses across all healthcare fields.<sup>1</sup> If a provider is legally licensed to inject in Utah, their name and license status appear in the DOPL database.</p>
+
+      <h2 class="article-h2">How to Check in 60 Seconds</h2>
+      <p class="article-p"><strong>Step 1:</strong> Go to secure.utah.gov/llv/search<br><strong>Step 2:</strong> Enter the provider's name or license number<br><strong>Step 3:</strong> Confirm the license is Active, the license type is correct (RN, NP, APRN, PA, or MD), and the expiration date is current</p>
+      <p class="article-p">A legitimate provider will give you their license number without hesitation. If they won't — that's your answer.</p>
+
+      <h2 class="article-h2">License Types That Can Legally Inject in Utah</h2>
+      <table class="article-table">
+        <thead><tr><th>License Type</th><th>Can Inject?</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>MD / DO (Physician)</td><td>✓ Yes</td><td>Full scope</td></tr>
+          <tr><td>NP / APRN</td><td>✓ Yes</td><td>Independent practice permitted</td></tr>
+          <tr><td>PA</td><td>✓ Yes</td><td>Under physician supervision</td></tr>
+          <tr><td>RN (Registered Nurse)</td><td>✓ Yes</td><td>Under medical director supervision</td></tr>
+          <tr><td>Esthetician</td><td>✗ No</td><td>Cannot legally administer injectables</td></tr>
+          <tr><td>Cosmetologist</td><td>✗ No</td><td>Cannot legally administer injectables</td></tr>
+        </tbody>
+      </table>
+
+      <h2 class="article-h2">How Seeking Aesthetics Handles This</h2>
+      <p class="article-p">Every provider on Seeking Aesthetics is verified through DOPL before their profile goes live. Their license number is displayed on every provider tile. You don't have to check manually — we check for you. But now you know how to check anyone else.</p>
+
+      <div class="article-sources">
+        <div class="article-sources-title">Sources</div>
+        <p>1. Utah Division of Professional Licensing (DOPL), Utah Department of Commerce. dopl.utah.gov</p>
+        <p>2. Utah DOPL License Lookup. secure.utah.gov/llv/search</p>
+      </div>
+      <div class="article-cta-inline">
+        <div class="article-cta-title">Find a DOPL-verified provider in Utah</div>
+        <div class="article-cta-sub">License number shown on every tile. Verified before they go live. You choose who calls you.</div>
+        <a href="find-my-provider.html" class="article-cta-btn">Find My Treatment &rarr;</a>
+      </div>
+      <div class="article-back" onclick="showIndex()">&larr; Back to all articles</div>
+    </div>
+  </div>
+</article>
+
+<!-- ARTICLE 10: LIP FILLER -->
+<article class="article-full" id="article-10" style="display:none;">
+  <div class="article-hero" style="background-image:url('img-injection.jpg');">
+    <div class="article-hero-overlay"></div>
+    <div class="article-hero-content">
+      <div class="article-cat">💋 Injectables</div>
+      <h1 class="article-title">Lip Filler: What to Expect Before, During, and After</h1>
+      <div class="article-meta">Seeking Aesthetics &middot; Utah &middot; 2026 &middot; 5 min read</div>
+    </div>
+  </div>
+  <div class="article-body-wrap">
+    <div class="article-body">
+      <div class="article-disclaimer"><strong>For informational purposes only.</strong> This article does not constitute medical advice. Always consult a licensed medical professional before pursuing any aesthetic treatment. Seeking Aesthetics is not a healthcare provider.</div>
+      <p class="article-intro">Lip filler is one of the most requested aesthetic treatments in Utah — and one of the most feared by first-timers. The swelling, the duck-lip concern, the bruising. Here's the honest, day-by-day breakdown of what actually happens.</p>
+
+      <h2 class="article-h2">What Goes In</h2>
+      <p class="article-p">Most lip fillers use hyaluronic acid (HA) — a substance naturally found in the body. FDA-approved options include Juvederm Ultra XC, Juvederm Volbella, Restylane Kysse, and Restylane Silk. HA fillers are preferred because they're reversible with hyaluronidase if the result isn't right.<sup>1</sup></p>
+
+      <h2 class="article-h2">The Day-by-Day Recovery Timeline</h2>
+      <table class="article-table">
+        <thead><tr><th>Day</th><th>What You'll See</th><th>Is It Normal?</th></tr></thead>
+        <tbody>
+          <tr><td>Day 0 (day of)</td><td>Significant swelling, possible bruising, overfilled appearance</td><td>✓ Yes</td></tr>
+          <tr><td>Days 1–3</td><td>Swelling peaks, lips look larger than final result</td><td>✓ Yes</td></tr>
+          <tr><td>Days 4–5</td><td>Swelling begins to reduce, lips look more balanced</td><td>✓ Yes</td></tr>
+          <tr><td>Days 6–7</td><td>50–70% of swelling gone, shape becoming visible</td><td>✓ Yes</td></tr>
+          <tr><td>Days 10–14</td><td>Final result emerging, filler settling into place</td><td>✓ Yes</td></tr>
+          <tr><td>2 weeks</td><td>Final result. Book touch-up if needed</td><td>✓ Yes</td></tr>
+        </tbody>
+      </table>
+
+      <h2 class="article-h2">What to Avoid After Treatment</h2>
+      <p class="article-p"><strong>Avoid for 24–48 hours:</strong> Direct sun exposure, intense exercise, alcohol, kissing, using straws, touching or massaging the lips, sleeping face-down. <strong>Avoid for 2 weeks:</strong> Hot tubs, saunas, extreme heat, and any other facial treatments in the area.<sup>2</sup></p>
+
+      <h2 class="article-h2">How Long Does It Last?</h2>
+      <p class="article-p">Most patients see results lasting 6–12 months, depending on the HA product used, how much was injected, and individual metabolism. Juvederm Volbella tends to last longer than Ultra XC. Most patients return every 9–12 months for a refresh.</p>
+
+      <h2 class="article-h2">The Biggest Mistake First-Timers Make</h2>
+      <p class="article-p">Booking too close to an event. If you're getting lip filler before a wedding, vacation, or photo shoot — book at least 2 weeks in advance. Your final result won't be visible until the swelling clears. Plan accordingly.</p>
+
+      <div class="article-sources">
+        <div class="article-sources-title">Sources</div>
+        <p>1. Healthline, "Lip Fillers Aftercare: 10 Tips, What to Expect," medically reviewed by Cynthia Cobb, APRN, July 2025. healthline.com</p>
+        <p>2. Dr. Debra Jaliman, "Lip Filler Swelling Stages: Day-by-Day Recovery Timeline," July 2025. dermatologist-nyc.com</p>
+        <p>3. West Hills Dermatology, "Lip Filler Aftercare and Recovery." westhillsdermatology.com</p>
+      </div>
+      <div class="article-cta-inline">
+        <div class="article-cta-title">Ready to find a lip filler provider in Utah?</div>
+        <div class="article-cta-sub">See verified providers with real pricing — you choose who connects with you.</div>
+        <a href="find-my-provider.html" class="article-cta-btn">Find My Treatment &rarr;</a>
+      </div>
+      <div class="article-back" onclick="showIndex()">&larr; Back to all articles</div>
+    </div>
+  </div>
+</article>
+
+<!-- ARTICLE 11: BOTOX VS DYSPORT -->
+<article class="article-full" id="article-11" style="display:none;">
+  <div class="article-hero" style="background-image:url('img-injection.jpg');">
+    <div class="article-hero-overlay"></div>
+    <div class="article-hero-content">
+      <div class="article-cat">💉 Injectables</div>
+      <h1 class="article-title">Botox vs. Dysport: What's Actually Different?</h1>
+      <div class="article-meta">Seeking Aesthetics &middot; Utah &middot; 2026 &middot; 4 min read</div>
+    </div>
+  </div>
+  <div class="article-body-wrap">
+    <div class="article-body">
+      <div class="article-disclaimer"><strong>For informational purposes only.</strong> This article does not constitute medical advice. Always consult a licensed medical professional before pursuing any aesthetic treatment. Seeking Aesthetics is not a healthcare provider.</div>
+      <p class="article-intro">Both Botox and Dysport are botulinum toxin type A. Both relax facial muscles to reduce wrinkles. So why do experienced injectors often prefer one over the other for specific areas? The difference is real — and it affects your results.</p>
+
+      <h2 class="article-h2">The Side-by-Side Comparison</h2>
+      <table class="article-table">
+        <thead><tr><th>Factor</th><th>Botox</th><th>Dysport</th></tr></thead>
+        <tbody>
+          <tr><td>Manufacturer</td><td>Allergan / AbbVie</td><td>Ipsen</td></tr>
+          <tr><td>FDA approved</td><td>1991 (cosmetic 2002)</td><td>2009</td></tr>
+          <tr><td>Onset</td><td>2–3 days (full effect 14 days)</td><td>1–2 days (full effect 14 days)</td></tr>
+          <tr><td>Duration</td><td>3–4 months average</td><td>3–4 months average</td></tr>
+          <tr><td>Spread</td><td>More localized</td><td>Wider diffusion</td></tr>
+          <tr><td>Best for</td><td>Precise areas (glabella, crow's feet)</td><td>Larger areas (forehead)</td></tr>
+          <tr><td>Unit conversion</td><td>1 unit Botox ≈ 2.5 units Dysport</td><td>2.5 units Dysport ≈ 1 unit Botox</td></tr>
+          <tr><td>Average price</td><td>$12–$20 per unit</td><td>$4–$8 per unit (more units needed)</td></tr>
+        </tbody>
+      </table>
+
+      <h2 class="article-h2">What Faster Onset Actually Means</h2>
+      <p class="article-p">Dysport is often reported to show results 1–2 days faster than Botox.<sup>1</sup> For most patients, this difference is irrelevant — both reach full effect at 14 days. But if you have an event in 7–10 days and had to choose, Dysport's faster onset could be a meaningful advantage.</p>
+
+      <h2 class="article-h2">The Unit Difference — and Why It Matters for Price</h2>
+      <p class="article-p">Dysport appears cheaper per unit ($4–8 vs $12–20 for Botox), but you need approximately 2.5x more Dysport units to achieve the same effect. Clinical studies consistently use a 2.5:1 dosage ratio.<sup>2</sup> When comparing quotes, always compare total treatment cost — not per-unit price.</p>
+
+      <h2 class="article-h2">Which Is Better?</h2>
+      <p class="article-p">For most patients, either works well. The best choice depends on your treatment area, your provider's preference and experience, and how your body has responded in the past. An experienced injector will recommend based on your anatomy — not based on which product is on sale.</p>
+
+      <div class="article-sources">
+        <div class="article-sources-title">Sources</div>
+        <p>1. Tactus Health, "Botox vs. Dysport: Which Is Better?" medically reviewed Feb 2026. tactushealthcare.com</p>
+        <p>2. Drugs.com, "Dysport vs Botox: Key Differences," medically reviewed by Carmen Pope, Aug 2025. drugs.com</p>
+        <p>3. AAOPM, "Botox vs Xeomin vs Dysport: Ultimate Comparison Guide 2025." aaopm.com</p>
+      </div>
+      <div class="article-cta-inline">
+        <div class="article-cta-title">Find a Botox or Dysport provider in Utah</div>
+        <div class="article-cta-sub">Compare providers with real pricing. You choose who connects with you.</div>
+        <a href="find-my-provider.html" class="article-cta-btn">Find My Treatment &rarr;</a>
+      </div>
+      <div class="article-back" onclick="showIndex()">&larr; Back to all articles</div>
+    </div>
+  </div>
+</article>
+
+<!-- ARTICLE 12: MORPHEUS8 -->
+<article class="article-full" id="article-12" style="display:none;">
+  <div class="article-hero" style="background-image:url('img-laser.jpg');">
+    <div class="article-hero-overlay"></div>
+    <div class="article-hero-content">
+      <div class="article-cat">⚡ Devices</div>
+      <h1 class="article-title">Is Morpheus8 Worth It? An Honest Look at the Most Talked-About Device</h1>
+      <div class="article-meta">Seeking Aesthetics &middot; Utah &middot; 2026 &middot; 5 min read</div>
+    </div>
+  </div>
+  <div class="article-body-wrap">
+    <div class="article-body">
+      <div class="article-disclaimer"><strong>For informational purposes only.</strong> This article does not constitute medical advice. Always consult a licensed medical professional before pursuing any aesthetic treatment. Seeking Aesthetics is not a healthcare provider.</div>
+      <p class="article-intro">Morpheus8 is everywhere on aesthetic social media — and the before-and-afters are compelling. But at $600–$4,000 per session, is it actually worth it? Here's what the clinical evidence says, who it works best for, and what no one tells you before you book.</p>
+
+      <h2 class="article-h2">What Morpheus8 Actually Is</h2>
+      <p class="article-p">Morpheus8 is an FDA-cleared radiofrequency microneedling device that combines two technologies: microneedles that create microscopic channels in the skin, and radiofrequency energy delivered through those needles to heat tissue at depths up to 8mm.<sup>1</sup> That depth is what separates it from standard microneedling — most competing devices reach 2–3.5mm.</p>
+
+      <h2 class="article-h2">What the Research Shows</h2>
+      <p class="article-p">A 2022 review published in the Journal of Cosmetic Dermatology (PubMed PMID: 35916259) confirmed Morpheus8's efficacy for facial rejuvenation, acne scarring, rosacea, and melasma. A multicenter study of 247 patients showed measurable improvement in skin laxity scoring. Clinical studies report an 87% patient satisfaction rate.<sup>2</sup></p>
+
+      <h2 class="article-h2">Results Timeline</h2>
+      <table class="article-table">
+        <thead><tr><th>Timeframe</th><th>What to Expect</th></tr></thead>
+        <tbody>
+          <tr><td>2–3 weeks post-treatment</td><td>Initial improvements in texture and tightness</td></tr>
+          <tr><td>3 months post-treatment</td><td>Deeper collagen remodeling complete</td></tr>
+          <tr><td>Results duration</td><td>12–18 months typical</td></tr>
+          <tr><td>Sessions needed</td><td>3–4 sessions, spaced 4–6 weeks apart</td></tr>
+          <tr><td>Downtime</td><td>2–3 days redness and swelling</td></tr>
+        </tbody>
+      </table>
+
+      <h2 class="article-h2">Cost Breakdown</h2>
+      <p class="article-p">A single session ranges from $600–$4,000 depending on treatment area and provider. A full face series of 3 sessions typically runs $1,800–$3,500. According to patient reviews, the average treatment cost is $1,870.<sup>3</sup> Most providers offer package pricing that reduces the per-session cost by 10–20%.</p>
+
+      <h2 class="article-h2">The Risk No One Talks About</h2>
+      <p class="article-p">Morpheus8 reaches 8mm — deep enough to affect fat tissue. When settings are too aggressive on the face, this can cause permanent fat atrophy (volume loss). Medical experts recommend using only 1–2mm depth on facial areas and reserving deeper settings for body treatments.<sup>4</sup> Provider skill matters enormously with this device.</p>
+
+      <h2 class="article-h2">Is It Worth It?</h2>
+      <p class="article-p">For patients with mild-to-moderate skin laxity, acne scarring, or texture concerns who want non-surgical results — yes, for most. For deep wrinkles or significant volume loss, fillers or fat transfer may be more effective. Always consult a licensed provider who is experienced specifically with RF microneedling before booking.</p>
+
+      <div class="article-sources">
+        <div class="article-sources-title">Sources</div>
+        <p>1. La Belle Vie Med Spa, "Morpheus8 RF Microneedling: 2025 Evidence-Based Guide," Dec 2025. labelleviemed.com</p>
+        <p>2. MyMedicineAdvisor, "Morpheus8 2026: What Clinics Don't Tell You," Mar 2026. mymedicineadvisor.com</p>
+        <p>3. RealSelf, "How Much Does Morpheus8 Cost?" realself.com</p>
+        <p>4. Charette Cosmetics, "How Much Does Morpheus8 Cost in 2025?" charettecosmetics.com</p>
+      </div>
+      <div class="article-cta-inline">
+        <div class="article-cta-title">Find a Morpheus8 provider in Utah</div>
+        <div class="article-cta-sub">See verified providers with real pricing — you choose who connects with you.</div>
+        <a href="find-my-provider.html" class="article-cta-btn">Find My Treatment &rarr;</a>
+      </div>
+      <div class="article-back" onclick="showIndex()">&larr; Back to all articles</div>
+    </div>
+  </div>
+</article>
+
+<!-- ARTICLE 13: CHEMICAL PEEL -->
+<article class="article-full" id="article-13" style="display:none;">
+  <div class="article-hero" style="background-image:url('img-facial.jpg');">
+    <div class="article-hero-overlay"></div>
+    <div class="article-hero-content">
+      <div class="article-cat">🌿 Skin</div>
+      <h1 class="article-title">Chemical Peel Guide: Which Type Is Right for Your Skin?</h1>
+      <div class="article-meta">Seeking Aesthetics &middot; Utah &middot; 2026 &middot; 4 min read</div>
+    </div>
+  </div>
+  <div class="article-body-wrap">
+    <div class="article-body">
+      <div class="article-disclaimer"><strong>For informational purposes only.</strong> This article does not constitute medical advice. Always consult a licensed medical professional before pursuing any aesthetic treatment. Seeking Aesthetics is not a healthcare provider.</div>
+      <p class="article-intro">A light peel is a lunch break. A deep peel is two weeks of recovery. Most patients don't know which type they're getting — or which one their skin actually needs. Here's the complete breakdown.</p>
+
+      <h2 class="article-h2">The Three Types — Side by Side</h2>
+      <table class="article-table">
+        <thead><tr><th>Type</th><th>Depth</th><th>Common Acids</th><th>Downtime</th><th>Best For</th><th>Cost Range</th></tr></thead>
+        <tbody>
+          <tr><td>Light (Superficial)</td><td>Epidermis only</td><td>Glycolic, Lactic, Salicylic</td><td>1–3 days</td><td>Mild texture, dullness, maintenance</td><td>$150–$400</td></tr>
+          <tr><td>Medium</td><td>Papillary dermis</td><td>TCA 35%, Jessner's</td><td>7–14 days</td><td>Sun damage, moderate wrinkles, pigmentation</td><td>$600–$1,200</td></tr>
+          <tr><td>Deep (Phenol)</td><td>Reticular dermis</td><td>Phenol, high TCA</td><td>2–8 weeks</td><td>Severe sun damage, deep wrinkles</td><td>$1,000–$5,000+</td></tr>
+        </tbody>
+      </table>
+
+      <h2 class="article-h2">Light Peels — The Maintenance Peel</h2>
+      <p class="article-p">Superficial peels use alpha-hydroxy acids (AHAs) like glycolic acid or beta-hydroxy acids (BHAs) like salicylic acid to exfoliate only the top layer of skin.<sup>1</sup> Most patients experience mild redness for 1–3 days. No real downtime. Best in a series of 6–8 treatments, 2–3 weeks apart. Ideal for glow, mild acne, and skin maintenance.</p>
+
+      <h2 class="article-h2">Medium Peels — The Real Work Horse</h2>
+      <p class="article-p">TCA (trichloroacetic acid) peels penetrate deeper, reaching the upper layers of the dermis. Recovery is 7–14 days of significant peeling and redness.<sup>2</sup> Results are more dramatic: visible reduction in sun damage, pigmentation, and moderate wrinkles. Requires medical supervision in most states.</p>
+
+      <h2 class="article-h2">Deep Peels — The Most Dramatic Option</h2>
+      <p class="article-p">Phenol peels penetrate deepest and deliver the most dramatic results — but require anesthesia, 2–8 weeks of recovery, and carry the highest risk. Most patients only need one in a lifetime. Not appropriate for darker skin tones due to risk of pigmentation changes. Always performed by a physician.<sup>3</sup></p>
+
+      <h2 class="article-h2">The One Thing to Do Before Any Peel</h2>
+      <p class="article-p">Avoid retinoids, AHAs, and BHAs for at least 5–7 days before any peel — they thin the skin and increase sensitivity. Never get a medium or deep peel within 2–3 weeks of significant sun exposure. Your skin will be highly vulnerable to UV damage during the healing period.</p>
+
+      <div class="article-sources">
+        <div class="article-sources-title">Sources</div>
+        <p>1. Vibrant Skin Bar, "Types of Chemical Peels: A Complete Guide," Sept 2025. vibrantskinbar.com</p>
+        <p>2. Medrein Health, "How Much Is a Chemical Peel? Complete 2025 Cost Guide." medreinhealth.com</p>
+        <p>3. CareCredit, "Chemical Peel Costs, Types and Benefits," July 2025. carecredit.com</p>
+      </div>
+      <div class="article-cta-inline">
+        <div class="article-cta-title">Find a chemical peel provider in Utah</div>
+        <div class="article-cta-sub">See verified providers with real pricing — you choose who connects with you.</div>
+        <a href="find-my-provider.html" class="article-cta-btn">Find My Treatment &rarr;</a>
+      </div>
+      <div class="article-back" onclick="showIndex()">&larr; Back to all articles</div>
+    </div>
+  </div>
+</article>
+
+<!-- ARTICLE 14: COMPARE PRICING -->
+<article class="article-full" id="article-14" style="display:none;">
+  <div class="article-hero" style="background-image:url('img-spa-interior.jpg');">
+    <div class="article-hero-overlay"></div>
+    <div class="article-hero-content">
+      <div class="article-cat">💰 Pricing</div>
+      <h1 class="article-title">How to Compare MedSpa Pricing Without Getting Confused</h1>
+      <div class="article-meta">Seeking Aesthetics &middot; Utah &middot; 2026 &middot; 4 min read</div>
+    </div>
+  </div>
+  <div class="article-body-wrap">
+    <div class="article-body">
+      <div class="article-disclaimer"><strong>For informational purposes only.</strong> This article does not constitute medical advice. Always consult a licensed medical professional before pursuing any aesthetic treatment. Seeking Aesthetics is not a healthcare provider.</div>
+      <p class="article-intro">MedSpa pricing is intentionally complicated. Per unit, per area, per syringe, membership pricing, package deals — it's designed to make comparison shopping nearly impossible. Here's how to see through it.</p>
+
+      <h2 class="article-h2">The Two Pricing Models — and Why They Don't Compare</h2>
+      <table class="article-table">
+        <thead><tr><th>Pricing Model</th><th>What It Means</th><th>Red Flag?</th></tr></thead>
+        <tbody>
+          <tr><td>Per unit (Botox)</td><td>You pay for each unit injected. Most transparent.</td><td>No — preferred</td></tr>
+          <tr><td>Per area (Botox)</td><td>Flat fee per treatment zone. You don't know how many units.</td><td>Sometimes — ask how many units are included</td></tr>
+          <tr><td>Per syringe (filler)</td><td>Standard for fillers. 1ml per syringe is typical.</td><td>No — this is normal</td></tr>
+          <tr><td>Membership pricing</td><td>Low per-unit rate but requires $150–$300/month membership.</td><td>Run the math — often costs more</td></tr>
+          <tr><td>Package / bundle pricing</td><td>Discounted rate for pre-purchasing sessions.</td><td>Proceed with caution — verify refund policy</td></tr>
+        </tbody>
+      </table>
+
+      <h2 class="article-h2">The Membership Math You Need to Do</h2>
+      <p class="article-p">A MedSpa advertises Botox at $9/unit — but only for members who pay $199/month. If you get Botox every 4 months at 30 units, you'd spend $270 on Botox plus $796 on membership = $1,066/year. The same 90 units at $13/unit without membership = $1,170/year. The difference is only $104 — and you're not locked into a monthly fee.</p>
+      <p class="article-p">Always calculate your annual cost — not just the per-unit rate.</p>
+
+      <h2 class="article-h2">The Questions to Ask Before Booking</h2>
+      <p class="article-p"><strong>For Botox:</strong> How many units will you use? What is the per-unit price? What brand are you using (Botox, Dysport, Xeomin, Daxxify)?<br><strong>For filler:</strong> How many syringes? What product? What is your refund or dissolve policy if I don't like the result?<br><strong>For any treatment:</strong> What does the price include — numbing, follow-up, touch-ups?</p>
+
+      <h2 class="article-h2">The Red Flags</h2>
+      <p class="article-p">"Call for pricing." No one who is transparent about pricing hides it behind a phone call. Membership required to see real prices. A quote that only gives you a total without breaking down units or volume. Prices significantly below market rate — cheapest Botox in Utah carries a real risk.</p>
+
+      <div class="article-cta-inline">
+        <div class="article-cta-title">See real pricing before you book</div>
+        <div class="article-cta-sub">Every provider on Seeking Aesthetics lists their actual starting prices. No phone call required.</div>
+        <a href="find-my-provider.html" class="article-cta-btn">Find My Treatment &rarr;</a>
+      </div>
+      <div class="article-back" onclick="showIndex()">&larr; Back to all articles</div>
+    </div>
+  </div>
+</article>
+
+<!-- ARTICLE 15: GLP-1 -->
+<article class="article-full" id="article-15" style="display:none;">
+  <div class="article-hero" style="background-image:url('img-skincare.jpg');">
+    <div class="article-hero-overlay"></div>
+    <div class="article-hero-content">
+      <div class="article-cat">💊 Wellness</div>
+      <h1 class="article-title">GLP-1 & Skin Laxity: What to Do After Weight Loss</h1>
+      <div class="article-meta">Seeking Aesthetics &middot; Utah &middot; 2026 &middot; 5 min read</div>
+    </div>
+  </div>
+  <div class="article-body-wrap">
+    <div class="article-body">
+      <div class="article-disclaimer"><strong>For informational purposes only.</strong> This article does not constitute medical advice. Always consult a licensed medical professional before pursuing any aesthetic treatment. Seeking Aesthetics is not a healthcare provider.</div>
+      <p class="article-intro">GLP-1 medications like Ozempic, Wegovy, and Mounjaro are changing bodies across Utah — and the results are visible. But rapid weight loss comes with an aesthetic cost that almost no one talks about before they start: skin laxity. Here's what actually helps.</p>
+
+      <h2 class="article-h2">Why GLP-1 Affects Your Skin</h2>
+      <p class="article-p">When you lose weight rapidly, fat cells shrink faster than skin can contract. Collagen and elastin — the proteins that keep skin firm — don't rebuild overnight. The result is loose, crepey skin, especially in the face, neck, décolletage, abdomen, and upper arms. The faster the weight loss, the more pronounced the laxity.</p>
+
+      <h2 class="article-h2">What Treatment Helps — and When</h2>
+      <table class="article-table">
+        <thead><tr><th>Treatment</th><th>What It Addresses</th><th>When to Start</th></tr></thead>
+        <tbody>
+          <tr><td>Morpheus8 RF</td><td>Skin tightening, collagen rebuilding</td><td>Once weight has stabilized (3+ months)</td></tr>
+          <tr><td>Sculptra / Biostimulators</td><td>Volume replacement, collagen stimulation</td><td>After weight stabilizes</td></tr>
+          <tr><td>Dermal fillers</td><td>Facial volume loss ("Ozempic face")</td><td>After weight stabilizes</td></tr>
+          <tr><td>Emsculpt / EmSella</td><td>Muscle building, body contouring</td><td>During active weight loss OK</td></tr>
+          <tr><td>CoolSculpting</td><td>Stubborn fat pockets remaining</td><td>After weight stabilizes</td></tr>
+          <tr><td>IV therapy / nutrition</td><td>Skin health support, hydration</td><td>Anytime</td></tr>
+        </tbody>
+      </table>
+
+      <h2 class="article-h2">The Timing Rule Most Patients Get Wrong</h2>
+      <p class="article-p">Starting aesthetic treatments while still actively losing weight is a mistake. If your weight fluctuates by more than 10–15 lbs after treatment, filler placement may look different, skin tightening results may not hold, and you'll likely need to retreat. Wait until your weight has been stable for at least 3 months before investing in tightening or volume treatments.</p>
+
+      <h2 class="article-h2">"Ozempic Face" — What It Is and What Helps</h2>
+      <p class="article-p">Rapid facial fat loss causes a hollowed, gaunt appearance — colloquially called "Ozempic face." The most effective treatment is collagen biostimulators (Sculptra, Radiesse) or hyaluronic acid fillers in the cheeks, temples, and under the eyes. Results look natural and restore the volume that was lost — without reversing the weight loss itself.</p>
+
+      <div class="article-cta-inline">
+        <div class="article-cta-title">Find a provider who specializes in GLP-1 aesthetic support</div>
+        <div class="article-cta-sub">See verified providers in Utah with real pricing — you choose who connects with you.</div>
+        <a href="find-my-provider.html" class="article-cta-btn">Find My Treatment &rarr;</a>
+      </div>
+      <div class="article-back" onclick="showIndex()">&larr; Back to all articles</div>
+    </div>
+  </div>
+</article>
+
+<!-- ARTICLE 16: PRE-VACATION -->
+<article class="article-full" id="article-16" style="display:none;">
+  <div class="article-hero" style="background-image:url('img-facial.jpg');">
+    <div class="article-hero-overlay"></div>
+    <div class="article-hero-content">
+      <div class="article-cat">☀️ Timing</div>
+      <h1 class="article-title">Treatments to Get Before Vacation — and How Far in Advance</h1>
+      <div class="article-meta">Seeking Aesthetics &middot; Utah &middot; 2026 &middot; 4 min read</div>
+    </div>
+  </div>
+  <div class="article-body-wrap">
+    <div class="article-body">
+      <div class="article-disclaimer"><strong>For informational purposes only.</strong> This article does not constitute medical advice. Always consult a licensed medical professional before pursuing any aesthetic treatment. Seeking Aesthetics is not a healthcare provider.</div>
+      <p class="article-intro">Sun, saltwater, heat, and chlorine are the enemies of fresh aesthetic treatments. Getting the timing wrong means bruising that peaks on day 3 — which happens to be your first day on the beach. Here's the complete pre-vacation treatment timeline.</p>
+
+      <h2 class="article-h2">Pre-Vacation Treatment Timeline</h2>
+      <table class="article-table">
+        <thead><tr><th>Treatment</th><th>Book This Far in Advance</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td>Laser hair removal (series)</td><td>4–6 weeks minimum</td><td>Multiple sessions required; sun sensitivity after each</td></tr>
+          <tr><td>Morpheus8 / RF Microneedling</td><td>4+ weeks</td><td>Skin needs to fully heal; results build over weeks</td></tr>
+          <tr><td>Chemical peel (medium/light)</td><td>2–3 weeks</td><td>Skin highly sun-sensitive after; peeling must complete</td></tr>
+          <tr><td>Botox / Dysport</td><td>2–3 weeks</td><td>Full effect at 14 days; allows touch-up if needed</td></tr>
+          <tr><td>Dermal filler</td><td>2 weeks minimum</td><td>Swelling must resolve before sun/heat exposure</td></tr>
+          <tr><td>HydraFacial</td><td>3–5 days</td><td>Minimal downtime; provides ideal hydration before travel</td></tr>
+          <tr><td>Laser hair removal (single)</td><td>2 weeks</td><td>Avoid sun exposure immediately after</td></tr>
+        </tbody>
+      </table>
+
+      <h2 class="article-h2">What to Avoid Right Before You Leave</h2>
+      <p class="article-p">Do not get any of the following within 7 days of a beach vacation: medium or deep chemical peels, laser resurfacing, RF microneedling, or your first filler treatment. Freshly treated skin is highly vulnerable to hyperpigmentation when exposed to UV rays.<sup>1</sup></p>
+
+      <h2 class="article-h2">Safe Treatments Closer to Departure</h2>
+      <p class="article-p">HydraFacial 3–5 days before is ideal — it deeply hydrates your skin for travel and has zero downtime. Botox and Dysport can be done 2 weeks out safely for experienced patients. Injectables: avoid sun for 24–48 hours and use SPF 30+ if you must be outside.<sup>2</sup></p>
+
+      <h2 class="article-h2">The Golden Rule</h2>
+      <p class="article-p">When in doubt, go earlier. It's always better to have a treatment settled and healed than to be dealing with peeling skin or filler bruising poolside. Plan backward from your departure date, not forward from when you remember to book.</p>
+
+      <div class="article-sources">
+        <div class="article-sources-title">Sources</div>
+        <p>1. Summit Dermatology, "Sun-Safe & Summer-Ready: Your Pre-Vacation Skin Prep Guide," June 2025. summitderm.com</p>
+        <p>2. Columbia Aesthetic, "BOTOX, Fillers, and Sunshine," Nov 2025. columbiaaesthetic.com</p>
+        <p>3. The Daily Aesthetics, "Top 5 Aesthetic Treatments to Get Before Your Summer Vacation," Mar 2026. thedailyaesthetics.com</p>
+      </div>
+      <div class="article-cta-inline">
+        <div class="article-cta-title">Find a provider with availability before your trip</div>
+        <div class="article-cta-sub">See verified providers in Utah — you choose who connects with you.</div>
+        <a href="find-my-provider.html" class="article-cta-btn">Find My Treatment &rarr;</a>
+      </div>
+      <div class="article-back" onclick="showIndex()">&larr; Back to all articles</div>
+    </div>
+  </div>
+</article>
+
+<!-- ARTICLE 17: WEDDING PREP -->
+<article class="article-full" id="article-17" style="display:none;">
+  <div class="article-hero" style="background-image:url('img-spa-interior.jpg');">
+    <div class="article-hero-overlay"></div>
+    <div class="article-hero-content">
+      <div class="article-cat">💍 Timing</div>
+      <h1 class="article-title">Wedding Prep: The Complete Aesthetic Treatment Timeline</h1>
+      <div class="article-meta">Seeking Aesthetics &middot; Utah &middot; 2026 &middot; 5 min read</div>
+    </div>
+  </div>
+  <div class="article-body-wrap">
+    <div class="article-body">
+      <div class="article-disclaimer"><strong>For informational purposes only.</strong> This article does not constitute medical advice. Always consult a licensed medical professional before pursuing any aesthetic treatment. Seeking Aesthetics is not a healthcare provider.</div>
+      <p class="article-intro">Utah has one of the highest wedding rates in the country. It also has one of the highest concentrations of MedSpas. Getting aesthetic treatments before your wedding is common — but the timing matters enormously. Here is the treatment-by-treatment timeline every bride needs.</p>
+
+      <h2 class="article-h2">The Complete Wedding Treatment Timeline</h2>
+      <table class="article-table">
+        <thead><tr><th>Time Before Wedding</th><th>Treatments to Consider</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>6+ months out</td><td>Laser hair removal series, Morpheus8 series, chemical peel series</td><td>Multi-session treatments need time for full results</td></tr>
+          <tr><td>3–4 months out</td><td>First-time Botox or filler (if you've never had it)</td><td>Allows time for touch-ups and to see how your body responds</td></tr>
+          <tr><td>6–8 weeks out</td><td>Repeat Botox (experienced patients), medium chemical peel</td><td>Results fully settled well before the date</td></tr>
+          <tr><td>3–4 weeks out</td><td>Filler touch-ups, light chemical peel, IPL</td><td>All swelling and recovery complete</td></tr>
+          <tr><td>2 weeks out</td><td>Botox (experienced patients only), HydraFacial</td><td>Minimum safe window — 14 days for full Botox effect</td></tr>
+          <tr><td>1 week out</td><td>HydraFacial, lymphatic massage, light facial</td><td>Glow without risk</td></tr>
+          <tr><td>2–3 days out</td><td>Nothing new. Gentle skincare only.</td><td>No surprises allowed this close</td></tr>
+        </tbody>
+      </table>
+
+      <h2 class="article-h2">The First-Timer Rule</h2>
+      <p class="article-p">If you have never had Botox or filler before, do not get it for the first time within 6 weeks of your wedding. You don't know how your body will respond — the onset timing, the duration, how much you'll need for the look you want. First-timers should plan 3+ months out and build in a touch-up appointment.<sup>1</sup></p>
+
+      <h2 class="article-h2">The Most Common Mistake</h2>
+      <p class="article-p">Booking too late. "I can fit you in the week before your wedding" is not a gift — it's a risk. Filler takes 2 weeks to fully settle. Botox takes 14 days for peak effect. A light peel needs 5–7 days of clear skin before you're camera-ready. The MedSpas that will book you last-minute aren't telling you these things.</p>
+
+      <h2 class="article-h2">What to Prioritize If Time Is Short</h2>
+      <p class="article-p">If you're already within 4 weeks: HydraFacial for immediate glow and hydration. Botox if you're an experienced patient and it's at least 14 days out. A light glycolic peel if it's at least 10 days out. Skip filler — the risk of visible swelling on the day is not worth it this close.</p>
+
+      <div class="article-sources">
+        <div class="article-sources-title">Sources</div>
+        <p>1. Summit Dermatology, "Sun-Safe & Summer-Ready: Your Pre-Vacation Skin Prep Guide," June 2025. summitderm.com</p>
+        <p>2. The Ultimate Pre-Vacation Aesthetic Treatment Guide, Pure Med Spa Chicago, Jan 2025. puremedicalspa.us</p>
+      </div>
+      <div class="article-cta-inline">
+        <div class="article-cta-title">Find a provider before your wedding</div>
+        <div class="article-cta-sub">See verified providers with availability — you choose who connects with you.</div>
+        <a href="find-my-provider.html" class="article-cta-btn">Find My Treatment &rarr;</a>
+      </div>
+      <div class="article-back" onclick="showIndex()">&larr; Back to all articles</div>
+    </div>
+  </div>
+</article>
+
+<!-- ARTICLE 18: DOPL VERIFICATION EXPLAINED -->
+<article class="article-full" id="article-18" style="display:none;">
+  <div class="article-hero" style="background-image:url('img-skincare.jpg');">
+    <div class="article-hero-overlay"></div>
+    <div class="article-hero-content">
+      <div class="article-cat">🔍 Safety</div>
+      <h1 class="article-title">What DOPL Verification Means — and Why It Protects You</h1>
+      <div class="article-meta">Seeking Aesthetics &middot; Utah &middot; 2026 &middot; 3 min read</div>
+    </div>
+  </div>
+  <div class="article-body-wrap">
+    <div class="article-body">
+      <div class="article-disclaimer"><strong>For informational purposes only.</strong> This article does not constitute medical advice. Always consult a licensed medical professional before pursuing any aesthetic treatment. Seeking Aesthetics is not a healthcare provider.</div>
+      <p class="article-intro">Most patients in Utah have never heard of DOPL — and most MedSpas don't bring it up. But in a state where anyone can rent a suite and call themselves an aesthetic injector, a DOPL verification is the only objective proof that your provider is actually licensed to treat you.</p>
+
+      <h2 class="article-h2">What DOPL Is</h2>
+      <p class="article-p">DOPL — the Utah Division of Professional Licensing — is a division of the Utah Department of Commerce that issues and regulates professional licenses across all healthcare and licensed professions in Utah.<sup>1</sup> Every licensed physician, nurse, nurse practitioner, and physician assistant in Utah has an active record in the DOPL database.</p>
+
+      <h2 class="article-h2">What DOPL Verification Confirms</h2>
+      <table class="article-table">
+        <thead><tr><th>What It Confirms</th><th>Why It Matters</th></tr></thead>
+        <tbody>
+          <tr><td>The provider has an active Utah license</td><td>An expired license means they're practicing illegally</td></tr>
+          <tr><td>The license type (RN, NP, MD, PA)</td><td>Only certain license types can legally administer injectables</td></tr>
+          <tr><td>No disciplinary actions on record</td><td>Complaints, suspensions, and revocations appear here</td></tr>
+          <tr><td>License expiration date</td><td>Confirms the license is current — not expired</td></tr>
+        </tbody>
+      </table>
+
+      <h2 class="article-h2">What DOPL Does Not Tell You</h2>
+      <p class="article-p">DOPL confirms a license exists — it does not confirm aesthetic-specific training, years of injection experience, or quality of results. A license is the floor, not the ceiling. You still need to review a provider's before-and-after portfolio and ask about their aesthetic training specifically.</p>
+
+      <h2 class="article-h2">How Seeking Aesthetics Uses DOPL</h2>
+      <p class="article-p">Before any provider goes live on Seeking Aesthetics, we verify their DOPL license manually at dopl.utah.gov. Their license number is displayed on their profile tile. If their license expires or a disciplinary action is filed, they are removed from the platform. This is the standard we set — and it's non-negotiable.</p>
+      <p class="article-p">You can also verify any Utah provider yourself — not just those on our platform — at secure.utah.gov/llv/search in under 60 seconds.</p>
+
+      <div class="article-sources">
+        <div class="article-sources-title">Sources</div>
+        <p>1. Utah Division of Professional Licensing (DOPL), Utah Department of Commerce. dopl.utah.gov</p>
+        <p>2. Utah DOPL License Lookup Tool. secure.utah.gov/llv/search</p>
+      </div>
+      <div class="article-cta-inline">
+        <div class="article-cta-title">Browse DOPL-verified providers in Utah</div>
+        <div class="article-cta-sub">License number shown on every profile. Verified before they go live. You choose who calls you.</div>
+        <a href="find-my-provider.html" class="article-cta-btn">Find My Treatment &rarr;</a>
+      </div>
+      <div class="article-back" onclick="showIndex()">&larr; Back to all articles</div>
+    </div>
+  </div>
+</article>
+
+
+<footer>
+  <div>
+    <div class="footer-logo">Seeking<em>Aesthetics</em></div>
+    <p>Utah&rsquo;s platform for transparent aesthetic treatment. Other areas coming soon.</p>
+  </div>
+  <div class="footer-col"><h4>Patients</h4>
+    <a href="patient-portal.html#passport">My Skin Passport</a>
+    <a href="find-my-provider.html">Find a Treatment</a>
+    <a href="articles.html">Articles &amp; Guides</a>
+    <a href="index.html#deals">Deals</a>
+  </div>
+  <div class="footer-col"><h4>Providers</h4>
+    <a href="provider-interest.html">Join Beta &mdash; Free</a>
+    <a href="provider-portal.html">Provider Login</a>
+  </div>
+  <div class="footer-col"><h4>Company</h4>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="careers.html">Careers</a>
+  </div>
+  <div class="footer-col"><h4>Legal</h4>
+    <a href="https://app.termly.io/policy-viewer/policy.html?policyUUID=3c1940f9-6ac4-4c64-a3be-87919f697647" target="_blank">Privacy Policy</a>
+    <a href="https://app.termly.io/policy-viewer/policy.html?policyUUID=ba1d51c6-cbf1-49a7-8446-70eaf5a17f91" target="_blank">Terms of Service</a>
+    <a href="https://app.termly.io/policy-viewer/policy.html?policyUUID=ee3a9182-d441-403d-a13e-b9c573ae861c" target="_blank">Cookie Policy</a>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <p>&copy; 2026 Seeking Aesthetics &middot; Utah &middot; Other areas coming soon</p>
+  <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="741c1118181b340711111f1d1a13151107001c11001d17075a171b19">[email&#160;protected]</a></p>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function showArticle(id) {
+  document.getElementById('index-page').style.display = 'none';
+  document.querySelectorAll('.article-full').forEach(function(a) { a.style.display = 'none'; });
+  var article = document.getElementById(id);
+  if (article) {
+    article.style.display = 'block';
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+}
+
+function showIndex() {
+
+}
+
+function showIndex() {
+  document.querySelectorAll('.article-full').forEach(function(a) { a.style.display = 'none'; });
+  document.getElementById('index-page').style.display = 'block';
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+</script>
+</body>
+</html>
