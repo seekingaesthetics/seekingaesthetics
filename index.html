@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seeking Aesthetics — Know Before You Go</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --mauve:#442132;
+  --ebony:#7b5462;
+  --champagne:#e4cdba;
+  --ivory:#FAF7F4;
+  --warm-white:#F5F0EB;
+  --card-bg:#FFFFFF;
+  --mid:#9c7e85;
+  --border:#EDE5DC;
+  --text:#2d1a23;
+  --green:#2d7a4f;
+}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Outfit',sans-serif;
+  background:var(--ivory);
+  color:var(--text);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/*  NAV  */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 24px;
+  background:rgba(250,247,244,.96);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  transition:background .3s;
+}
+.nav-logo{
+  display:flex;align-items:center;gap:10px;
+  text-decoration:none;
+}
+.nav-logo img{width:32px;height:32px;object-fit:contain;}
+.nav-logo-text{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-weight:600;
+  color:var(--mauve);
+  letter-spacing:.1em;text-transform:uppercase;
+}
+.nav-links{
+  display:flex;align-items:center;gap:24px;
+}
+.nav-links a{
+  font-size:12px;color:var(--ebony);
+  text-decoration:none;font-weight:400;
+  letter-spacing:.02em;
+  transition:color .2s;
+}
+.nav-links a:hover{color:var(--mauve);}
+.nav-cta{
+  padding:9px 20px;
+  background:var(--mauve)!important;
+  color:#fff!important;
+  font-size:11px!important;
+  font-weight:700!important;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  border-radius:2px;
+  transition:background .2s!important;
+}
+.nav-cta:hover{background:var(--ebony)!important;}
+.nav-mobile-menu{display:none;background:none;border:none;cursor:pointer;padding:4px;}
+.nav-mobile-menu span{display:block;width:22px;height:2px;background:var(--mauve);margin:4px 0;transition:all .3s;}
+
+/*  HERO  */
+.hero{
+  min-height:100svh;
+  padding:calc(64px + 40px) 24px 48px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  background:var(--ivory);
+  position:relative;
+}
+.hero::after{
+  content:'';
+  position:absolute;
+  bottom:0;left:0;right:0;
+  height:1px;
+  background:var(--border);
+}
+.hero-eye{
+  font-family:'Outfit',sans-serif;
+  font-size:10px;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--mid);margin-bottom:20px;
+}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(40px,10vw,64px);
+  font-weight:400;line-height:1.06;
+  color:var(--mauve);
+  text-align:center;
+  max-width:480px;
+  margin-bottom:12px;
+}
+.hero h1 em{font-style:italic;color:var(--ebony);}
+.hero-sub{
+  font-size:14px;font-weight:300;
+  color:var(--mid);
+  text-align:center;
+  max-width:340px;
+  line-height:1.8;
+  margin-bottom:32px;
+}
+
+/*  CATEGORY TILES  */
+.cat-tiles{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:var(--border);
+  border-radius:2px;
+  overflow:hidden;
+}
+.cat-tile{
+  background:#fff;
+  padding:20px 12px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  cursor:pointer;
+  transition:background .18s;
+  text-align:center;
+}
+.cat-tile:hover{background:#fdf9f7;}
+.cat-tile-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center;color:var(--mauve);}
+.cat-tile-label{
+  font-family:'Outfit',sans-serif;
+  font-size:11px;font-weight:600;
+  color:var(--mauve);
+  letter-spacing:.04em;
+}
+
+/* SEARCH FIELDS (shown after category selected) */
+.search-fields{flex-direction:column;}
+.search-back{
+  padding:10px 16px;
+  font-family:'Outfit',sans-serif;
+  font-size:11px;font-weight:600;
+  color:var(--mid);
+  cursor:pointer;
+  border-bottom:1px solid var(--border);
+  transition:color .18s;
+}
+.search-back:hover{color:var(--mauve);}
+
+/*  LEARN NAV DROPDOWN  */
+.nav-learn-wrap{position:relative;}
+.nav-learn-dropdown{
+  display:none;position:absolute;
+  top:calc(100% + 8px);left:0;
+  background:#fff;border:1px solid var(--border);
+  border-radius:8px;box-shadow:0 8px 32px rgba(68,33,50,.1);
+  min-width:210px;overflow:hidden;z-index:200;
+}
+.nav-learn-wrap:hover .nav-learn-dropdown{display:block;}
+.nav-learn-dropdown a{
+  display:block;padding:12px 18px;
+  font-size:12px;color:var(--mauve)!important;
+  text-decoration:none;font-weight:400;
+  border-bottom:1px solid var(--border);
+  transition:background .15s;
+}
+.nav-learn-dropdown a:last-child{border-bottom:none;}
+.nav-learn-dropdown a:hover{background:var(--ivory);}
+
+/*  PROVIDER NAV DROPDOWN  */
+.nav-provider-wrap{position:relative;}
+.nav-provider-dropdown{
+  display:none;
+  position:absolute;
+  top:calc(100% + 8px);
+  right:0;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:8px;
+  box-shadow:0 8px 32px rgba(68,33,50,.1);
+  min-width:180px;
+  overflow:hidden;
+  z-index:200;
+}
+.nav-provider-wrap:hover .nav-provider-dropdown{display:block;}
+.nav-provider-dropdown a{
+  display:block;
+  padding:12px 18px;
+  font-size:12px;
+  color:var(--mauve)!important;
+  text-decoration:none;
+  font-weight:400;
+  border-bottom:1px solid var(--border);
+  transition:background .15s;
+}
+.nav-provider-dropdown a:last-child{border-bottom:none;}
+.nav-provider-dropdown a:hover{background:var(--ivory);}
+
+/*  SEARCH CARD  */
+.search-card{
+  width:100%;max-width:600px;
+  background:var(--card-bg);
+  border:1px solid var(--border);
+  border-radius:16px;
+  box-shadow:0 8px 40px rgba(68,33,50,.08);
+  overflow:hidden;
+  margin-bottom:20px;
+}
+.search-field{
+  display:flex;flex-direction:column;
+  padding:16px 20px;
+  border-bottom:1px solid var(--border);
+  cursor:pointer;
+  transition:background .15s;
+}
+.search-field:focus-within{background:#fdf9f7;}
+.search-field:last-of-type{border-bottom:none;}
+.search-label{
+  font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--mid);margin-bottom:6px;font-weight:700;
+}
+.search-select{
+  border:none;background:transparent;
+  font-family:'Outfit',sans-serif;
+  font-size:15px;color:var(--text);
+  outline:none;padding:0;
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239c7e85' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 0 center;
+  padding-right:24px;
+  width:100%;cursor:pointer;
+}
+.search-select option{color:var(--text);}
+.search-btn{
+  width:100%;padding:18px;
+  background:var(--mauve);
+  border:none;
+  color:#fff;
+  font-family:'Outfit',sans-serif;
+  font-size:13px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  cursor:pointer;
+  transition:background .2s;
+}
+.search-btn:hover{background:#5c2c40;}
+
+/* TRUST PILLS */
+.trust-pills{
+  display:flex;gap:8px;flex-wrap:wrap;justify-content:center;
+  margin-bottom:0;
+}
+.tpill{
+  padding:6px 14px;
+  background:var(--card-bg);
+  border:1px solid var(--border);
+  border-radius:100px;
+  font-size:11px;color:var(--ebony);
+  display:flex;align-items:center;gap:5px;
+  font-weight:500;
+}
+.tpill-sub{color:var(--mid);font-weight:400;font-size:10px;}
+.tpill-check{color:var(--green);font-weight:700;font-size:12px;}
+
+/*  PROVIDERS SECTION  */
+.providers-section{
+  padding:56px 20px 48px;
+  background:var(--ivory);
+}
+.section-header{
+  display:flex;align-items:baseline;justify-content:space-between;
+  margin-bottom:6px;
+}
+.section-eyebrow{
+  font-size:10px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--mid);font-weight:600;
+  margin-bottom:6px;
+}
+.section-title-light{
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px;font-weight:400;
+  color:var(--mauve);line-height:1.15;
+  margin-bottom:4px;
+}
+.section-title-light em{font-style:italic;}
+.section-sub-light{
+  font-size:13px;color:var(--mid);
+  font-weight:300;line-height:1.7;
+  margin-bottom:24px;
+  max-width:400px;
+}
+.see-all{
+  font-size:12px;font-weight:600;
+  color:var(--mauve);text-decoration:none;
+  letter-spacing:.04em;
+  white-space:nowrap;
+  border-bottom:1px solid var(--champagne);
+  padding-bottom:1px;
+}
+
+/* PROVIDER CARD CAROUSEL */
+.cards-scroll{
+  display:flex;
+  gap:14px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  margin:0 -20px;
+  padding:4px 20px 16px;
+}
+.cards-scroll::-webkit-scrollbar{display:none;}
+
+.prov-card{
+  flex:0 0 280px;
+  scroll-snap-align:start;
+  background:var(--card-bg);
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:transform .22s ease,box-shadow .22s ease;
+}
+.prov-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 40px rgba(68,33,50,.1);
+}
+.pcard-img{
+  height:180px;
+  position:relative;
+  overflow:hidden;
+}
+.pcard-img img{
+  width:100%;height:100%;
+  object-fit:cover;
+  display:block;
+}
+.pcard-img-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,transparent 50%,rgba(44,17,28,.5) 100%);
+}
+.pcard-price-badge{
+  position:absolute;bottom:12px;left:12px;
+  padding:5px 10px;
+  background:rgba(255,255,255,.95);
+  border-radius:6px;
+  font-size:12px;font-weight:700;
+  color:var(--mauve);
+}
+.pcard-price-badge span{font-weight:400;color:var(--ebony);}
+.pcard-dopl{
+  position:absolute;top:12px;right:12px;
+  padding:4px 9px;
+  background:rgba(45,122,79,.92);
+  border-radius:20px;
+  font-size:10px;font-weight:700;color:#fff;
+  letter-spacing:.04em;
+}
+.pcard-premier{
+  position:absolute;top:12px;left:0;
+  padding:4px 14px 4px 10px;
+  background:var(--champagne);
+  color:var(--mauve);
+  font-size:9px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  clip-path:polygon(0 0,100% 0,calc(100% - 8px) 50%,100% 100%,0 100%);
+}
+.pcard-body{padding:16px 16px 0;}
+.pcard-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;font-weight:500;
+  color:var(--mauve);line-height:1.2;
+  margin-bottom:3px;
+}
+.pcard-loc{
+  font-size:11px;color:var(--mid);
+  margin-bottom:8px;
+  display:flex;align-items:center;gap:4px;
+}
+.pcard-stars{
+  display:flex;align-items:center;gap:5px;
+  margin-bottom:10px;
+}
+.stars{color:#c9933a;font-size:12px;}
+.rating{font-size:13px;font-weight:700;color:var(--mauve);}
+.rct{font-size:11px;color:var(--mid);}
+.pcard-tags{
+  display:flex;gap:5px;flex-wrap:wrap;
+  margin-bottom:10px;
+}
+.ptag{
+  padding:3px 9px;
+  border:1px solid var(--border);
+  border-radius:100px;
+  font-size:11px;color:var(--ebony);
+  background:var(--ivory);
+}
+.pcard-cred{
+  font-size:11px;color:var(--mid);
+  margin-bottom:8px;
+  display:flex;align-items:center;gap:5px;
+}
+.pcard-cred::before{
+  content:'';width:4px;height:4px;
+  background:var(--champagne);
+  border-radius:50%;flex-shrink:0;
+}
+.pcard-avail{
+  font-size:11px;color:var(--green);
+  font-weight:600;
+  display:flex;align-items:center;gap:4px;
+  margin-bottom:14px;
+}
+.pcard-avail::before{content:'';font-size:7px;}
+.pcard-foot{
+  padding:12px 16px;
+  border-top:1px solid var(--border);
+}
+.pcard-cta{
+  width:100%;padding:12px;
+  background:var(--mauve);
+  border:none;border-radius:8px;
+  color:#fff;
+  font-family:'Outfit',sans-serif;
+  font-size:12px;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;
+  cursor:pointer;
+  transition:background .2s;
+}
+.pcard-cta:hover{background:#5c2c40;}
+
+/* SCROLL DOTS */
+.scroll-dots{
+  display:flex;justify-content:center;gap:6px;
+  margin-top:4px;
+}
+.sdot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--border);
+  transition:all .3s;cursor:pointer;
+}
+.sdot.active{width:20px;border-radius:3px;background:var(--mauve);}
+
+/*  EDUCATION SECTION  */
+.edu-section{
+  padding:48px 20px;
+  background:var(--mauve);
+}
+.edu-inner{
+  display:flex;
+  flex-direction:column;
+  gap:28px;
+}
+.edu-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:30px;font-weight:400;
+  color:#fff;line-height:1.15;
+  margin-bottom:10px;
+}
+.edu-title em{font-style:italic;color:var(--champagne);}
+.edu-sub{
+  font-size:13px;color:rgba(228,205,186,.5);
+  font-weight:300;line-height:1.8;
+  max-width:340px;
+}
+.edu-card{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(228,205,186,.15);
+  border-radius:14px;
+  overflow:hidden;
+}
+.edu-field{
+  display:flex;flex-direction:column;
+  padding:14px 18px;
+  border-bottom:1px solid rgba(228,205,186,.1);
+  cursor:pointer;
+}
+.edu-label{
+  font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(228,205,186,.4);margin-bottom:6px;font-weight:700;
+}
+.edu-select{
+  border:none;background:transparent;
+  font-family:'Outfit',sans-serif;
+  font-size:14px;color:#fff;
+  outline:none;padding:0;
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23e4cdba' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 0 center;
+  padding-right:24px;
+  width:100%;cursor:pointer;
+}
+.edu-select option{color:var(--text);background:#fff;}
+.edu-btn{
+  width:100%;padding:16px;
+  background:var(--champagne);
+  border:none;
+  color:var(--mauve);
+  font-family:'Outfit',sans-serif;
+  font-size:12px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  cursor:pointer;transition:background .2s;
+}
+.edu-btn:hover{background:#fff;}
+.edu-note{
+  font-size:11px;color:rgba(228,205,186,.35);
+  padding:10px 18px;
+  font-family:'Outfit',sans-serif;
+  text-align:center;
+}
+
+@media(min-width:768px){
+  .edu-section{padding:64px 52px;}
+  .edu-inner{flex-direction:row;align-items:center;gap:52px;}
+  .edu-left{flex:1;}
+  .edu-right{flex:1;}
+  .edu-title{font-size:38px;}
+}
+
+/*  HOW IT WORKS  */
+.how{
+  padding:56px 20px;
+  background:var(--ivory);
+}
+.steps{
+  display:flex;flex-direction:column;
+  gap:0;margin-top:32px;
+}
+.step{
+  display:flex;gap:20px;
+  padding:24px 0;
+  border-bottom:1px solid var(--border);
+  position:relative;
+}
+.step:last-child{border-bottom:none;}
+.step-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:36px;font-weight:300;
+  color:var(--champagne);
+  line-height:1;flex-shrink:0;
+  width:36px;text-align:center;
+}
+.step-content{}
+.step-icon{font-size:20px;margin-bottom:6px;display:block;}
+.step-title{
+  font-size:15px;font-weight:600;
+  color:var(--mauve);margin-bottom:6px;
+}
+.step-desc{
+  font-size:13px;color:var(--mid);
+  line-height:1.8;font-weight:300;
+}
+
+/*  SKIN PASSPORT CALLOUT  */
+.passport{
+  padding:0;
+  background:linear-gradient(135deg,#2a1020 0%,#442132 50%,#5c2c40 100%);
+  position:relative;
+  overflow:hidden;
+}
+.passport::before{
+  content:'';
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(228,205,186,.06) 0%,transparent 70%);
+  pointer-events:none;
+}
+.passport-inner{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:56px 24px;
+  gap:32px;
+  position:relative;z-index:1;
+}
+.passport-icon{
+  font-size:64px;
+  line-height:1;
+  color:var(--champagne);
+  opacity:.35;
+  font-family:'Cormorant Garamond',serif;
+  flex-shrink:0;
+  letter-spacing:-.02em;
+}
+.passport-text{text-align:center;}
+.passport-eye{
+  font-size:10px;letter-spacing:.28em;text-transform:uppercase;
+  color:rgba(228,205,186,.4);margin-bottom:14px;
+  display:block;
+}
+.passport h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(36px,8vw,56px);
+  font-weight:400;color:#fff;line-height:1.06;
+  margin-bottom:14px;
+}
+.passport h2 em{font-style:italic;color:var(--champagne);}
+.passport p{
+  font-size:14px;color:rgba(228,205,186,.5);
+  font-weight:300;line-height:1.9;
+  max-width:380px;margin:0 auto 28px;
+}
+.passport-features{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-bottom:28px;
+  max-width:360px;
+  margin-left:auto;margin-right:auto;
+}
+.pf-item{
+  display:flex;align-items:center;gap:8px;
+  font-size:12px;color:rgba(228,205,186,.6);
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(228,205,186,.1);
+  border-radius:8px;
+  padding:10px 12px;
+  font-weight:400;
+}
+.pf-icon{font-size:16px;}
+.passport-btn{
+  padding:15px 36px;
+  background:var(--champagne);
+  border:none;border-radius:2px;
+  color:var(--mauve);
+  font-family:'Outfit',sans-serif;
+  font-size:12px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  cursor:pointer;transition:all .2s;
+  box-shadow:0 4px 24px rgba(228,205,186,.2);
+}
+.passport-btn:hover{background:#fff;transform:translateY(-1px);}
+@media(min-width:768px){
+  .passport-inner{
+    flex-direction:row;
+    padding:72px 52px;
+    gap:52px;
+    align-items:center;
+  }
+  .passport-icon{font-size:80px;flex-shrink:0;}
+  .passport-text{text-align:left;}
+  .passport-features{margin-left:0;margin-right:0;}
+  .passport p{margin-left:0;}
+}
+
+/*  ARTICLES PREVIEW  */
+.articles-preview{
+  padding:56px 20px 48px;
+  background:var(--warm-white);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+.ap-header{
+  display:flex;align-items:flex-end;
+  justify-content:space-between;
+  margin-bottom:6px;
+  flex-wrap:wrap;gap:12px;
+}
+.ap-scroll{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:14px;
+  padding:4px 0 8px;
+}
+.ap-scroll::-webkit-scrollbar{display:none;}
+.ap-card{
+  
+  
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:20px;
+  text-decoration:none;
+  display:flex;flex-direction:column;gap:10px;
+  transition:transform .2s ease,box-shadow .2s ease;
+  cursor:pointer;
+}
+.ap-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 8px 28px rgba(68,33,50,.08);
+}
+.ap-card-tag{
+  font-size:9px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--mid);font-weight:700;
+}
+.ap-card-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-weight:500;
+  color:var(--mauve);line-height:1.25;
+  flex:1;
+}
+.ap-card-desc{
+  font-size:12px;color:var(--mid);
+  line-height:1.75;font-weight:300;
+}
+.ap-card-read{
+  font-size:11px;font-weight:700;
+  color:var(--mauve);letter-spacing:.04em;
+  margin-top:4px;
+}
+@media(min-width:768px){
+  .articles-preview{padding:64px 52px 56px;}
+  .ap-scroll{margin:0 -52px;padding:4px 52px 16px;}
+  .ap-card{flex:0 0 300px;}
+}
+
+/*  DEALS  */
+.deals{
+  padding:48px 20px;
+  background:var(--warm-white);
+  border-top:1px solid var(--border);
+}
+.deals-scroll{
+  display:flex;gap:12px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  margin:20px -20px 0;
+  padding:4px 20px 12px;
+}
+.deals-scroll::-webkit-scrollbar{display:none;}
+.deal-card{
+  flex:0 0 260px;
+  scroll-snap-align:start;
+  background:var(--card-bg);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:20px;
+}
+.dc-spa{font-size:13px;font-weight:600;color:var(--mauve);margin-bottom:3px;}
+.dc-treat{font-size:11px;color:var(--mid);margin-bottom:14px;}
+.dc-price{display:flex;align-items:baseline;gap:8px;margin-bottom:8px;}
+.dc-new{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:500;color:var(--mauve);}
+.dc-old{font-size:13px;color:var(--mid);text-decoration:line-through;}
+.dc-pct{font-size:10px;font-weight:700;color:#fff;background:var(--mauve);padding:2px 7px;border-radius:3px;}
+.dc-exp{font-size:11px;color:var(--mid);margin-bottom:14px;}
+.dc-btn{
+  width:100%;padding:10px;
+  background:transparent;
+  border:1.5px solid var(--border);
+  border-radius:6px;
+  color:var(--mauve);
+  font-family:'Outfit',sans-serif;
+  font-size:11px;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;
+  cursor:pointer;transition:all .2s;
+}
+.dc-btn:hover{background:var(--mauve);color:#fff;border-color:var(--mauve);}
+
+/*  CTA BAND  */
+.cta-band{
+  padding:56px 20px;
+  background:var(--ivory);
+  text-align:center;
+  border-top:1px solid var(--border);
+}
+.cta-band h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px;font-weight:400;
+  color:var(--mauve);line-height:1.15;
+  margin-bottom:10px;
+}
+.cta-band h2 em{font-style:italic;}
+.cta-band p{
+  font-size:13px;color:var(--mid);
+  max-width:320px;margin:0 auto 28px;
+  line-height:1.8;font-weight:300;
+}
+.cta-btns{display:flex;flex-direction:column;gap:10px;align-items:center;}
+.btn-primary{
+  padding:15px 40px;
+  background:var(--mauve);
+  border:none;border-radius:2px;
+  color:#fff;
+  font-family:'Outfit',sans-serif;
+  font-size:12px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  cursor:pointer;transition:background .2s;
+  width:100%;max-width:320px;
+}
+.btn-primary:hover{background:#5c2c40;}
+.btn-secondary{
+  padding:14px 40px;
+  background:transparent;
+  border:1.5px solid var(--border);
+  border-radius:2px;
+  color:var(--ebony);
+  font-family:'Outfit',sans-serif;
+  font-size:12px;font-weight:400;
+  letter-spacing:.06em;text-transform:uppercase;
+  cursor:pointer;transition:all .2s;
+  width:100%;max-width:320px;
+  text-decoration:none;
+  display:flex;align-items:center;justify-content:center;
+}
+.btn-secondary:hover{border-color:var(--mauve);color:var(--mauve);}
+
+/*  PROVIDER CTA BAR  */
+.prov-bar{
+  padding:40px 20px;
+  background:var(--ebony);
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  align-items:flex-start;
+}
+.prov-bar-eye{
+  font-size:10px;letter-spacing:.24em;text-transform:uppercase;
+  color:rgba(228,205,186,.5);margin-bottom:6px;
+}
+.prov-bar h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:26px;font-weight:400;color:#fff;line-height:1.1;
+}
+.prov-bar h3 em{font-style:italic;color:var(--champagne);}
+.prov-bar p{
+  font-size:12px;color:rgba(255,255,255,.35);
+  font-weight:300;line-height:1.7;margin-top:6px;
+}
+.prov-bar-btn{
+  padding:13px 28px;
+  background:var(--champagne);
+  border:none;border-radius:2px;
+  color:var(--mauve);
+  font-family:'Outfit',sans-serif;
+  font-size:11px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  cursor:pointer;transition:background .2s;
+  text-decoration:none;display:inline-block;
+}
+.prov-bar-btn:hover{background:#fff;}
+
+/*  FOOTER  */
+footer{
+  background:#2a1020;
+  padding:48px 20px 24px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:32px;
+}
+.footer-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-weight:600;color:#fff;
+  letter-spacing:.1em;text-transform:uppercase;
+  margin-bottom:10px;
+}
+.footer-logo em{font-style:italic;color:var(--champagne);}
+footer p{
+  font-size:12px;color:rgba(255,249,228,.2);
+  line-height:1.8;font-weight:300;
+}
+.footer-col h4{
+  font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(255,249,228,.2);margin-bottom:14px;
+}
+.footer-col a{
+  display:block;font-size:12px;
+  color:rgba(255,249,228,.35);
+  text-decoration:none;margin-bottom:8px;
+  transition:color .2s;
+}
+.footer-col a:hover{color:var(--champagne);}
+.footer-bottom{
+  background:#2a1020;
+  padding:16px 20px 24px;
+  border-top:1px solid rgba(228,205,186,.06);
+  display:flex;flex-direction:column;gap:4px;
+}
+.footer-bottom p{font-size:11px;color:rgba(255,249,228,.18);}
+
+/*  DESKTOP OVERRIDES  */
+@media(min-width:768px){
+  nav{padding:0 52px;height:68px;}
+  .nav-mobile-menu{display:none;}
+  .hero{padding:calc(68px + 60px) 52px 64px;}
+  .hero h1{font-size:72px;max-width:640px;}
+  .hero-sub{max-width:480px;font-size:16px;}
+  .search-card{max-width:680px;}
+  .providers-section{padding:72px 52px 60px;}
+  .cards-scroll{margin:0 -52px;padding:4px 52px 20px;}
+  .prov-card{flex:0 0 320px;}
+  
+  .how{padding:72px 52px;}
+  .steps{flex-direction:row;gap:0;}
+  .step{
+    flex-direction:column;gap:12px;
+    padding:40px 32px;
+    border-bottom:none;
+    border-right:1px solid var(--border);
+  }
+  .step:last-child{border-right:none;}
+  .step-num{font-size:48px;width:auto;text-align:left;}
+  .passport{padding:72px 52px;}
+  .passport h2{font-size:44px;}
+  .deals{padding:64px 52px;}
+  .deals-scroll{margin:20px -52px 0;padding:4px 52px 16px;}
+  .cta-band{padding:72px 52px;}
+  .cta-band h2{font-size:44px;}
+  .cta-btns{flex-direction:row;justify-content:center;}
+  .btn-primary,.btn-secondary{width:auto;}
+  .prov-bar{
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-between;
+    padding:40px 52px;
+  }
+  footer{
+    grid-template-columns:1.8fr 1fr 1fr 1fr;
+    padding:56px 52px 28px;
+    gap:44px;
+  }
+  .footer-bottom{
+    flex-direction:row;
+    justify-content:space-between;
+    padding:18px 52px 24px;
+  }
+}
+
+@media(max-width:767px){
+  .nav-links{display:none;}
+  .nav-links.open{
+    display:flex;flex-direction:column;
+    position:fixed;top:64px;left:0;right:0;
+    background:var(--ivory);
+    border-bottom:1px solid var(--border);
+    padding:20px 24px;gap:16px;
+    z-index:99;
+  }
+  .nav-mobile-menu{display:block;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img src="https://seekingaesthetics.github.io/seekingaesthetics/logo.png" alt="Seeking Aesthetics" onerror="this.style.display='none'">
+    <span class="nav-logo-text">Seeking Aesthetics</span>
+  </a>
+  <button class="nav-mobile-menu" onclick="toggleNav(this)" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="nav-links">
+    <a href="find-my-provider.html">Find a Provider</a>
+    <a href="index.html#how">How It Works</a>
+    <a href="articles.html">Learn</a>
+    <a href="skin-passport-preview.html">My Skin Passport</a>
+    <div class="nav-provider-wrap">
+      <a href="provider-interest.html" class="nav-cta">For Providers</a>
+      <div class="nav-provider-dropdown">
+        <a href="provider-interest.html">Join as a Provider</a>
+        <a href="education.html">Advanced Education</a>
+        <a href="provider-portal.html">Provider Login</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eye">Utah</p>
+  <h1>Know before<br>you <em>go.</em></h1>
+  <p class="hero-sub">Browse state-licensed providers with transparent pricing. Choose who you want to hear from. Walk in informed and confident.</p>
+
+  <!-- SEARCH CARD -->
+  <div class="search-card">
+
+    <!-- CATEGORY TILES -->
+    <div class="cat-tiles" id="cat-tiles">
+      <div class="cat-tile" onclick="selectCat('Injectables')">
+        <div class="cat-tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M18 2l4 4-1 1-4-4 1-1z"/><path d="M14 6l4 4"/><path d="M3 21l9-9"/><path d="M6 18l-3 3"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div>
+        <div class="cat-tile-label">Injectables</div>
+      </div>
+      <div class="cat-tile" onclick="selectCat('Skin & Facial')">
+        <div class="cat-tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M12 3c.5 4 3.5 7 9 7-5.5 0-8.5 3-9 7-.5-4-3.5-7-9-7 5.5 0 8.5-3 9-7z"/></svg></div>
+        <div class="cat-tile-label">Skin & Facial</div>
+      </div>
+      <div class="cat-tile" onclick="selectCat('Laser & Energy')">
+        <div class="cat-tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <div class="cat-tile-label">Laser & Energy</div>
+      </div>
+      <div class="cat-tile" onclick="selectCat('Body Contouring')">
+        <div class="cat-tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><line x1="17.5" y1="15" x2="9" y2="15"/></svg></div>
+        <div class="cat-tile-label">Body</div>
+      </div>
+      <div class="cat-tile" onclick="selectCat('Health & Wellness')">
+        <div class="cat-tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M12 22V12"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/><path d="M12 12C12 6 17 2 22 2c0 5-4 10-10 10z"/><path d="M12 12C12 6 7 2 2 2c0 5 4 10 10 10z"/></svg></div>
+        <div class="cat-tile-label">Wellness</div>
+      </div>
+      <div class="cat-tile" onclick="selectCat('Not Sure')">
+        <div class="cat-tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+        <div class="cat-tile-label">Not Sure</div>
+      </div>
+    </div>
+
+    <!-- TREATMENT + LOCATION (shown after category selected) -->
+    <div class="search-fields" id="search-fields" style="display:none;">
+      <div class="search-back" onclick="resetCat()">← Back</div>
+      <div class="search-field">
+        <span class="search-label" id="search-label">Treatment</span>
+        <select class="search-select" id="s-treatment">
+          <option value="">What are you looking for?</option>
+          <optgroup label=" Injectables ">
+            <option>Botox / Dysport</option>
+            <option>Xeomin / Daxxify</option>
+            <option>Lip Filler</option>
+            <option>Dermal Fillers</option>
+            <option>Facial Balancing</option>
+            <option>Sculptra</option>
+            <option>Radiesse</option>
+            <option>Kybella</option>
+            <option>Lip Flip</option>
+            <option>Under Eye Filler</option>
+            <option>Jawline Contouring</option>
+            <option>Chin Augmentation</option>
+            <option>Cheek Augmentation</option>
+            <option>Nose Filler (Non-Surgical)</option>
+            <option>PRP / PRF</option>
+            <option>PRF Gel / EZ Gel</option>
+            <option>PDO Thread Lift</option>
+            <option>Biostimulator</option>
+          </optgroup>
+          <optgroup label=" Skin & Facial ">
+            <option>HydraFacial</option>
+            <option>Microneedling</option>
+            <option>Chemical Peel</option>
+            <option>Laser Resurfacing</option>
+            <option>IPL Photo Facial</option>
+            <option>Morpheus8 RF</option>
+            <option>Dermaplaning</option>
+            <option>Microdermabrasion</option>
+            <option>DiamondGlow</option>
+            <option>VI Peel</option>
+            <option>ZO Peel</option>
+            <option>Oxygen Facial</option>
+            <option>Sylfirm X</option>
+            <option>Aquagold Facial</option>
+            <option>Exosome Therapy</option>
+            <option>Collagen Induction Therapy</option>
+            <option>Anti-Aging Facial</option>
+            <option>Acne Treatment</option>
+            <option>Rosacea Treatment</option>
+            <option>Hyperpigmentation Treatment</option>
+            <option>Scar Revision</option>
+            <option>Medical-Grade Skincare Consult</option>
+            <option>RF Microneedling</option>
+            <option>Photodynamic Therapy</option>
+            <option>Ultherapy</option>
+          </optgroup>
+          <optgroup label=" Laser & Energy ">
+            <option>CO2 Laser Resurfacing</option>
+            <option>BBL Photofacial</option>
+            <option>MOXI Laser</option>
+            <option>Clear & Brilliant</option>
+            <option>Sofwave Lifting</option>
+            <option>Radiofrequency Skin Tightening</option>
+            <option>Laser Hair Removal</option>
+            <option>Tattoo Removal</option>
+            <option>Vein Treatment</option>
+            <option>Sclerotherapy</option>
+            <option>Hyperhidrosis Treatment</option>
+            <option>K-Laser / LLLT</option>
+          </optgroup>
+          <optgroup label=" Body ">
+            <option>CoolSculpting</option>
+            <option>Body Contouring</option>
+            <option>Emsculpt / EmSella</option>
+            <option>Laser Lipo</option>
+            <option>Cellulite Treatment</option>
+            <option>Stretch Mark Treatment</option>
+            <option>Skin Tightening</option>
+            <option>Lymphatic Massage</option>
+            <option>Ultrasound Body Contouring</option>
+            <option>Aveli Cellulite Treatment</option>
+          </optgroup>
+          <optgroup label=" Wellness ">
+            <option>IV Therapy</option>
+            <option>NAD+ IV Therapy</option>
+            <option>Weight Loss (GLP-1)</option>
+            <option>Hormone Therapy</option>
+            <option>Hair Restoration</option>
+            <option>PRP Hair Treatment</option>
+            <option>Scalp Micropigmentation</option>
+            <option>Intimate Wellness</option>
+            <option>Hyperbaric Oxygen (HBOT)</option>
+            <option>Vitamin Injections</option>
+            <option>Peptide Therapy</option>
+            <option>EBOO / Ozone Therapy</option>
+            <option>Biological Age Testing</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="search-field">
+        <span class="search-label">Location</span>
+        <select class="search-select" id="s-location">
+          <option value="">Where are you?</option>
+          <option value="Near Me">Near Me — Use My Location</option>
+          <optgroup label=" Utah Valley ">
+            <option>Provo</option>
+            <option>Orem</option>
+            <option>Lehi</option>
+            <option>American Fork</option>
+            <option>Spanish Fork</option>
+            <option>Springville</option>
+            <option>Payson</option>
+            <option>Mapleton</option>
+          </optgroup>
+          <optgroup label=" Salt Lake Valley ">
+            <option>Salt Lake City</option>
+            <option>Sandy</option>
+            <option>Draper</option>
+            <option>Murray</option>
+            <option>Midvale</option>
+            <option>West Jordan</option>
+            <option>South Jordan</option>
+            <option>Millcreek</option>
+          </optgroup>
+          <optgroup label=" Northern Utah ">
+            <option>Ogden</option>
+            <option>Layton</option>
+            <option>Bountiful</option>
+            <option>Logan</option>
+            <option>Clearfield</option>
+          </optgroup>
+          <optgroup label=" Southern Utah ">
+            <option>St. George</option>
+            <option>Cedar City</option>
+            <option>Washington</option>
+            <option>Hurricane</option>
+          </optgroup>
+          <optgroup label=" Park City / Summit ">
+            <option>Park City</option>
+            <option>Heber City</option>
+          </optgroup>
+        </select>
+      </div>
+      <button class="search-btn" onclick="handleSearch()">Find Providers →</button>
+    </div>
+  </div>
+
+  <!-- TRUST PILLS -->
+  <div class="trust-pills">
+    <div class="tpill"><span class="tpill-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="11" height="11"><polyline points="20 6 9 17 4 12"/></svg></span>DOPL Verified <span class="tpill-sub">— State-Licensed & Certified for Safety</span></div>
+    <div class="tpill"><span class="tpill-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="11" height="11"><polyline points="20 6 9 17 4 12"/></svg></span>Real Pricing</div>
+    <div class="tpill"><span class="tpill-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="11" height="11"><polyline points="20 6 9 17 4 12"/></svg></span>You Choose</div>
+    <div class="tpill"><span class="tpill-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="11" height="11"><polyline points="20 6 9 17 4 12"/></svg></span>Free · No Login</div>
+  </div>
+</section>
+
+<!-- PROVIDERS -->
+<section class="providers-section" id="providers">
+  <p class="section-eyebrow">Verified Providers</p>
+  <div class="section-header">
+    <h2 class="section-title-light">Providers near <em>you</em></h2>
+    <a href="find-my-provider.html" class="see-all">See all →</a>
+  </div>
+  <p class="section-sub-light">Every provider is DOPL verified before going live. Real credentials, real pricing — you choose who to book with.</p>
+
+  <div class="cards-scroll" id="prov-scroll">
+
+    <!-- CARD 1 -->
+    <div class="prov-card" onclick="openProv(this)">
+      <div class="pcard-img">
+        <img src="img-injection.jpg" alt="Glow MedSpa" onerror="this.parentElement.style.background='linear-gradient(135deg,#5c2438,#7b4055)'">
+        <div class="pcard-img-overlay"></div>
+        <div class="pcard-premier">Premier</div>
+        <div class="pcard-dopl">✓ DOPL</div>
+        <div class="pcard-price-badge">Botox from <span>$12/unit</span></div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Glow MedSpa</div>
+        <div class="pcard-loc">Provo, UT · 2.1 mi</div>
+        <div class="pcard-stars">
+          <span class="stars">★★★★★</span>
+          <span class="rating">4.9</span>
+          <span class="rct">(128)</span>
+        </div>
+        <div class="pcard-tags">
+          <span class="ptag">Botox</span>
+          <span class="ptag">Fillers</span>
+          <span class="ptag">Morpheus8</span>
+        </div>
+        <div class="pcard-cred">Board Certified RN · 10+ yrs</div>
+        <div class="pcard-avail">Accepting clients this week</div>
+      </div>
+      <div class="pcard-foot">
+        <button class="pcard-cta" onclick="window.location.href='find-my-provider.html'">Choose This Provider</button>
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="prov-card" onclick="openProv(this)">
+      <div class="pcard-img">
+        <img src="img-facial.jpg" alt="Allure Aesthetics" onerror="this.parentElement.style.background='linear-gradient(135deg,#5c2438,#7b4055)'">
+        <div class="pcard-img-overlay"></div>
+        <div class="pcard-dopl">✓ DOPL</div>
+        <div class="pcard-price-badge">Botox from <span>$11/unit</span></div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Allure Aesthetics</div>
+        <div class="pcard-loc">Orem, UT · 3.8 mi</div>
+        <div class="pcard-stars">
+          <span class="stars">★★★★★</span>
+          <span class="rating">4.8</span>
+          <span class="rct">(94)</span>
+        </div>
+        <div class="pcard-tags">
+          <span class="ptag">Botox</span>
+          <span class="ptag">Lip Filler</span>
+          <span class="ptag">Microneedling</span>
+        </div>
+        <div class="pcard-cred">NP-C · Aesthetic Specialist · 8 yrs</div>
+        <div class="pcard-avail">Accepting clients this week</div>
+      </div>
+      <div class="pcard-foot">
+        <button class="pcard-cta" onclick="window.location.href='find-my-provider.html'">Choose This Provider</button>
+      </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="prov-card" onclick="openProv(this)">
+      <div class="pcard-img">
+        <img src="img-spa-interior.jpg" alt="Studio 22 Aesthetics" onerror="this.parentElement.style.background='linear-gradient(135deg,#5c2438,#7b4055)'">
+        <div class="pcard-img-overlay"></div>
+        <div class="pcard-dopl">✓ DOPL</div>
+        <div class="pcard-price-badge">Botox from <span>$13/unit</span></div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Studio 22 Aesthetics</div>
+        <div class="pcard-loc">Lehi, UT · 5.4 mi</div>
+        <div class="pcard-stars">
+          <span class="stars">★★★★★</span>
+          <span class="rating">4.7</span>
+          <span class="rct">(61)</span>
+        </div>
+        <div class="pcard-tags">
+          <span class="ptag">Laser</span>
+          <span class="ptag">Chemical Peel</span>
+          <span class="ptag">PRP</span>
+        </div>
+        <div class="pcard-cred">RN · Certified Aesthetic Injector</div>
+        <div class="pcard-avail">Accepting clients this week</div>
+      </div>
+      <div class="pcard-foot">
+        <button class="pcard-cta" onclick="window.location.href='find-my-provider.html'">Choose This Provider</button>
+      </div>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="prov-card" onclick="openProv(this)">
+      <div class="pcard-img">
+        <img src="img-skincare.jpg" alt="Radiance Med Studio" onerror="this.parentElement.style.background='linear-gradient(135deg,#5c2438,#7b4055)'">
+        <div class="pcard-img-overlay"></div>
+        <div class="pcard-dopl">✓ DOPL</div>
+        <div class="pcard-price-badge">Botox from <span>$10/unit</span></div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Radiance Med Studio</div>
+        <div class="pcard-loc">Spanish Fork, UT · 9.4 mi</div>
+        <div class="pcard-stars">
+          <span class="stars">★★★★</span>
+          <span class="rating">4.6</span>
+          <span class="rct">(43)</span>
+        </div>
+        <div class="pcard-tags">
+          <span class="ptag">Botox</span>
+          <span class="ptag">Skin Tightening</span>
+          <span class="ptag">IV Therapy</span>
+        </div>
+        <div class="pcard-cred">APRN · 6 yrs aesthetic experience</div>
+        <div class="pcard-avail">Accepting clients this week</div>
+      </div>
+      <div class="pcard-foot">
+        <button class="pcard-cta" onclick="window.location.href='find-my-provider.html'">Choose This Provider</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SCROLL DOTS -->
+  <div class="scroll-dots" id="prov-dots">
+    <div class="sdot active"></div>
+    <div class="sdot"></div>
+    <div class="sdot"></div>
+    <div class="sdot"></div>
+  </div>
+</section>
+
+<!-- SKIN PASSPORT -->
+<section class="passport">
+  <div class="passport-inner">
+    <div class="passport-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg></div>
+    <div class="passport-text">
+      <p class="passport-eye">Your Treatment History · Owned By You</p>
+      <h2>Your <em>My Skin Passport</em></h2>
+      <p>Every treatment. Every provider. Every refresh date — in one place. Not locked to any spa. Travels with you everywhere. Alerts you when treatments are due.</p>
+      <div class="passport-features">
+        <div class="pf-item"><span class="pf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg></span>Complete treatment timeline</div>
+        <div class="pf-item"><span class="pf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>Refresh timing alerts</div>
+        <div class="pf-item"><span class="pf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>Owned by you — always</div>
+        <div class="pf-item"><span class="pf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>Portable across providers</div>
+      </div>
+      <button class="passport-btn" onclick="window.location.href='patient-portal.html#passport'">Explore Your Skin Passport →</button>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <p class="section-eyebrow">Simple Process</p>
+  <h2 class="section-title-light">How <em>seeking</em> works</h2>
+  <p class="section-sub-light">Built around how clients actually think — not how outdated directories are organized.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-content">
+        <span class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg></span>
+        <div class="step-title">Share what you're looking for</div>
+        <p class="step-desc">Select your treatment, location, and budget. Takes under 2 minutes. No account required.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-content">
+        <span class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span>
+        <div class="step-title">Browse verified providers and choose</div>
+        <p class="step-desc">View state-licensed providers with transparent pricing, credentials, and reviews. Compare your options and select who you want to hear from.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-content">
+        <span class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6.29 6.29l.9-.9a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+        <div class="step-title">Book directly with your chosen provider</div>
+        <p class="step-desc">Your selected provider's own booking calendar opens — you schedule on their system, on your terms. No middleman, no phone tag, no waiting.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-content">
+        <span class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg></span>
+        <div class="step-title">Come back for more</div>
+        <p class="step-desc">Get notified when your providers run deals on the treatments you love. Return any time you need something new.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLES PREVIEW -->
+<section class="articles-preview">
+  <div class="ap-header">
+    <div>
+      <p class="section-eyebrow">Client Education</p>
+      <h2 class="section-title-light">Know what to<br><em>expect.</em></h2>
+    </div>
+    <a href="articles.html" class="see-all">Read all articles →</a>
+  </div>
+  <p class="section-sub-light">Real information about treatments — pricing, units, timelines, and what no one tells you before you book.</p>
+
+  <div class="ap-scroll">
+
+    <a href="articles.html" class="ap-card">
+      <div class="ap-card-tag">Injectables</div>
+      <div class="ap-card-title">How Many Units of Botox Do You Actually Need?</div>
+      <div class="ap-card-desc">The honest breakdown by treatment area — forehead, glabella, crow's feet, lip flip, and more. Know before you go.</div>
+      <div class="ap-card-read">Read article →</div>
+    </a>
+
+    <a href="articles.html" class="ap-card">
+      <div class="ap-card-tag">Devices</div>
+      <div class="ap-card-title">Morpheus8 vs. Sylfirm X for Acne Scars: Which Is Right for You?</div>
+      <div class="ap-card-desc">Two of the most talked-about RF microneedling devices compared — what they treat, how they feel, and what results to expect.</div>
+      <div class="ap-card-read">Read article →</div>
+    </a>
+
+    <a href="articles.html" class="ap-card">
+      <div class="ap-card-tag">Pricing</div>
+      <div class="ap-card-title">What Does Botox Actually Cost in Utah in 2026?</div>
+      <div class="ap-card-desc">Per unit vs. per area pricing explained. What's fair, what's a red flag, and how to compare providers without getting confused.</div>
+      <div class="ap-card-read">Read article →</div>
+    </a>
+
+    <a href="articles.html" class="ap-card">
+      <div class="ap-card-tag">Planning</div>
+      <div class="ap-card-title">When to Get Botox Before a Wedding or Event: The 14-Day Rule</div>
+      <div class="ap-card-desc">Timing your treatment correctly makes all the difference. Here's exactly when to book and what to avoid before a big day.</div>
+      <div class="ap-card-read">Read article →</div>
+    </a>
+
+    <a href="articles.html" class="ap-card">
+      <div class="ap-card-tag">Wellness</div>
+      <div class="ap-card-title">GLP-1 & Your Skin: What Ozempic Patients Need to Know</div>
+      <div class="ap-card-desc">Rapid weight loss affects your skin. What aesthetic treatments help — and when to time them during your GLP-1 journey.</div>
+      <div class="ap-card-read">Read article →</div>
+    </a>
+
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <h2>Ready to feel<br><em>confident?</em></h2>
+  <p>See verified providers, compare pricing and credentials, and book directly with the one you choose — in under 2 minutes.</p>
+  <div class="cta-btns">
+    <button class="btn-primary" onclick="window.location.href='find-my-provider.html'">Find My Treatment →</button>
+    <a href="provider-interest.html" class="btn-secondary">Become a Provider</a>
+  </div>
+</section>
+
+<!-- PROVIDER BAR -->
+<div class="prov-bar">
+  <div>
+    <div class="prov-bar-eye">For MedSpa Owners</div>
+    <h3>Become a <em>Preferred Provider</em></h3>
+    <p>Clients who have already reviewed your credentials and pricing — and chose you specifically — connect with you directly.</p>
+  </div>
+  <a href="provider-interest.html" class="prov-bar-btn">Apply Now →</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div style="grid-column:1/-1">
+    <div class="footer-logo">Seeking<em>Aesthetics</em></div>
+    <p>Utah's first transparent MedSpa platform. Other areas coming soon.</p>
+  </div>
+  <div class="footer-col"><h4>Clients</h4>
+    <a href="skin-passport-preview.html">My Skin Passport</a>
+    <a href="find-my-provider.html">Find a Treatment</a>
+    <a href="#how">How It Works</a>
+  </div>
+  <div class="footer-col"><h4>Providers</h4>
+    <a href="provider-interest.html">Join — Free Trial</a>
+    <a href="provider-portal.html">Provider Login</a>
+  </div>
+  <div class="footer-col"><h4>Company</h4>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="careers.html">Careers</a>
+    <a href="https://app.termly.io/policy-viewer/policy.html?policyUUID=3c1940f9-6ac4-4c64-a3be-87919f697647" target="_blank">Privacy Policy</a>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <p>© 2026 Seeking Aesthetics. All rights reserved.</p>
+  <p>Built for Utah's aesthetic community.</p>
+</div>
+
+<script>
+function selectCat(cat) {
+  document.getElementById('cat-tiles').style.display = 'none';
+  const fields = document.getElementById('search-fields');
+  fields.style.display = 'flex';
+  // Pre-select the category in the treatment dropdown
+  const sel = document.getElementById('s-treatment');
+  if (cat === 'Not Sure') {
+    sel.value = '';
+  } else {
+    // Find first option in matching optgroup
+    const groups = sel.querySelectorAll('optgroup');
+    groups.forEach(g => {
+      if (g.label.toLowerCase().includes(cat.toLowerCase().split(' ')[0])) {
+        sel.value = g.options[0].value || g.options[0].text;
+      }
+    });
+  }
+  document.getElementById('search-label').textContent = cat === 'Not Sure' ? 'Treatment (optional)' : cat;
+}
+
+function resetCat() {
+  document.getElementById('cat-tiles').style.display = 'grid';
+  document.getElementById('search-fields').style.display = 'none';
+}
+
+function handleSearch(){
+  const t = document.getElementById('s-treatment').value;
+  const l = document.getElementById('s-location').value;
+  let url = 'find-my-provider.html';
+  const params = [];
+  if(t) params.push('treatment='+encodeURIComponent(t));
+  if(l) params.push('location='+encodeURIComponent(l));
+  if(params.length) url += '?' + params.join('&');
+  window.location.href = url;
+}
+
+function toggleNav(btn){
+  const links = document.getElementById('nav-links');
+  links.classList.toggle('open');
+  const spans = btn.querySelectorAll('span');
+  if(links.classList.contains('open')){
+    spans[0].style.transform='rotate(45deg) translate(4px,4px)';
+    spans[1].style.opacity='0';
+    spans[2].style.transform='rotate(-45deg) translate(4px,-4px)';
+  } else {
+    spans[0].style.transform='';
+    spans[1].style.opacity='1';
+    spans[2].style.transform='';
+  }
+}
+
+// Provider card scroll dots
+(function(){
+  const scroll = document.getElementById('prov-scroll');
+  const dots = document.querySelectorAll('#prov-dots .sdot');
+  if(!scroll || !dots.length) return;
+  scroll.addEventListener('scroll', function(){
+    const cardW = scroll.querySelector('.prov-card').offsetWidth + 14;
+    const idx = Math.round(scroll.scrollLeft / cardW);
+    dots.forEach((d,i) => d.classList.toggle('active', i === idx));
+  });
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', function(){
+      const cardW = scroll.querySelector('.prov-card').offsetWidth + 14;
+      scroll.scrollTo({left: i * cardW, behavior:'smooth'});
+    });
+  });
+})();
+
+//  PROVIDER MODAL 
+const PROV_DATA = {
+  'Glow MedSpa': {tier:'Premier', loc:'Provo, UT · 2.1 mi', stars:'★★★★★ 4.9 · 112 reviews', grad:'linear-gradient(135deg,#2d1a23,#5c2438)',
+    detail:['Botox from $11/unit · Lip Filler from $549','8 verified providers · 2 locations','Devices: Morpheus8 · Sofwave · HydraFacial','Publishes training courses in the Learn tab'],
+    booking:'unpartnered.html?spa=Glow%20MedSpa'},
+  'Allure Aesthetics': {tier:'Boutique', loc:'Orem, UT · 3.8 mi', stars:'★★★★★ 4.8 · 89 reviews', grad:'linear-gradient(135deg,#3d4a5c,#5c6e82)',
+    detail:['Botox from $12/unit · Dermal Filler from $595','4 verified providers — each bookable directly','Devices: GentleMax Pro · HydraFacial'],
+    booking:'unpartnered.html?spa=Allure%20Aesthetics'},
+  'Studio 22 Aesthetics': {tier:'', loc:'Lehi, UT · 5.4 mi', stars:'★★★★★ 4.9 · 41 reviews', grad:'linear-gradient(135deg,#5c3d4a,#8a5c6e)',
+    detail:['Botox from $11/unit · Microneedling from $249','Independent injector — books directly'],
+    booking:'unpartnered.html?spa=Studio%2022%20Aesthetics'},
+  'Radiance Med Studio': {tier:'', loc:'Spanish Fork, UT · 9.4 mi', stars:'★★★★4.7 · 28 reviews', grad:'linear-gradient(135deg,#2d4a3d,#4a7060)',
+    detail:['Botox from $10/unit · Chemical Peels from $150','Independent injector — books directly'],
+    booking:'unpartnered.html?spa=Radiance%20Med%20Studio'}
+};
+let PM_CURRENT = null;
+function openProv(card){
+  const name = card.querySelector('.pcard-name').textContent.trim();
+  const d = PROV_DATA[name]; if(!d) return;
+  PM_CURRENT = {name:name, booking:d.booking};
+  document.getElementById('pm-name').textContent = name;
+  document.getElementById('pm-loc').textContent = d.loc;
+  document.getElementById('pm-stars').textContent = d.stars;
+  document.getElementById('pm-photo').style.background = d.grad;
+  const t = document.getElementById('pm-tier');
+  if(d.tier){t.style.display='block'; t.textContent = d.tier + ' Partner';} else {t.style.display='none';}
+  document.getElementById('pm-detail').innerHTML = d.detail.map(x =>
+    '<div style="display:flex;align-items:flex-start;gap:9px;font-size:12px;color:var(--ebony);line-height:1.6;">' +
+    '<svg viewBox="0 0 24 24" width="13" height="13" style="flex-shrink:0;margin-top:3px;" fill="none" stroke="#442132" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' +
+    x + '</div>').join('');
+  document.getElementById('prov-modal').style.display = 'flex';
+}
+function closeProv(){ document.getElementById('prov-modal').style.display = 'none'; }
+document.getElementById('prov-modal').addEventListener('click', function(e){ if(e.target === this) closeProv(); });
+function submitProvBooking(){
+  const n = document.getElementById('pm-fname').value.trim();
+  const e = document.getElementById('pm-email').value.trim();
+  const p = document.getElementById('pm-phone').value.trim();
+  if(!n || !e || !p){ alert('Please add your name, email, and phone so we can confirm your referral.'); return; }
+  const fd = new FormData();
+  fd.append('_subject','Booking Referral — Analytics');
+  fd.append('Name', n); fd.append('Email', e); fd.append('Phone', p);
+  fd.append('Provider', PM_CURRENT.name); fd.append('Source','index provider tile');
+  fetch('https://formspree.io/f/xlgoggve', {method:'POST', body:fd, headers:{'Accept':'application/json'}})
+    .finally(function(){ window.location.href = PM_CURRENT.booking + '&utm_source=seekingaesthetics&utm_medium=referral'; });
+}
+
+</script>
+
+
+<!-- PROVIDER MODAL -->
+<div id="prov-modal" style="display:none;position:fixed;inset:0;z-index:500;background:rgba(44,17,28,.55);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:20px;">
+  <div style="background:#fff;max-width:520px;width:100%;max-height:88vh;overflow-y:auto;border-radius:16px;position:relative;">
+    <button onclick="closeProv()" style="position:absolute;top:14px;right:14px;background:rgba(255,255,255,.9);border:1px solid var(--border);border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:14px;color:var(--mauve);z-index:2;">✕</button>
+    <div id="pm-photo" style="height:150px;background:linear-gradient(135deg,#5c2438,#7b4055);display:flex;align-items:flex-end;padding:14px 22px;">
+      <div id="pm-badge" style="background:rgba(255,255,255,.94);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#2d6a4f;padding:5px 10px;border-radius:2px;display:flex;align-items:center;gap:5px;">
+        <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="#2d6a4f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        State-Licensed &amp; Verified
+      </div>
+    </div>
+    <div style="padding:22px 26px 26px;">
+      <div id="pm-tier" style="display:none;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mauve);background:rgba(228,205,186,.35);padding:4px 10px;border-radius:2px;width:fit-content;margin-bottom:8px;">Premier Partner</div>
+      <div id="pm-name" style="font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--mauve);line-height:1.1;"></div>
+      <div id="pm-loc" style="font-size:12px;color:var(--mid);margin:4px 0 10px;"></div>
+      <div id="pm-stars" style="font-size:13px;color:var(--mauve);letter-spacing:1px;margin-bottom:14px;"></div>
+      <div id="pm-detail" style="display:flex;flex-direction:column;gap:9px;margin-bottom:18px;"></div>
+      <div style="border-top:1px solid var(--border);padding-top:16px;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);margin-bottom:4px;">Book With This Provider</div>
+        <div style="font-size:11px;color:var(--mid);line-height:1.6;margin-bottom:12px;">A quick intro before we send you to their booking calendar — used only for your confirmation and our referral analytics. Never sold, never shared elsewhere.</div>
+        <input id="pm-fname" type="text" placeholder="Name" style="width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:6px;font-family:'Outfit',sans-serif;font-size:13px;margin-bottom:8px;outline:none;">
+        <input id="pm-email" type="email" placeholder="Email" style="width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:6px;font-family:'Outfit',sans-serif;font-size:13px;margin-bottom:8px;outline:none;">
+        <input id="pm-phone" type="tel" placeholder="Phone" style="width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:6px;font-family:'Outfit',sans-serif;font-size:13px;margin-bottom:12px;outline:none;">
+        <button onclick="submitProvBooking()" style="width:100%;padding:14px;background:var(--mauve);color:#fff;border:none;border-radius:6px;font-family:'Outfit',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;">
+          Continue to Booking
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
