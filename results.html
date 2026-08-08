@@ -594,7 +594,7 @@ footer{background:#2a1020;padding:48px 24px 28px;display:grid;grid-template-colu
     <a href="find-my-provider.html">Find a Provider</a>
     <a href="index.html#how">How It Works</a>
     <a href="articles.html">Learn</a>
-    <a href="skin-passport-preview.html">My Skin Passport</a>
+    <a href="skin-passport-preview.html" style="color:#e4cdba!important;font-weight:700;">✦ My Skin Passport</a>
     <div class="nav-provider-wrap">
       <a href="provider-inquiry.html" class="nav-cta">For Providers</a>
       <div class="nav-provider-dropdown">
@@ -719,7 +719,7 @@ footer{background:#2a1020;padding:48px 24px 28px;display:grid;grid-template-colu
       <div class="tc-photo">
         <div class="tc-photo-bg" style="background:linear-gradient(135deg,#3d4a5c,#5c6e82);opacity:1;font-size:0;"></div>
         <div class="tc-photo-overlay"></div>
-        <div class="tc-tier-label boutique">Boutique</div>
+        
         <div class="tc-verified-photo">✓ State-Licensed & Certified</div>
         <div class="tc-photo-bottom">
           <div class="tc-price-badge">Botox from <span>$11/unit</span></div>
@@ -764,7 +764,7 @@ footer{background:#2a1020;padding:48px 24px 28px;display:grid;grid-template-colu
       <div class="tc-photo">
         <div class="tc-photo-bg" style="background:linear-gradient(135deg,#5c3d4a,#8a5c6e);opacity:1;font-size:0;"></div>
         <div class="tc-photo-overlay"></div>
-        <div class="tc-tier-label solo">Solo</div>
+        
         <div class="tc-verified-photo">✓ State-Licensed & Certified</div>
         <div class="tc-photo-bottom">
           <div class="tc-price-badge">Botox from <span>$13/unit</span></div>
@@ -801,7 +801,7 @@ footer{background:#2a1020;padding:48px 24px 28px;display:grid;grid-template-colu
       <div class="tc-photo">
         <div class="tc-photo-bg" style="background:linear-gradient(135deg,#2d4a3d,#4a7060);opacity:1;font-size:0;"></div>
         <div class="tc-photo-overlay"></div>
-        <div class="tc-tier-label solo">Solo</div>
+        
         <div class="tc-verified-photo">✓ State-Licensed & Certified</div>
         <div class="tc-photo-bottom">
           <div class="tc-price-badge">Botox from <span>$10/unit</span></div>
@@ -1913,7 +1913,7 @@ function openCompare() {
     const data = providerData[p.name] || p;
     const isPremier = (data.tier || p.tier) === 'Premier';
     headerHTML += `<div class="cp-col ${isPremier ? 'cp-col-premier' : 'cp-col-standard'}">
-      <div class="cp-tier-badge ${isPremier ? 'premier' : 'standard'}">${isPremier ? '★ Premier' : 'Standard'}</div>
+      ${isPremier ? '<div class="cp-tier-badge premier">★ Premier</div>' : ''}
       <div class="cp-col-name">${p.name}</div>
       <div class="cp-col-loc">${p.distance} away</div>
     </div>`;
@@ -2104,7 +2104,7 @@ function openBooking(providerName) {
   <div class="footer-col"><h4>Clients</h4>
     <a href="index.html">Home</a>
     <a href="find-my-provider.html">Find a Treatment</a>
-    <a href="skin-passport-preview.html">My Skin Passport</a>
+    <a href="skin-passport-preview.html" style="color:#e4cdba!important;font-weight:700;">✦ My Skin Passport</a>
     <a href="index.html#how">How It Works</a>
     <a href="articles.html">Learn</a>
   </div>

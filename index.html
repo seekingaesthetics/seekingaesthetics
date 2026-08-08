@@ -150,6 +150,26 @@ nav{
   color:var(--mauve);
   letter-spacing:.04em;
 }
+#near-me-tile{
+  grid-column:span 3;
+  flex-direction:row;
+  justify-content:center;
+  gap:8px;
+  background:var(--cream, #fdf9f5);
+  border-top:1px solid var(--border);
+  padding:16px 12px;
+}
+#near-me-tile:hover{background:var(--mauve);}
+#near-me-tile:hover .cat-tile-icon,
+#near-me-tile:hover .cat-tile-label{color:#fff;}
+#near-me-tile .cat-tile-icon{width:18px;height:18px;transition:color .18s;}
+#near-me-tile .cat-tile-label{
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  transition:color .18s;
+}
+#near-me-tile .cat-tile-label::after{content:' →';}
 
 /* SEARCH FIELDS (shown after category selected) */
 .search-fields{flex-direction:column;}
@@ -541,32 +561,43 @@ nav{
   background:var(--ivory);
 }
 .steps{
-  display:flex;flex-direction:column;
-  gap:0;margin-top:32px;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1px;background:var(--border);
+  margin-top:40px;border:1px solid var(--border);
 }
 .step{
-  display:flex;gap:20px;
-  padding:24px 0;
-  border-bottom:1px solid var(--border);
+  display:flex;flex-direction:column;gap:14px;
+  padding:36px 32px;
+  background:var(--ivory);
   position:relative;
 }
-.step:last-child{border-bottom:none;}
 .step-num{
+  position:absolute;top:28px;right:32px;
   font-family:'Cormorant Garamond',serif;
-  font-size:36px;font-weight:300;
-  color:var(--champagne);
-  line-height:1;flex-shrink:0;
-  width:36px;text-align:center;
+  font-size:15px;font-weight:400;
+  color:var(--mid);letter-spacing:.08em;
 }
-.step-content{}
-.step-icon{font-size:20px;margin-bottom:6px;display:block;}
+.step-content{display:flex;flex-direction:column;gap:14px;}
+.step-icon{
+  width:52px;height:52px;border-radius:50%;
+  background:var(--mauve);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--champagne);
+  flex-shrink:0;
+}
 .step-title{
-  font-size:15px;font-weight:600;
-  color:var(--mauve);margin-bottom:6px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:500;
+  color:var(--mauve);
 }
 .step-desc{
-  font-size:13px;color:var(--mid);
+  font-size:13.5px;color:var(--mid);
   line-height:1.8;font-weight:300;
+  max-width:320px;
+}
+@media(max-width:760px){
+  .steps{grid-template-columns:1fr;}
+  .step{padding:28px 24px;}
 }
 
 /*  SKIN PASSPORT CALLOUT  */
@@ -594,15 +625,17 @@ nav{
   font-size:64px;
   line-height:1;
   color:var(--champagne);
-  opacity:.35;
+  opacity:.7;
   font-family:'Cormorant Garamond',serif;
   flex-shrink:0;
   letter-spacing:-.02em;
+  filter:drop-shadow(0 0 20px rgba(228,205,186,.35));
 }
 .passport-text{text-align:center;}
 .passport-eye{
-  font-size:10px;letter-spacing:.28em;text-transform:uppercase;
-  color:rgba(228,205,186,.4);margin-bottom:14px;
+  font-size:11px;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--champagne);margin-bottom:14px;
+  font-weight:700;
   display:block;
 }
 .passport h2{
@@ -971,7 +1004,7 @@ footer{background:#2a1020;padding:48px 24px 28px;display:grid;grid-template-colu
     <a href="find-my-provider.html">Find a Provider</a>
     <a href="index.html#how">How It Works</a>
     <a href="articles.html">Learn</a>
-    <a href="skin-passport-preview.html">My Skin Passport</a>
+    <a href="skin-passport-preview.html" style="color:#e4cdba!important;font-weight:700;">✦ My Skin Passport</a>
     <div class="nav-provider-wrap">
       <a href="provider-inquiry.html" class="nav-cta">For Providers</a>
       <div class="nav-provider-dropdown">
@@ -987,7 +1020,7 @@ footer{background:#2a1020;padding:48px 24px 28px;display:grid;grid-template-colu
 <section class="hero">
   <p class="hero-eye">Utah</p>
   <h1>Know before<br>you <em>go.</em></h1>
-  <p class="hero-sub">Browse state-licensed providers with transparent pricing. Choose who you want to hear from. Walk in informed and confident.</p>
+  <p class="hero-sub">Browse state-licensed providers with transparent pricing. Choose who you want to book with. Walk in informed and confident.</p>
 
   <!-- SEARCH CARD -->
   <div class="search-card">
@@ -1019,7 +1052,7 @@ footer{background:#2a1020;padding:48px 24px 28px;display:grid;grid-template-colu
         <div class="cat-tile-label">Functional Medicine</div>
       </div>
       <div class="cat-tile" id="near-me-tile" onclick="locateMe()">
-        <div class="cat-tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div class="cat-tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
         <div class="cat-tile-label" id="near-me-label">Near Me</div>
       </div>
     </div>
@@ -1088,6 +1121,25 @@ footer{background:#2a1020;padding:48px 24px 28px;display:grid;grid-template-colu
     <div class="tpill"><span class="tpill-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="11" height="11"><polyline points="20 6 9 17 4 12"/></svg></span>Real Pricing</div>
     <div class="tpill"><span class="tpill-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="11" height="11"><polyline points="20 6 9 17 4 12"/></svg></span>You Choose</div>
     <div class="tpill"><span class="tpill-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="11" height="11"><polyline points="20 6 9 17 4 12"/></svg></span>Free · No Login</div>
+  </div>
+</section>
+
+<!-- SKIN PASSPORT -->
+<section class="passport">
+  <div class="passport-inner">
+    <div class="passport-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg></div>
+    <div class="passport-text">
+      <p class="passport-eye">Your Treatment History · Owned By You</p>
+      <h2>Your <em>Skin Passport</em></h2>
+      <p>Every treatment. Every provider. Every refresh date — in one place. Not locked to any spa. Travels with you everywhere. Alerts you when treatments are due.</p>
+      <div class="passport-features">
+        <div class="pf-item"><span class="pf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg></span>Complete treatment timeline</div>
+        <div class="pf-item"><span class="pf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>Refresh timing alerts</div>
+        <div class="pf-item"><span class="pf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>Owned by you — always</div>
+        <div class="pf-item"><span class="pf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>Portable across providers</div>
+      </div>
+      <button class="passport-btn" onclick="window.location.href='skin-passport-preview.html'">Explore Your Skin Passport →</button>
+    </div>
   </div>
 </section>
 
@@ -1230,25 +1282,6 @@ footer{background:#2a1020;padding:48px 24px 28px;display:grid;grid-template-colu
   </div>
 </section>
 
-<!-- SKIN PASSPORT -->
-<section class="passport">
-  <div class="passport-inner">
-    <div class="passport-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg></div>
-    <div class="passport-text">
-      <p class="passport-eye">Your Treatment History · Owned By You</p>
-      <h2>Your <em>My Skin Passport</em></h2>
-      <p>Every treatment. Every provider. Every refresh date — in one place. Not locked to any spa. Travels with you everywhere. Alerts you when treatments are due.</p>
-      <div class="passport-features">
-        <div class="pf-item"><span class="pf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg></span>Complete treatment timeline</div>
-        <div class="pf-item"><span class="pf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>Refresh timing alerts</div>
-        <div class="pf-item"><span class="pf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>Owned by you — always</div>
-        <div class="pf-item"><span class="pf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>Portable across providers</div>
-      </div>
-      <button class="passport-btn" onclick="window.location.href='skin-passport-preview.html'">Explore Your Skin Passport →</button>
-    </div>
-  </div>
-</section>
-
 <!-- HOW IT WORKS -->
 <section class="how" id="how">
   <p class="section-eyebrow">Simple Process</p>
@@ -1256,33 +1289,33 @@ footer{background:#2a1020;padding:48px 24px 28px;display:grid;grid-template-colu
   <p class="section-sub-light">Built around how clients actually think — not how outdated directories are organized.</p>
   <div class="steps">
     <div class="step">
-      <div class="step-num">01</div>
+      <div class="step-num">01 / 04</div>
       <div class="step-content">
-        <span class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg></span>
-        <div class="step-title">Share what you're looking for</div>
+        <span class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg></span>
+        <div class="step-title">Share what you're<br>looking for</div>
         <p class="step-desc">Select your treatment, location, and budget. Takes under 2 minutes. No account required.</p>
       </div>
     </div>
     <div class="step">
-      <div class="step-num">02</div>
+      <div class="step-num">02 / 04</div>
       <div class="step-content">
-        <span class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span>
-        <div class="step-title">Browse verified providers and choose</div>
-        <p class="step-desc">View state-licensed providers with transparent pricing, credentials, and reviews. Compare your options and select who you want to hear from.</p>
+        <span class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span>
+        <div class="step-title">Browse verified<br>providers and choose</div>
+        <p class="step-desc">View state-licensed providers with transparent pricing, credentials, and reviews. Compare your options and book directly with the provider you choose.</p>
       </div>
     </div>
     <div class="step">
-      <div class="step-num">03</div>
+      <div class="step-num">03 / 04</div>
       <div class="step-content">
-        <span class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6.29 6.29l.9-.9a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-        <div class="step-title">Book directly with your chosen provider</div>
+        <span class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6.29 6.29l.9-.9a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+        <div class="step-title">Book directly with<br>your chosen provider</div>
         <p class="step-desc">Your selected provider's own booking calendar opens — you schedule on their system, on your terms. No middleman, no phone tag, no waiting.</p>
       </div>
     </div>
     <div class="step">
-      <div class="step-num">04</div>
+      <div class="step-num">04 / 04</div>
       <div class="step-content">
-        <span class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg></span>
+        <span class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg></span>
         <div class="step-title">Stay in control</div>
         <p class="step-desc">Track your treatments and recovery in your Skin Passport. Explore other services and educate yourself before you book. It's always your call.</p>
       </div>
@@ -1373,7 +1406,7 @@ footer{background:#2a1020;padding:48px 24px 28px;display:grid;grid-template-colu
   <div class="footer-col"><h4>Clients</h4>
     <a href="index.html">Home</a>
     <a href="find-my-provider.html">Find a Treatment</a>
-    <a href="skin-passport-preview.html">My Skin Passport</a>
+    <a href="skin-passport-preview.html" style="color:#e4cdba!important;font-weight:700;">✦ My Skin Passport</a>
     <a href="index.html#how">How It Works</a>
     <a href="articles.html">Learn</a>
   </div>
@@ -1575,7 +1608,7 @@ function openProv(card){
   document.getElementById('pm-stars').textContent = d.stars;
   document.getElementById('pm-photo').style.background = d.grad;
   const t = document.getElementById('pm-tier');
-  if(d.tier){t.style.display='block'; t.textContent = d.tier + ' Partner';} else {t.style.display='none';}
+  if(d.tier === 'Premier'){t.style.display='block'; t.textContent = 'Premier Partner';} else {t.style.display='none';}
   document.getElementById('pm-detail').innerHTML = d.detail.map(x =>
     '<div style="display:flex;align-items:flex-start;gap:9px;font-size:12px;color:var(--ebony);line-height:1.6;">' +
     '<svg viewBox="0 0 24 24" width="13" height="13" style="flex-shrink:0;margin-top:3px;" fill="none" stroke="#442132" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' +

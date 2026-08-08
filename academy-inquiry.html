@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>List Your Training — Seeking Aesthetics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --mauve:#442132;--ebony:#7b5462;
+  --champagne:#e4cdba;--white:#f9f4f2;
+  --mid:#9c7e85;--light:#e8ddd6;--text:#442132;
+  --green:#2d6a4f;--green-bg:#f0faf5;
+}
+body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden;}
+nav{height:110px;display:flex;align-items:center;justify-content:space-between;padding:0 52px;background:var(--mauve);position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(228,205,186,.08);}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo img{width:36px;height:36px;object-fit:contain;display:block;}
+.nav-logo-text{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:#ffffff;letter-spacing:.12em;text-transform:uppercase;line-height:1;}
+.nav-links{display:flex;align-items:center;gap:32px;}
+.nav-links a{font-size:13px;color:rgba(255,255,255,.75);text-decoration:none;font-weight:500;transition:color .2s;}
+.nav-links a:hover{color:#ffffff;}
+
+.hero{background:var(--mauve);padding:70px 52px 60px;text-align:center;}
+.hero-eye{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--champagne);opacity:.8;margin-bottom:14px;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4.4vw,52px);font-weight:400;color:#ffffff;line-height:1.15;max-width:720px;margin:0 auto 16px;}
+.hero h1 em{font-style:italic;color:var(--champagne);}
+.hero p{font-size:15px;color:rgba(255,255,255,.65);font-weight:300;line-height:1.8;max-width:560px;margin:0 auto;}
+
+.premier-note{max-width:720px;margin:-28px auto 0;padding:20px 28px;background:var(--champagne);border-radius:2px;position:relative;z-index:2;text-align:center;}
+.premier-note p{font-size:13.5px;color:var(--mauve);line-height:1.7;}
+.premier-note a{color:var(--mauve);font-weight:700;text-decoration:underline;}
+
+.wrap{max-width:600px;margin:64px auto 100px;padding:0 24px;}
+.pricing-line{display:flex;align-items:baseline;justify-content:center;gap:8px;margin-bottom:44px;text-align:center;}
+.pricing-line .amt{font-family:'Cormorant Garamond',serif;font-size:44px;color:var(--mauve);}
+.pricing-line .per{font-size:13px;color:var(--mid);}
+
+.form-box{border:1px solid var(--light);overflow:hidden;background:#fff;}
+.form-box-header{background:var(--mauve);padding:28px 32px;}
+.fbh-eye{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--champagne);opacity:.7;margin-bottom:8px;}
+.fbh-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;color:#ffffff;line-height:1.15;}
+.fbh-sub{font-size:13px;color:rgba(255,255,255,.4);margin-top:6px;font-weight:300;}
+.form-body{padding:36px 32px;}
+.fg{margin-bottom:20px;}
+.fl{display:block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);margin-bottom:7px;}
+.fi,.ft{width:100%;padding:12px 15px;border:1.5px solid var(--light);background:#FAFAFA;font-family:'Outfit',sans-serif;font-size:14px;color:var(--text);outline:none;transition:border-color .2s;}
+.fi:focus,.ft:focus{border-color:var(--mauve);}
+.ft{resize:vertical;min-height:90px;}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fhint{font-size:11px;color:var(--mid);margin-top:5px;font-weight:300;}
+.price-box{padding:16px 18px;background:var(--green-bg);border-left:3px solid var(--green);margin:8px 0 24px;}
+.price-box p{font-size:13px;color:#1a4a30;line-height:1.75;}
+.btn-n{width:100%;padding:14px 32px;background:var(--mauve);border:none;color:#ffffff;font-family:'Outfit',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .2s;}
+.btn-n:hover{background:#5a2c42;}
+
+@media(max-width:640px){
+  nav{padding:0 20px;height:76px;}
+  .nav-links{gap:16px;}
+  .nav-links a:not(.nav-logo){display:none;}
+  .hero{padding:48px 20px 40px;}
+  .premier-note{margin-top:-16px;}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img src="https://seekingaesthetics.github.io/seekingaesthetics/logo.png" alt="Seeking Aesthetics" onerror="this.style.display='none'">
+    <span class="nav-logo-text">Seeking Aesthetics</span>
+  </a>
+  <div class="nav-links">
+    <a href="education.html">Advanced Education</a>
+    <a href="index.html">Home</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-eye">For Academies & Training Providers</div>
+  <h1>List your training<br><em>in front of aesthetic professionals.</em></h1>
+  <p>Standalone courses, certifications, and CE trainings — placed directly in front of Utah aesthetic professionals actively looking to advance their skills.</p>
+</div>
+
+<div class="premier-note">
+  <p>Already a <strong>Premier</strong> medspa partner? Training listings are included in your plan — publish directly from your provider dashboard, no separate application needed. <a href="provider-portal.html">Go to Provider Login →</a></p>
+</div>
+
+<div class="wrap">
+  <div class="pricing-line"><span class="amt">$1,299</span><span class="per">/ month, flat</span></div>
+
+  <div class="form-box">
+    <div class="form-box-header">
+      <div class="fbh-eye">Academy Application</div>
+      <div class="fbh-title">Tell us about<br><em>your training.</em></div>
+      <div class="fbh-sub">Melissa reviews every application personally and follows up by email within 48 business hours.</div>
+    </div>
+    <div class="form-body">
+      <div class="fg"><label class="fl">Academy / Training Business Name <span>*</span></label><input class="fi" name="Academy Name" type="text" placeholder="e.g. Provo Aesthetic Academy" required></div>
+      <div class="fg"><label class="fl">Contact Name <span>*</span></label><input class="fi" name="Contact Name" type="text" placeholder="Your full name" required></div>
+      <div class="fr">
+        <div class="fg"><label class="fl">Email <span>*</span></label><input class="fi" name="Email" type="email" placeholder="you@youracademy.com" required></div>
+        <div class="fg"><label class="fl">Phone <span>*</span></label><input class="fi" name="Phone" type="tel" placeholder="(801) 555-0123" required></div>
+      </div>
+      <div class="fg"><label class="fl">Website</label><input class="fi" name="Website" type="text" placeholder="https://youracademy.com"></div>
+      <div class="fg"><label class="fl">What do you teach? <span>*</span></label><textarea class="ft" name="Description" placeholder="Courses, certifications, or CE trainings you offer, and who they're for." required></textarea></div>
+      <div class="price-box">
+        <p><strong>Flat rate, no tiers:</strong> Academy listings are $1,299/month, regardless of course volume or specialty. Melissa will confirm details and next steps by email after reviewing your application.</p>
+      </div>
+      <button class="btn-n" onclick="submitAcademy()">Submit Application →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function submitAcademy(){
+  var formData = new FormData();
+  document.querySelectorAll('.form-body input[name], .form-body textarea[name]').forEach(function(el){
+    formData.append(el.name, el.value);
+  });
+  formData.append('_subject', 'New Academy Application — Seeking Aesthetics');
+  formData.append('form_type', 'Academy Application');
+
+  fetch('https://formspree.io/f/xlgoggve', {
+    method: 'POST',
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+  }).then(function(){
+    window.location.href = 'thank-you.html';
+  }).catch(function(){
+    window.location.href = 'thank-you.html';
+  });
+}
+</script>
+</body>
+</html>

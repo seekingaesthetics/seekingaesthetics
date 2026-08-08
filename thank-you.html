@@ -265,7 +265,7 @@ footer{background:#2a1020;padding:48px 24px 28px;display:grid;grid-template-colu
     <a href="find-my-provider.html">Find a Provider</a>
     <a href="index.html#how">How It Works</a>
     <a href="articles.html">Learn</a>
-    <a href="skin-passport-preview.html">My Skin Passport</a>
+    <a href="skin-passport-preview.html" style="color:#e4cdba!important;font-weight:700;">✦ My Skin Passport</a>
     <div class="nav-provider-wrap">
       <a href="provider-inquiry.html" class="nav-cta">For Providers</a>
       <div class="nav-provider-dropdown">
@@ -289,9 +289,9 @@ footer{background:#2a1020;padding:48px 24px 28px;display:grid;grid-template-colu
       </svg>
     </div>
 
-    <div class="eyebrow">Message Received</div>
-    <h1 class="headline">We'll be in<br><em>touch soon.</em></h1>
-    <p class="subline">Your submission came through. Here's what to expect next.</p>
+    <div class="eyebrow" id="eyebrow">Message Received</div>
+    <h1 class="headline" id="headline">We'll be in<br><em>touch soon.</em></h1>
+    <p class="subline" id="subline">Your submission came through. Here's what to expect next.</p>
 
     <div class="divider"></div>
 
@@ -313,7 +313,7 @@ footer{background:#2a1020;padding:48px 24px 28px;display:grid;grid-template-colu
       </div>
       <div class="step">
         <div class="step-num">3</div>
-        <div class="step-text">
+        <div class="step-text" id="step-3-text">
           <strong>Questions in the meantime?</strong>
           Email us at <a href="mailto:hello@seekingaesthetics.com" style="color:var(--mauve);">hello@seekingaesthetics.com</a>
         </div>
@@ -337,18 +337,30 @@ footer{background:#2a1020;padding:48px 24px 28px;display:grid;grid-template-colu
 
 
 <script>
-// Customize step 2 message based on where they came from
+// Customize headline/steps based on where they came from
 (function(){
   var ref = document.referrer || '';
-  var el = document.getElementById('step-2-text');
-  if (!el) return;
+  var eyebrow = document.getElementById('eyebrow');
+  var headline = document.getElementById('headline');
+  var subline = document.getElementById('subline');
+  var step2 = document.getElementById('step-2-text');
+  var step3 = document.getElementById('step-3-text');
 
-  if (ref.includes('careers')) {
-    el.innerHTML = '<strong>We review every application personally</strong>Melissa will be in touch within 2–3 business days if there is a fit.';
-  } else if (ref.includes('provider')) {
-    el.innerHTML = '<strong>Melissa will call you within 24 hours</strong>She personally reviews every provider inquiry and will reach out to discuss your practice.';
+  if (ref.includes('academy-inquiry')) {
+    if (eyebrow) eyebrow.textContent = 'Application Received';
+    if (headline) headline.innerHTML = 'Thank you for<br><em>your application!</em>';
+    if (subline) subline.textContent = 'Please allow 24–48 hours for us to review your academy application.';
+    if (step2) step2.innerHTML = '<strong>Next step: a welcome email</strong>Once approved, you\'ll receive an email to finalize your listing details.';
+  } else if (ref.includes('provider-inquiry')) {
+    if (eyebrow) eyebrow.textContent = 'Application Received';
+    if (headline) headline.innerHTML = 'Thank you for<br><em>your application!</em>';
+    if (subline) subline.textContent = 'Please allow 24–48 hours for us to review and verify your information.';
+    if (step2) step2.innerHTML = '<strong>We verify your DOPL license</strong>Melissa personally confirms your credentials before anything goes further.';
+    if (step3) step3.innerHTML = '<strong>Next step: a welcome email</strong>Once verified, you\'ll get an email to finalize your account information, with a welcome packet explaining what\'s next.';
+  } else if (ref.includes('careers')) {
+    if (step2) step2.innerHTML = '<strong>We review every application personally</strong>Melissa will be in touch within 2–3 business days if there is a fit.';
   } else if (ref.includes('contact')) {
-    el.innerHTML = '<strong>We respond within 24 hours</strong>Melissa personally reads every message and will reply to your email directly.';
+    if (step2) step2.innerHTML = '<strong>We respond within 24 hours</strong>Melissa personally reads every message and will reply to your email directly.';
   }
   // Default message stays for anything else
 })();
@@ -365,7 +377,7 @@ footer{background:#2a1020;padding:48px 24px 28px;display:grid;grid-template-colu
   <div class="footer-col"><h4>Clients</h4>
     <a href="index.html">Home</a>
     <a href="find-my-provider.html">Find a Treatment</a>
-    <a href="skin-passport-preview.html">My Skin Passport</a>
+    <a href="skin-passport-preview.html" style="color:#e4cdba!important;font-weight:700;">✦ My Skin Passport</a>
     <a href="index.html#how">How It Works</a>
     <a href="articles.html">Learn</a>
   </div>

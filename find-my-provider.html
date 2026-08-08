@@ -206,7 +206,7 @@ footer{background:#2a1020;padding:48px 24px 28px;display:grid;grid-template-colu
   <!-- SIDEBAR -->
   <div class="sidebar">
     <div class="sidebar-title">Find your<br><em>treatment.</em></div>
-    <div class="sidebar-sub">Tell us what you want. See verified providers with transparent pricing. You choose who calls you.</div>
+    <div class="sidebar-sub">Tell us what you want. See verified providers with transparent pricing. You choose who to book with.</div>
     <div class="how-steps">
       <div class="how-step active" id="hw1"><div class="how-num">1</div>Your Treatment</div>
       <div class="how-step" id="hw2"><div class="how-num">2</div>Location & Timing</div>
@@ -235,6 +235,10 @@ footer{background:#2a1020;padding:48px 24px 28px;display:grid;grid-template-colu
     <div class="form-section active" id="s1">
       <h2 class="section-title">What are you<br><em>looking for today?</em></h2>
       <p class="section-sub">Select the treatment or treatments you're interested in. You can choose more than one.</p>
+      <a href="education.html" style="display:inline-flex;align-items:center;gap:8px;padding:11px 20px;margin-bottom:32px;border:1.5px solid var(--accent);background:transparent;color:var(--mauve);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:.04em;transition:all .2s;" onmouseover="this.style.background='var(--accent)'" onmouseout="this.style.background='transparent'">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Not sure yet? Check out our educational shorts to start your journey →
+      </a>
       <div class="treatment-categories" id="treatment-pills">
 
         <!-- INJECTABLES -->
@@ -452,15 +456,16 @@ footer{background:#2a1020;padding:48px 24px 28px;display:grid;grid-template-colu
         <div id="selected-treatments-list" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
       </div>
 
-      <div class="btn-row">
-        <button class="btn-next" onclick="goTo(2)">Next — Location &amp; Timing →</button>
+      <div class="btn-row" style="flex-direction:column;align-items:flex-start;gap:10px;">
+        <button class="btn-next" onclick="goToLocationWithTreatments()">Next — Location &amp; Timing →</button>
+        <div onclick="skipToLocation()" style="font-size:12px;color:var(--mid);text-decoration:underline;cursor:pointer;">Not sure yet? Skip and search by location instead →</div>
       </div>
     </div>
 
     <!-- STEP 2 -->
     <div class="form-section" id="s2">
-      <h2 class="section-title">Where are<br><em>you located?</em></h2>
-      <p class="section-sub">We'll show you verified providers near you.</p>
+      <h2 class="section-title" id="s2-title">Where are<br><em>you located?</em></h2>
+      <p class="section-sub" id="s2-sub">We'll show you verified providers near you.</p>
       <div class="field-row">
         <div class="field-group">
           <label class="field-label">Your City *</label>
@@ -603,7 +608,7 @@ footer{background:#2a1020;padding:48px 24px 28px;display:grid;grid-template-colu
   <div class="confirm-steps">
     <div class="ct-item">
       <div class="ct-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg></div>
-      <div><div class="ct-title">Right now — your provider options are loading</div><div class="ct-desc">You'll see verified providers who specialize in your treatment with transparent pricing and credentials. You compare. You choose who calls you.</div></div>
+      <div><div class="ct-title">Right now — your provider options are loading</div><div class="ct-desc">You'll see verified providers who specialize in your treatment with transparent pricing and credentials. You compare. You book directly.</div></div>
     </div>
     <div class="ct-item">
       <div class="ct-icon"></div>
@@ -626,6 +631,19 @@ var selectedBudget = '';
 var selected = { treatments: [], values: [] };
 
 var stepLabels = ['','Step 1 of 4 — Your Treatment','Step 2 of 4 — Location & Timing','Step 3 of 4 — Your Goals','Step 4 of 4 — Your Contact Info'];
+
+function skipToLocation() {
+  selected.treatments = [];
+  document.getElementById('s2-title').innerHTML = 'Where are<br><em>you located?</em>';
+  document.getElementById('s2-sub').textContent = "No treatment selected yet — that's fine. We'll show you every verified provider near you, and you can filter by treatment on the results page.";
+  goTo(2);
+}
+
+function goToLocationWithTreatments() {
+  document.getElementById('s2-title').innerHTML = 'Where are<br><em>you located?</em>';
+  document.getElementById('s2-sub').textContent = "We'll show you verified providers near you.";
+  goTo(2);
+}
 
 function goTo(n) {
   document.getElementById('s' + cur).classList.remove('active');
@@ -750,7 +768,7 @@ document.addEventListener('DOMContentLoaded', function(){
   <div class="footer-col"><h4>Clients</h4>
     <a href="index.html">Home</a>
     <a href="find-my-provider.html">Find a Treatment</a>
-    <a href="skin-passport-preview.html">My Skin Passport</a>
+    <a href="skin-passport-preview.html" style="color:#e4cdba!important;font-weight:700;">✦ My Skin Passport</a>
     <a href="index.html#how">How It Works</a>
     <a href="articles.html">Learn</a>
   </div>
