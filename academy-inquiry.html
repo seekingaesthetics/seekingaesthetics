@@ -127,10 +127,14 @@ function submitAcademy(){
     method: 'POST',
     body: formData,
     headers: { 'Accept': 'application/json' }
-  }).then(function(){
-    window.location.href = 'thank-you.html';
+   }).then(function(r){
+    if (r.ok) {
+      window.location.href = 'thank-you.html';
+    } else {
+      alert('Something went wrong sending your application. Please try again, or email hello@seekingaesthetics.com directly.');
+    }
   }).catch(function(){
-    window.location.href = 'thank-you.html';
+    alert('Something went wrong sending your application. Please try again, or email hello@seekingaesthetics.com directly.');
   });
 }
 </script>
