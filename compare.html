@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compare Programs — Seeking Aesthetics</title>
+<meta name="description" content="Compare up to three Utah esthetics schools and aesthetics training programs side by side.">
+<link rel="icon" href="logo-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header id="site-nav"></header>
+<main class="wrap" style="padding:40px 16px 80px">
+  <p class="eyebrow">Compare</p>
+  <h1 style="font-size:clamp(36px,5vw,56px);margin:8px 0 24px">Side by side.</h1>
+  <div id="compare"></div>
+</main>
+<footer id="site-footer"></footer>
+<script src="assets/site.js"></script>
+<script>
+(function () {
+  var p = new URLSearchParams(location.search);
+  var ids = (p.get('ids') || SA.getCompare().join(',')).split(',').filter(Boolean).slice(0, 3);
+  var box = document.getElementById('compare'), e = SA.esc, pv = SA.isPreview() ? '&preview=1' : '';
+  SA.loadSchools().then(function (all) {
+    var list = ids.map(function (id) { return all.find(function (s) { return s.id === id; }); }).filter(Boolean);
+    if (list.length < 2) {
+      box.innerHTML = '<div class="empty"><h3>Pick at least two programs.</h3><p class="muted">Tick "Compare" on up to three listings, then come back here.</p><p style="margin-top:16px"><a class="btn btn-primary" href="index.html#search">Find programs</a></p></div>';
+      return;
+    }
+    function row(label, fn) { return '<tr><th>' + label + '</th>' + list.map(function (s) { return '<td>' + fn(s) + '</td>'; }).join('') + '</tr>'; }
+    box.innerHTML = '<div class="table-scroll"><table class="compare-table">' +
+      row('', function (s) { return '<h3>' + e(s.name) + '</h3>'; }) +
+      row('Category', function (s) { return e(s.categories.map(SA.catLabel).join(', ')); }) +
+      row('Programs', function (s) { return s.programs.map(e).join('<br>'); }) +
+      row('City', function (s) { return e(s.city) + ', UT'; }) +
+      row('Format', function (s) { return e(s.format.join(' / ')); }) +
+      row('Type', function (s) { return e(s.type); }) +
+      row('', function (s) { return '<a class="btn btn-primary btn-sm" href="school.html?id=' + s.id + pv + '">Request info</a>'; }) +
+      '</table></div><p class="fine" style="margin-top:14px">Tuition, schedules and start dates come directly from each school when you request info.</p>';
+  });
+})();
+</script>
+</body>
+</html>

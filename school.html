@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Program — Seeking Aesthetics</title>
+<meta name="description" content="Program details, location and how to request information from this Utah aesthetics school or trainer.">
+<link rel="icon" href="logo-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header id="site-nav"></header>
+
+<main class="wrap" id="listing">
+  <p style="margin-top:28px"><a href="index.html#search" class="muted">← Back to search</a></p>
+  <div class="empty" style="margin:40px 0 80px" id="loading"><h3>Loading…</h3></div>
+</main>
+
+<footer id="site-footer"></footer>
+
+<script src="assets/site.js"></script>
+<script>
+(function () {
+  var id = new URLSearchParams(location.search).get('id');
+  var main = document.getElementById('listing');
+  var e = SA.esc;
+
+  function notFound() {
+    document.getElementById('loading').innerHTML = '<h3>This listing isn\'t available.</h3><p class="muted">It may not be live yet. <a href="index.html#search">Search all programs</a>.</p>';
+  }
+
+  function licenseField(s) {
+    if (s.categories.indexOf('Medical') > -1) {
+      return '<div class="input"><label for="lic">Current license *</label><select id="lic" name="current_license" required>' +
+        '<option value="">Choose one</option><option>RN</option><option>LPN</option><option>NP</option><option>PA</option><option>MD/DO</option><option>Dentist</option><option>Student / not yet licensed</option><option>Other</option></select></div>';
+    }
+    return '<div class="input"><label for="lic">Current license *</label><select id="lic" name="current_license" required>' +
+      '<option value="">Choose one</option><option>None yet — new student</option><option>Basic esthetics permit</option><option>Esthetician</option><option>Master esthetician</option><option>Cosmetologist</option><option>Other</option></select></div>';
+  }
+
+  function render(s) {
+    document.title = s.name + ' — ' + s.city + ', UT | Seeking Aesthetics';
+    var meta = document.querySelector('meta[name=description]');
+    meta.content = s.name + ' in ' + s.city + ', Utah: ' + s.programs.join(', ') + '. Request program info through Seeking Aesthetics.';
+
+    var ld = { '@context': 'https://schema.org', '@type': 'EducationalOrganization', name: s.name,
+      address: { '@type': 'PostalAddress', addressLocality: s.city, addressRegion: 'UT', streetAddress: s.address || undefined } };
+    if (s.website) ld.url = 'https://' + s.website.replace(/^https?:\/\//, '');
+    if (s.phone) ld.telephone = s.phone;
+    var tag = document.createElement('script'); tag.type = 'application/ld+json'; tag.textContent = JSON.stringify(ld); document.head.appendChild(tag);
+
+    var siteLink = s.website ? '<li><b>Website</b><a href="https://' + e(s.website.replace(/^https?:\/\//, '')) + '" target="_blank" rel="noopener nofollow">' + e(s.website) + '</a></li>' : '';
+
+    main.innerHTML =
+      '<p style="margin-top:28px"><a href="index.html#search" class="muted">← Back to search</a></p>' +
+      (!s.published ? '<p class="pill" style="display:inline-block;margin-top:14px;background:var(--champagne)">Preview — not live yet</p>' : '') +
+      '<div class="listing-hero" style="background-image:url(' + SA.photoFor(s) + ')" role="img" aria-label="' + e(s.name) + '"></div>' +
+      '<div class="listing-grid"><div>' +
+        '<p class="eyebrow">' + e(s.categories.map(SA.catLabel).join(' · ')) + '</p>' +
+        '<h1 style="font-size:clamp(36px,5vw,56px);margin:8px 0 10px">' + e(s.name) + '</h1>' +
+        '<p class="muted" style="font-size:17px">' + e(s.city) + ', Utah · ' + e(s.format.join(' / ')) + '</p>' +
+        (s.description ? '<p style="margin-top:20px;font-size:17px">' + e(s.description) + '</p>' : '') +
+        '<div class="panel" style="margin-top:26px"><h3>Programs</h3><ul class="program-list">' +
+          s.programs.map(function (p) { return '<li>' + e(p) + '</li>'; }).join('') + '</ul>' +
+          '<p class="fine" style="margin-top:12px">Ask the school for tuition, schedules and start dates.</p></div>' +
+        '<div class="panel"><h3>Location &amp; contact</h3><ul class="facts" style="margin-top:12px">' +
+          (s.address ? '<li><b>Address</b><span>' + e(s.address) + '</span></li>' : '<li><b>City</b><span>' + e(s.city) + ', UT</span></li>') +
+          (s.phone ? '<li><b>Phone</b><a href="tel:' + e(s.phone.replace(/[^0-9+]/g, '')) + '">' + e(s.phone) + '</a></li>' : '') +
+          siteLink + '</ul></div>' +
+        (!s.claimed ? '<div class="panel" style="background:var(--warm-white)"><h3 style="font-size:20px">Is this your school?</h3><p class="muted" style="margin:6px 0 14px">Claim this free listing to add photos, programs and start dates.</p><a class="btn btn-soft btn-sm" href="for-schools.html?claim=' + e(s.id) + '#claim">Claim this listing</a></div>' : '') +
+      '</div>' +
+      '<aside><div class="panel" style="position:sticky;top:96px">' +
+        '<h3>Request program info</h3><p class="muted" style="margin:6px 0 16px;font-size:14px">Your answers go to ' + e(s.name) + ' so they can reply with details.</p>' +
+        '<form class="stack" action="' + SA.FORM_INQUIRY + '" method="POST">' +
+          '<input type="hidden" name="_subject" value="Program inquiry: ' + e(s.name) + '">' +
+          '<input type="hidden" name="form_type" value="student_inquiry">' +
+          '<input type="hidden" name="school_id" value="' + e(s.id) + '">' +
+          '<input type="hidden" name="school_name" value="' + e(s.name) + '">' +
+          '<input type="hidden" name="_next" value="https://seekingaesthetics.com/thank-you.html">' +
+          '<div class="form-row"><div class="input"><label for="fn">First name *</label><input id="fn" name="first_name" required></div>' +
+          '<div class="input"><label for="ln">Last name *</label><input id="ln" name="last_name" required></div></div>' +
+          '<div class="input"><label for="em">Email *</label><input id="em" type="email" name="email" required></div>' +
+          '<div class="input"><label for="ph">Phone</label><input id="ph" type="tel" name="phone"></div>' +
+          '<div class="input"><label for="prog">Program of interest *</label><select id="prog" name="program" required><option value="">Choose one</option>' +
+            s.programs.map(function (p) { return '<option>' + e(p) + '</option>'; }).join('') + '<option>Not sure yet</option></select></div>' +
+          licenseField(s) +
+          '<div class="input"><label for="start">When do you want to start? *</label><select id="start" name="start_timeframe" required><option value="">Choose one</option><option>Within 1 month</option><option>1–3 months</option><option>3–6 months</option><option>6+ months</option><option>Just researching</option></select></div>' +
+          '<div class="input"><label for="msg">Questions for the school</label><textarea id="msg" name="message" rows="3"></textarea></div>' +
+          '<label class="check"><input type="checkbox" name="consent" required> I agree to share this information with ' + e(s.name) + ' so they can contact me.</label>' +
+          '<button class="btn btn-primary" type="submit">Send request</button>' +
+          '<p class="fine">Seeking Aesthetics does not verify licenses or make enrollment decisions. The school confirms eligibility and enrollment directly.</p>' +
+        '</form></div></aside></div>';
+  }
+
+  SA.loadSchools().then(function (list) {
+    var s = list.find(function (x) { return x.id === id; });
+    s ? render(s) : notFound();
+  }).catch(notFound);
+})();
+</script>
+</body>
+</html>
