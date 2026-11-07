@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>List Your School or Training — Seeking Aesthetics</title>
+<meta name="description" content="List your esthetics school, advanced esthetics program or injector training on Seeking Aesthetics. Basic listings are free.">
+<link rel="icon" href="logo-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header id="site-nav"></header>
+<main>
+  <section class="hero">
+    <div class="wrap" style="max-width:860px">
+      <p class="eyebrow">For schools &amp; trainers</p>
+      <h1>Fill your next class.</h1>
+      <p class="lead">Students searching for esthetics schools, master esthetician programs and injector training find you here, compare you, and send pre-qualified inquiries straight to your inbox. Basic listings are free.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-primary" href="#signup">Create your listing</a><a class="btn btn-soft" href="#claim">Claim an existing listing</a></div>
+    </div>
+  </section>
+
+  <section class="block alt">
+    <div class="wrap">
+      <p class="eyebrow">How listing works</p>
+      <h2>Live in four steps.</h2>
+      <div class="steps">
+        <div class="step"><div class="num">01</div><h3>Sign up</h3><p>Use your school or business email so we know it's really you.</p></div>
+        <div class="step"><div class="num">02</div><h3>Verify</h3><p>Confirm your email from the link we send. You'll then see listing options.</p></div>
+        <div class="step"><div class="num">03</div><h3>Build</h3><p>Add your license info, programs and up to 5 photos as a draft.</p></div>
+        <div class="step"><div class="num">04</div><h3>Go live</h3><p>We review every listing personally before it's published.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:28px;align-items:start">
+      <div class="panel" id="signup">
+        <h3>Create your listing</h3>
+        <p class="muted" style="margin:6px 0 18px;font-size:14px">Tell us about your school. We'll email you a link to verify and build your listing.</p>
+        <form class="stack" action="https://formspree.io/f/xjybwqbj" method="POST">
+          <input type="hidden" name="_subject" value="New school/trainer listing signup">
+          <input type="hidden" name="form_type" value="school_signup">
+          <input type="hidden" name="_next" value="https://seekingaesthetics.com/thank-you.html?type=school">
+          <div class="input"><label for="sn">School or business name *</label><input id="sn" name="school_name" required></div>
+          <div class="form-row">
+            <div class="input"><label for="cn">Your name *</label><input id="cn" name="contact_name" required></div>
+            <div class="input"><label for="rl">Your role</label><input id="rl" name="role" placeholder="Owner, director…"></div>
+          </div>
+          <div class="input"><label for="we">Work email *</label><input id="we" type="email" name="email" required placeholder="you@yourschool.com"></div>
+          <div class="form-row">
+            <div class="input"><label for="cty">City *</label><input id="cty" name="city" required></div>
+            <div class="input"><label for="st">State *</label><input id="st" name="state" required value="UT"></div>
+          </div>
+          <div class="input"><label for="kind">What do you offer? *</label>
+            <select id="kind" name="offering" required><option value="">Choose one</option><option>Esthetics school</option><option>Advanced / master esthetics program</option><option>Medical aesthetics / injector training (RN/LPN+)</option><option>One-time course or workshop</option><option>Several of these</option></select></div>
+          <div class="input"><label for="web">Website or Instagram</label><input id="web" name="website"></div>
+          <label class="check"><input type="checkbox" name="confirm" required> I'm authorized to represent this school, and I understand we're responsible for our own licensing and compliance.</label>
+          <button class="btn btn-primary" type="submit">Start my listing</button>
+        </form>
+      </div>
+
+      <div class="panel" id="claim" style="background:var(--warm-white)">
+        <h3>Claim an existing listing</h3>
+        <p class="muted" style="margin:6px 0 18px;font-size:14px">Already on Seeking Aesthetics? Claim it for free to update photos, programs and start dates.</p>
+        <form class="stack" action="https://formspree.io/f/xjybwqbj" method="POST">
+          <input type="hidden" name="_subject" value="Listing claim request">
+          <input type="hidden" name="form_type" value="listing_claim">
+          <input type="hidden" name="school_id" id="claim-id">
+          <input type="hidden" name="_next" value="https://seekingaesthetics.com/thank-you.html?type=school">
+          <div class="input"><label for="cs">School name *</label><input id="cs" name="school_name" required></div>
+          <div class="input"><label for="cc">Your name *</label><input id="cc" name="contact_name" required></div>
+          <div class="input"><label for="ce">Work email *</label><input id="ce" type="email" name="email" required></div>
+          <div class="input"><label for="cp">Phone</label><input id="cp" type="tel" name="phone"></div>
+          <label class="check"><input type="checkbox" name="confirm" required> I'm authorized to manage this school's listing.</label>
+          <button class="btn btn-primary" type="submit">Claim listing</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt">
+    <div class="wrap" style="max-width:760px">
+      <p class="eyebrow">Good to know</p>
+      <h2 style="margin-bottom:18px">Questions schools ask.</h2>
+      <div class="panel"><h3 style="font-size:20px">Is it really free?</h3><p class="muted">Yes. Basic listings are free. Featured placement options are shown after you verify your email.</p></div>
+      <div class="panel"><h3 style="font-size:20px">Do you post our tuition?</h3><p class="muted">No. Students request pricing and schedules from you directly.</p></div>
+      <div class="panel"><h3 style="font-size:20px">How are inquiries screened?</h3><p class="muted">Students answer your required questions (license, start date and program) before an inquiry reaches you. You make every enrollment decision.</p></div>
+      <div class="panel"><h3 style="font-size:20px">Do you verify licenses?</h3><p class="muted">No. Schools and trainers are responsible for their own licensing and compliance, and listings say so.</p></div>
+    </div>
+  </section>
+</main>
+<footer id="site-footer"></footer>
+<script src="assets/site.js"></script>
+<script>
+(function () {
+  var claim = new URLSearchParams(location.search).get('claim');
+  if (!claim) return;
+  document.getElementById('claim-id').value = claim;
+  fetch('data/schools.json').then(function (r) { return r.json(); }).then(function (d) {
+    var s = (d.schools || []).find(function (x) { return x.id === claim; });
+    if (s) document.getElementById('cs').value = s.name;
+  }).catch(function () {});
+})();
+</script>
+</body>
+</html>
