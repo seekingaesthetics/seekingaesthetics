@@ -504,3 +504,92 @@ async function initListing() {
   window.addEventListener("hashchange", show);
   show();
 }
+
+/* =========================================================
+   SIMPLE FORMS (contact, careers, list/claim your school)
+   Sends to Formspree on the live site; shows a note in previews.
+   ========================================================= */
+function isLiveSite() {
+  const h = location.hostname;
+  return h === "seekingaesthetics.com" || h === "www.seekingaesthetics.com" || h.endsWith("github.io");
+}
+function wireForm(formId, endpoint, check) {
+  const form = document.getElementById(formId);
+  if (!form) return;
+  const err = form.querySelector(".err"), btn = form.querySelector("button[type=submit]");
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    const msg = check ? check(form) : "";
+    err.textContent = msg; err.hidden = !msg;
+    if (msg) return;
+    if (form.querySelector("[name=website_hp]")?.value) return;
+    if (!isLiveSite()) {
+      form.querySelector(".done").innerHTML = "<b>Preview only.</b> On the live site this sends to Melissa and opens the thank-you page.";
+      form.querySelector(".done").hidden = false;
+      return;
+    }
+    btn.disabled = true;
+    try {
+      const res = await fetch(endpoint, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } });
+      if (!res.ok) throw new Error("not ok");
+      location.href = "thank-you.html";
+    } catch (x) {
+      err.textContent = "That didn't send. Check your connection and try again, or email hello@seekingaesthetics.com.";
+      err.hidden = false; btn.disabled = false;
+    }
+  });
+}
+const needEmail = (form, name = "email") => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test((form.elements[name]?.value || "").trim());
+
+/* =========================================================
+   HOMEPAGE (index.html)
+   ========================================================= */
+function homeCard(s) {
+  const photo = (s.photos || [])[0];
+  return `<a class="hcard" href="${schoolUrl(s)}">
+    <span class="photo">${photo ? `<img src="${esc(photo)}" alt="" loading="lazy">` : ""}<span class="badge">Featured</span></span>
+    <span class="hb"><b>${esc(s.name)}</b>
+    <small>${esc(where(s))}${(s.formats || []).length ? " · " + esc(s.formats.join(", ")) : ""}</small>
+    <small>Tuition from <strong>${esc(tuitionFrom(s))}</strong> · Next start <strong>${esc(nextStart(s))}</strong></small></span>
+  </a>`;
+}
+async function initHome() {
+  const form = $("#homeSearch"), input = $("#hq");
+  let formats = [];
+  document.querySelectorAll("[data-format]").forEach(b => b.addEventListener("click", () => {
+    const f = b.dataset.format;
+    formats = formats.includes(f) ? formats.filter(x => x !== f) : [...formats, f];
+    b.setAttribute("aria-pressed", String(formats.includes(f)));
+  }));
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    store.set(SEARCH_KEY, { q: input.value.trim(), formats });
+    location.href = "schools.html";
+  });
+  let data;
+  try { data = await loadSchools(); } catch (e) { return; }
+  const paid = data.schools.filter(isPaid).sort((a, b) => a.name.localeCompare(b.name)).slice(0, 6);
+  const feat = $("#featured");
+  if (paid.length) { $("#featuredGrid").innerHTML = paid.map(homeCard).join(""); feat.hidden = false; }
+  const counts = {};
+  data.schools.forEach(s => { const k = `${s.city}|${s.state}`; counts[k] = (counts[k] || 0) + 1; });
+  const cities = Object.entries(counts).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 6);
+  $("#cityGrid").innerHTML = cities.map(([k, n]) => {
+    const [city, st] = k.split("|");
+    return `<button class="city" type="button" data-city="${esc(city + ", " + st)}"><b>${esc(city)}</b><small>${n} school${n === 1 ? "" : "s"}</small></button>`;
+  }).join("");
+  $("#cityGrid").addEventListener("click", e => {
+    const b = e.target.closest("[data-city]"); if (!b) return;
+    store.set(SEARCH_KEY, { q: b.dataset.city, formats: [] });
+    location.href = "schools.html";
+  });
+}
+
+/* Claim links carry the school name into the list-your-school form */
+function prefillClaim() {
+  const name = new URLSearchParams(location.search).get("school");
+  if (!name) return;
+  const f = document.getElementById("lsSchool"), c = document.getElementById("lsClaim");
+  if (f) f.value = name;
+  if (c) c.checked = true;
+}
