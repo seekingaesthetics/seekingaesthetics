@@ -1,0 +1,134 @@
+{
+  "sample": true,
+  "note": "Fictional example schools for the design preview. Replaced automatically once Airtable is connected.",
+  "generated": "2026-11-09",
+  "schools": [
+    {
+      "id": "sample-canyon-glow",
+      "slug": "canyon-glow-beauty-academy",
+      "name": "Canyon Glow Beauty Academy",
+      "city": "Orem",
+      "state": "UT",
+      "listing": "paid",
+      "formats": ["In person"],
+      "website": "",
+      "scheduleSummary": "Day and night classes",
+      "tags": ["Day classes", "Night classes", "Financial aid accepted"],
+      "aid": "Accepted",
+      "photos": [
+        "img/listings/spa-interior.jpg",
+        "img/listings/facial.jpg",
+        "img/listings/skincare.jpg",
+        "img/listings/laser.jpg",
+        "img/listings/injection.jpg"
+      ],
+      "programs": [
+        { "name": "Basic Esthetics Permit", "tuition": "$X,XXX", "hours": 200, "schedule": "Day or night", "nextStart": "[Date]" },
+        { "name": "Master Esthetician License", "tuition": "$XX,XXX", "hours": 1200, "schedule": "Full or part-time", "nextStart": "[Date]" }
+      ],
+      "openHouse": { "date": "[Date]", "title": "Tour the clinic floor" },
+      "parents": { "totalCost": "$X,XXX", "aid": "Accepted", "accreditation": "[As provided]", "stateLicense": "Provided" }
+    },
+    {
+      "id": "sample-lakeside",
+      "slug": "lakeside-skin-studio-school",
+      "name": "Lakeside Skin Studio School",
+      "city": "Lehi",
+      "state": "UT",
+      "listing": "paid",
+      "formats": ["In person", "Hybrid"],
+      "website": "",
+      "scheduleSummary": "Hybrid theory, in-person clinic days",
+      "tags": ["Hybrid", "Evening theory", "Payment plans"],
+      "aid": "Payment plans",
+      "photos": [
+        "img/listings/facial.jpg",
+        "img/listings/skincare.jpg",
+        "img/listings/spa-interior.jpg"
+      ],
+      "programs": [
+        { "name": "Esthetics License Program", "tuition": "$X,XXX", "hours": 600, "schedule": "Hybrid, 4 days a week", "nextStart": "[Date]" }
+      ],
+      "openHouse": { "date": "[Date]", "title": "Open house and student demo" },
+      "parents": { "totalCost": "$X,XXX", "aid": "Payment plans", "accreditation": "[As provided]", "stateLicense": "Provided" }
+    },
+    {
+      "id": "sample-wasatch",
+      "slug": "wasatch-advanced-aesthetics-training",
+      "name": "Wasatch Advanced Aesthetics Training",
+      "city": "Salt Lake City",
+      "state": "UT",
+      "listing": "paid",
+      "formats": ["In person", "Online"],
+      "website": "",
+      "scheduleSummary": "Weekend workshops",
+      "tags": ["For licensed estheticians", "Weekend workshops"],
+      "aid": "Not offered",
+      "photos": [
+        "img/listings/laser.jpg",
+        "img/listings/injection.jpg"
+      ],
+      "programs": [
+        { "name": "Laser and Energy Devices", "tuition": "$X,XXX", "hours": 40, "schedule": "Two weekends", "nextStart": "[Date]" },
+        { "name": "Chemical Peels Online Theory", "tuition": "$XXX", "hours": 12, "schedule": "Self-paced online", "nextStart": "Any time" }
+      ],
+      "openHouse": null,
+      "parents": { "totalCost": "$X,XXX", "aid": "Not offered", "accreditation": "[As provided]", "stateLicense": "Provided" }
+    },
+    {
+      "id": "sample-valley",
+      "slug": "valley-skin-and-beauty-school",
+      "name": "Valley Skin & Beauty School",
+      "city": "Provo",
+      "state": "UT",
+      "listing": "free",
+      "formats": ["In person"],
+      "website": "https://example.com",
+      "programs": [{ "name": "Esthetics" }, { "name": "Master Esthetics" }]
+    },
+    {
+      "id": "sample-timpanogos",
+      "slug": "timpanogos-esthetics-institute",
+      "name": "Timpanogos Esthetics Institute",
+      "city": "American Fork",
+      "state": "UT",
+      "listing": "free",
+      "formats": ["In person"],
+      "website": "https://example.com",
+      "programs": [{ "name": "Esthetics" }]
+    },
+    {
+      "id": "sample-bonneville",
+      "slug": "bonneville-esthetics-school",
+      "name": "Bonneville Esthetics School",
+      "city": "Ogden",
+      "state": "UT",
+      "listing": "free",
+      "formats": ["In person", "Hybrid"],
+      "website": "https://example.com",
+      "programs": [{ "name": "Esthetics" }, { "name": "Lash and Brow" }]
+    },
+    {
+      "id": "sample-red-rock",
+      "slug": "red-rock-beauty-college",
+      "name": "Red Rock Beauty College",
+      "city": "St. George",
+      "state": "UT",
+      "listing": "free",
+      "formats": ["In person"],
+      "website": "https://example.com",
+      "programs": [{ "name": "Esthetics" }, { "name": "Cosmetology" }]
+    },
+    {
+      "id": "sample-sonoran",
+      "slug": "sonoran-skin-academy",
+      "name": "Sonoran Skin Academy",
+      "city": "Phoenix",
+      "state": "AZ",
+      "listing": "free",
+      "formats": ["Online"],
+      "website": "https://example.com",
+      "programs": [{ "name": "Esthetics Theory Online" }]
+    }
+  ]
+}
