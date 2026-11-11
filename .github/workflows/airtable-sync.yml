@@ -1,0 +1,54 @@
+# Copies Live schools from Airtable onto the website.
+# Runs every night, whenever you press "Run workflow" on the Actions tab,
+# and when this file or the copy script changes on the school-listings branch (for testing).
+name: Update schools from Airtable
+
+on:
+  schedule:
+    - cron: "23 9 * * *"   # every day around 2:23 AM Utah time
+  workflow_dispatch:
+  push:
+    branches: [school-listings]
+    paths:
+      - .github/workflows/airtable-sync.yml
+      - scripts/build_schools.py
+
+permissions:
+  contents: write
+
+concurrency:
+  group: airtable-sync-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install photo resizer
+        run: pip install --quiet pillow==10.4.0
+
+      - name: Copy Live schools from Airtable
+        env:
+          AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
+          AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
+        run: python scripts/build_schools.py
+
+      - name: Save changes to the site
+        run: |
+          git add data/schools.json
+          git add -A img/schools 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "No changes since the last update."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898729+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Update schools from Airtable"
+          git push
